@@ -29,7 +29,8 @@ function Button(props) {
 	const [className, setClassName] = useState(`btn-aurora`);
 
 	useEffect(() => {
-		props.className && setClassName((prevState) => `${prevState} ${props.className}`);
+		props.className &&
+			setClassName((prevState) => `${prevState} ${props.className}`);
 		props.outline && setClassName((prevState) => `${prevState} btn-outline`);
 		props.sm && setClassName((prevState) => `${prevState} sm`);
 		props.lg && setClassName((prevState) => `${prevState} lg`);
@@ -42,5 +43,14 @@ function Button(props) {
 		</button>
 	);
 }
+
+Button.defaultProps = {
+	children: 'Button',
+	className: '',
+	outline: false,
+	sm: false,
+	lg: false,
+	disabled: false,
+};
 
 export default Button;

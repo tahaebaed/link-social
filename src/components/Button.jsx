@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../assets/sass/components/buttons.scss';
 
 /**
@@ -26,7 +26,21 @@ import '../assets/sass/components/buttons.scss';
  * @returns
  */
 function Button(props) {
-	return <button>{props.children}</button>;
+	const [className, setClassName] = useState(`btn-aurora`);
+
+	useEffect(() => {
+		props.className && setClassName((prevState) => `${prevState} ${props.className}`);
+		props.outline && setClassName((prevState) => `${prevState} btn-outline`);
+		props.sm && setClassName((prevState) => `${prevState} sm`);
+		props.lg && setClassName((prevState) => `${prevState} lg`);
+		props.disabled && setClassName((prevState) => `${prevState} disabled`);
+	}, []);
+
+	return (
+		<button className={className} disabled={props.disabled}>
+			{props.children}
+		</button>
+	);
 }
 
 export default Button;

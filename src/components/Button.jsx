@@ -26,19 +26,20 @@ import '../assets/sass/components/buttons.scss';
  * @returns
  */
 function Button(props) {
-	const [className, setClassName] = useState(`btn-aurora`);
+	const [className, setClassName] = useState('');
 
 	useEffect(() => {
-		props.className &&
-			setClassName((prevState) => `${prevState} ${props.className}`);
-		props.outline && setClassName((prevState) => `${prevState} btn-outline`);
-		props.sm && setClassName((prevState) => `${prevState} sm`);
-		props.lg && setClassName((prevState) => `${prevState} lg`);
-		props.disabled && setClassName((prevState) => `${prevState} disabled`);
+		let initClass = `btn-aurora ` + props.className;
+		initClass += props.outline ? ' btn-outline' : '';
+		initClass += props.sm ? ' sm' : '';
+		initClass += props.lg ? ' lg' : '';
+		initClass += props.disabled ? ' disabled' : '';
+
+		setClassName(initClass);
 	}, []);
 
 	return (
-		<button className={className} disabled={props.disabled}>
+		<button {...props} className={className} disabled={props.disabled}>
 			{props.children}
 		</button>
 	);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createRef } from 'react';
+import { BsThreeDots } from 'react-icons/bs';
 import '../assets/scss/components/dropdown.scss';
 
 /**
@@ -71,5 +72,40 @@ function Dropdown(props) {
 		</div>
 	);
 }
+
+Dropdown.defaultProps = {
+	isOpen: false,
+	noArrow: false,
+	toLeft: false,
+	className: '',
+	label: <BsThreeDots />,
+	children: (
+		<>
+			<li>
+				<a className='dropdown-item' href='#go-to-somewhere'>
+					Action
+				</a>
+			</li>
+			<li>
+				<a className='dropdown-item' href='#go-to-somewhere'>
+					Another action
+				</a>
+			</li>
+			<li>
+				<a className='dropdown-item' href='#go-to-somewhere'>
+					Something else here
+				</a>
+			</li>
+			<li>
+				<hr className='dropdown-divider' />
+			</li>
+			<li>
+				<a className='dropdown-item' href='#go-to-somewhere'>
+					Separated link
+				</a>
+			</li>
+		</>
+	),
+};
 
 export default Dropdown;

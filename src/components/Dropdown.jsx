@@ -1,6 +1,26 @@
 import React, { useState, useEffect, createRef } from 'react';
 import '../assets/scss/components/dropdown.scss';
 
+/**
+ * @usage
+
+- use `label` to change displayed text (can be text or icon)
+- use `isOpen` to change init state for showing dropdown
+- use `noArrow` to hide dropdown arrow
+- use `toLeft` to change direction from left to right
+- use `className` to add class to dropdown wrapper
+
+* @example
+
+<Dropdown noArrow />
+<Dropdown label={'Dropdown'} />
+<Dropdown label={<TbGridDots />} />
+<Dropdown isOpen={true} />
+<Dropdown noArrow toLeft />
+
+ * @param {Object} props 
+ * @returns 
+ */
 function Dropdown(props) {
 	const [isOpen, setIsOpen] = useState(props.isOpen);
 	const [dropdownMenuRef] = useState(createRef());

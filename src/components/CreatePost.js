@@ -4,11 +4,20 @@ import { HiOutlineCamera, HiOutlineFaceSmile } from 'react-icons/hi2';
 import iconAvatar from '../assets/attachment_15960883.svg';
 import Button from './Button';
 
-const CreatePost = ({ avatar }) => (
+/**
+ * @usage
+- use `avatar` to display the avatar of the user
+
+
+ * @param {Object} props 
+ * @returns
+ */
+
+const CreatePost = ({ avatar = iconAvatar }) => (
 	<div className='w-[40%] mx-auto py-4 px-8 border-2 rounded-3xl'>
 		<div className='relative'>
 			<img
-				src={avatar || iconAvatar}
+				src={avatar}
 				className='absolute left-2 top-4 rounded-full border-2 w-12 py-4 px-2'
 				alt='user avatar'
 			/>

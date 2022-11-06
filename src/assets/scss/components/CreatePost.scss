@@ -1,0 +1,9 @@
+.small-hidden {
+	@media screen and (max-width: 640px) {
+		display: none;
+	}
+}
+
+.create-post__textarea {
+	resize: none;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { HiOutlineCamera, HiOutlineFaceSmile } from 'react-icons/hi2';
 
 import iconAvatar from '../assets/attachment_15960883.svg';
@@ -39,6 +39,7 @@ const CreatePost = ({ avatar = iconAvatar }) => {
 				setFile(res.data);
 			});
 	};
+
 	return (
 		<>
 			{/* {`upload: ${upload}`} */}

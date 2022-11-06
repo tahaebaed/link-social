@@ -2,7 +2,7 @@ import React from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { FaRegHeart, FaShare } from 'react-icons/fa';
 import { BiMessageDetail } from 'react-icons/bi';
-import { users } from '../utilities/dummy data/users';
+import { users } from '../utilities/dummydata/users';
 function PostCard({
 	profileImg,
 	userName,

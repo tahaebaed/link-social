@@ -18,6 +18,7 @@ import axios from 'axios';
 const CreatePost = ({ avatar = iconAvatar }) => {
 	const [file, setFile] = useState(null);
 	const [upload, setUpload] = useState('0%');
+
 	const uploadFileHandler = (e) => {
 		const fd = new FormData();
 

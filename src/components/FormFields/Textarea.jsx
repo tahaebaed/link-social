@@ -5,16 +5,17 @@ import ErrorText from './ErrorText';
 const Textarea = (props) => {
 	const { label, name, ...rest } = props;
 	return (
-		<div className='rounded-full w-fit border py-2 px-4'>
+		<>
 			<Field
 				as='textarea'
+				className='border-2 rounded-3xl pl-16 pt-2 w-full min-h-[4rem] create-post__textarea'
 				id={name}
 				name={name}
-				{...rest}
 				placeholder={label}
+				{...rest}
 			/>
 			<ErrorMessage name={name} component={ErrorText} />
-		</div>
+		</>
 	);
 };
 

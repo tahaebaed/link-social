@@ -1,11 +1,14 @@
 import React from 'react';
 import CheckBox from './CheckBox';
+import FileInput from './FileInput';
 import Input from './Input';
 import RadioButton from './RadioButton';
 import Textarea from './Textarea';
 
 function FormikControl(props) {
 	switch (props.control) {
+		case 'file':
+			return <FileInput {...props} />;
 		case 'password':
 			return <Input {...props} />;
 		case 'textarea':
@@ -14,8 +17,6 @@ function FormikControl(props) {
 			return <CheckBox {...props} />;
 		case 'radio':
 			return <RadioButton {...props} />;
-		case 'date':
-			return <Input {...props} />;
 		case 'number':
 			return <Input {...props} />;
 		default:

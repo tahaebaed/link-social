@@ -1,8 +1,5 @@
 import './App.scss';
 function App() {
-	return (
-		<div className=''>
-		</div>
-	);
-
+	return <div className='app'></div>;
+}
 export default App;

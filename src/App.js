@@ -1,7 +1,10 @@
 import './App.scss';
+import CreatePost from './components/CreatePost';
+
 function App() {
 	return (
-		<div className=''>
+		<div className='App'>
+			<CreatePost />
 		</div>
 	);
 }

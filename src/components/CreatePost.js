@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { HiOutlineCamera, HiOutlineFaceSmile } from 'react-icons/hi2';
 
 import iconAvatar from '../assets/attachment_15960883.svg';
@@ -11,7 +11,7 @@ import axios from 'axios';
 - use `avatar` to display the avatar of the user
 
 
- * @param {Object} props 
+ * @param {Object} { avatar } 
  * @returns
  */
 
@@ -41,49 +41,47 @@ const CreatePost = ({ avatar = iconAvatar }) => {
 	};
 
 	return (
-		<>
-			{/* {`upload: ${upload}`} */}
-			<div className='w-[80%] mx-auto py-4 px-8 border-2 rounded-3xl'>
-				<div className='relative'>
-					<img
-						src={avatar}
-						className='absolute left-2 top-2 rounded-full border-2 w-12 py-4 px-2'
-						alt='user avatar'
-					/>
-					<textarea
-						type='textarea'
-						name='post-content'
-						className='border-2 rounded-3xl pl-16 pt-2 w-full h-20 create-post__textarea'
-						placeholder='what on your mind...'
-					/>
-				</div>
-				<div className='flex justify-between mt-2 w-auto'>
-					<div className='flex'>
-						<label className='cursor-pointer mr-2 px-4 py-2 flex items-center'>
-							<HiOutlineCamera className='mr-1' />
-							<span className='small-hidden'>Photo/Video</span>
-							<input
-								type='file'
-								accept='video/*, image/*'
-								name='file-uploader'
-								hidden
-								onChange={uploadFileHandler}
-							/>
-						</label>
-						<button className='px-4 py-2 flex items-center'>
-							<HiOutlineFaceSmile className='mr-1' />
-							<span className=' small-hidden'>feeling</span>
-						</button>
-					</div>
-					<Button className='px-4 py-2' sm>
-						add post
-					</Button>
-				</div>
+		<div className='w-[80%] mx-auto py-4 px-8 border-2 rounded-3xl'>
+			<div className='relative'>
+				<img
+					src={avatar}
+					className='absolute left-2 top-2 rounded-full border-2 w-12 py-4 px-2'
+					alt='user avatar'
+				/>
+				<textarea
+					type='textarea'
+					name='post-content'
+					className='border-2 rounded-3xl pl-16 pt-2 w-full h-20 create-post__textarea'
+					placeholder='what on your mind...'
+				/>
 			</div>
-			{/* <div className='w-[60%] h-15 m-auto'>
-				<img src={file?.url} alt="post header img" />
-			</div> */}
-		</>
+			<div className='flex justify-between mt-2 w-auto'>
+				<div className='flex'>
+					<label
+						htmlFor='file-uploader'
+						className='cursor-pointer mr-2 px-4 py-2 flex items-center'
+					>
+						<HiOutlineCamera className='mr-1 text-2xl' />
+						<span className='small-hidden'>Photo/Video</span>
+						<input
+							type='file'
+							id='file-uploader'
+							accept='video/*, image/*'
+							name='file-uploader'
+							hidden
+							onChange={uploadFileHandler}
+						/>
+					</label>
+					<button className='px-4 py-2 flex items-center'>
+						<HiOutlineFaceSmile className='mr-1 text-2xl' />
+						<span className='small-hidden'>feeling</span>
+					</button>
+				</div>
+				<Button className='px-4 py-2' sm>
+					add post
+				</Button>
+			</div>
+		</div>
 	);
 };
 

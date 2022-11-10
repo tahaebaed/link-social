@@ -5,17 +5,14 @@ import { RouterProvider } from 'react-router-dom';
 
 import ReduxProvider from './utilities/store';
 import './index.scss';
-import ErrorBoundary from './utilities/ErrorBoundary/ErrorBoundary';
 import router from './routes/Pages';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<ErrorBoundary>
-			<ReduxProvider>
-				<RouterProvider router={router} />
-			</ReduxProvider>
-		</ErrorBoundary>
+		<ReduxProvider>
+			<RouterProvider router={router} />
+		</ReduxProvider>
 	</React.StrictMode>
 );
 

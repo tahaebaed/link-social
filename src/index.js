@@ -1,21 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 
-import App from './App';
 import ReduxProvider from './utilities/store';
 import './index.scss';
 import ErrorBoundary from './utilities/ErrorBoundary/ErrorBoundary';
+import router from './routes/Pages';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<ErrorBoundary>
 			<ReduxProvider>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
+				<RouterProvider router={router} />
 			</ReduxProvider>
 		</ErrorBoundary>
 	</React.StrictMode>

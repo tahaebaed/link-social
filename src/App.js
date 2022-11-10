@@ -1,10 +1,12 @@
+import { Outlet } from 'react-router-dom';
 import './App.scss';
-import CreatePost from './components/CreatePost';
+import Navbar from './layout/Navbar.jsx';
 
 function App() {
 	return (
 		<div className='App'>
-			<CreatePost />
+			<Navbar />
+			<Outlet />
 		</div>
 	);
 }

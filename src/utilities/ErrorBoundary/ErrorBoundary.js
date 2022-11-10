@@ -1,29 +1,16 @@
-import { Component } from 'react';
+import { useRouteError } from 'react-router-dom';
 
-class ErrorBoundary extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { hasError: false };
-	}
-
-	static getDerivedStateFromError(error) {
-		// Update state so the next render will show the fallback UI.
-		return { hasError: true };
-	}
-
-	componentDidCatch(error, errorInfo) {
-		// You can also log the error to an error reporting service
-		throw (error, errorInfo);
-	}
-
-	render() {
-		if (this.state.hasError) {
-			// You can render any custom fallback UI
-			return <h1>Something went wrong.</h1>;
-		}
-
-		return this.props.children;
-	}
+function ErrorBoundary() {
+	let error = useRouteError();
+	return (
+		<div>
+			<h1>Uh oh, something went terribly wrong 😩</h1>
+			<pre>{error.message || JSON.stringify(error)}</pre>
+			<button onClick={() => (window.location.href = '/')}>
+				Click here to reload the app
+			</button>
+		</div>
+	);
 }
 
 export default ErrorBoundary;

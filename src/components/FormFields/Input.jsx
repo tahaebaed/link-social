@@ -7,7 +7,7 @@ const Input = (props) => {
 	return (
 		<div className=' my-3 relative w-3/4'>
 			<span
-				className='icon fixed p-1 rounded-full w-fit left-2 opacity-40'
+				className='icon absolute p-1 rounded-full w-fit left-2 opacity-40'
 				style={{ top: '11.3%' }}
 			>
 				{icon}

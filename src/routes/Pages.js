@@ -2,9 +2,10 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import Loader from '../components/Loader';
-import { SignIn, SignUp } from './lazyLoading';
+import { SignIn, SignUp, UpdateUser } from './lazyLoading';
 import ErrorBoundary from '../utilities/ErrorBoundary/ErrorBoundary';
 import NotFound from './NotFound';
+import ProtectedRoute from './ProtectedRoute';
 
 const router = createBrowserRouter([
 	{
@@ -28,8 +29,24 @@ const router = createBrowserRouter([
 					</React.Suspense>
 				),
 			},
+			{
+				path: 'profileId=:profileId',
+				children: [
+					{
+						path: 'updateUser',
+						element: (
+							<React.Suspense fallback={<Loader />}>
+								<ProtectedRoute>
+									<UpdateUser />
+								</ProtectedRoute>
+							</React.Suspense>
+						),
+					},
+				],
+			},
 		],
 	},
+
 	{
 		path: '*',
 		element: <NotFound />,

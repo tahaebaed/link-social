@@ -5,6 +5,7 @@ import Loader from '../components/Loader';
 import { SignIn, SignUp } from './lazyLoading';
 import ErrorBoundary from '../utilities/ErrorBoundary/ErrorBoundary';
 import NotFound from './NotFound';
+import CalendarCard from '../layout/CalendarCard';
 
 const router = createBrowserRouter([
 	{
@@ -28,12 +29,13 @@ const router = createBrowserRouter([
 					</React.Suspense>
 				),
 			},
+			{
+				path: '*',
+				element: <NotFound />,
+			},
 		],
 	},
-	{
-		path: '*',
-		element: <NotFound />,
-	},
+
 ]);
 
 export default router;

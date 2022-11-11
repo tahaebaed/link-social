@@ -10,7 +10,18 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (user) => {
 			data: user,
 			url: 'api/v1/auth/register',
 		});
-		console.log(response);
+		return response.data;
+	} catch (err) {
+		return err.response.data;
+	}
+});
+export const updateUser = createAsyncThunk('user/updateUser', async (user) => {
+	try {
+		const response = await userInterceptor({
+			method: 'put',
+			data: user,
+			url: 'api/v1/users',
+		});
 		return response.data;
 	} catch (err) {
 		return err.response.data;
@@ -40,10 +51,14 @@ export const extraReducers = {
 			toast.success(action.payload.message);
 			state.user = action.payload.data.user;
 			Cookies.set('token', action.payload.data.token);
+			Cookies.set('user', JSON.stringify(state.user));
 		}
 	},
 	[fetchUser.rejected]: (state, action) => {
 		state.error = "couldn't fetch data";
-		console.log(action);
 	},
+	[updateUser.pending]: (state) => {
+		state.loading = true;
+	},
+	[updateUser.fulfilled]: (state, action) => {},
 };

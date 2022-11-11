@@ -23,7 +23,6 @@ const FileInput = ({ control, name, label, ...rest }) => {
 			})
 			.then((res) => {
 				rest.setFieldValue('file', res.data);
-				console.log(rest.values);
 			});
 	};
 	return (

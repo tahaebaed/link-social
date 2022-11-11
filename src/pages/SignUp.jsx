@@ -1,6 +1,8 @@
 import { Form, Formik } from 'formik';
+import { FaBeer } from 'react-icons/fa';
 import React from 'react';
 import FormikControl from '../components/FormFields/FormikControl.jsx';
+import * as yup from 'yup';
 
 const SignUp = () => {
 	const initialValues = {
@@ -15,14 +17,25 @@ const SignUp = () => {
 		age: '', // optional
 		gender: '', //optional,
 	};
+	const onSubmit = (values) => {
+		console.log(values);
+	};
+	const validationSchema = yup.object({
+		user_name: yup.string().required(),
+	});
 	return (
 		<section>
-			<Formik initialValues={initialValues}>
+			<Formik
+				initialValues={initialValues}
+				validationSchema={validationSchema}
+				onSubmit={onSubmit}
+			>
 				{(formik) => (
 					<Form>
 						<div className='w-full'>
 							<h2>User Name</h2>
 							<FormikControl
+								icon={<FaBeer />}
 								name='user_name'
 								id='user_name'
 								type='text'

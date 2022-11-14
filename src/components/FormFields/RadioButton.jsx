@@ -3,10 +3,9 @@ import { ErrorMessage, Field } from 'formik';
 import ErrorText from './ErrorText';
 
 const RadioButton = (props) => {
-	const { label, name, options, control } = props;
+	const { name, options, control } = props;
 	return (
 		<div className='w-fit py-2 px-4'>
-			<label>{label}</label>
 			<Field name={name}>
 				{({ field }) =>
 					options.map((option) => {

@@ -6,7 +6,9 @@ import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 
 import FormikControl from '../components/FormFields/FormikControl.jsx';
+
 import { fetchUser } from '../utilities/store/user_reducer/extraReducers.js';
+
 
 const SignUp = () => {
 	const initialValues = {

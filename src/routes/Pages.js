@@ -8,6 +8,7 @@ import NotFound from './NotFound';
 import ProtectedRoute from './ProtectedRoute';
 import Registration from '../layout/Registration';
 
+
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -51,9 +52,12 @@ const router = createBrowserRouter([
 					},
 				],
 			},
+			{
+				path: '*',
+				element: <NotFound />,
+			},
 		],
 	},
-
 	{
 		path: '*',
 		element: <NotFound />,

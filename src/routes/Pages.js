@@ -6,6 +6,7 @@ import { SignIn, SignUp, UpdateUser } from './lazyLoading';
 import ErrorBoundary from '../utilities/ErrorBoundary/ErrorBoundary';
 import NotFound from './NotFound';
 import ProtectedRoute from './ProtectedRoute';
+import Registration from '../layout/Registration';
 
 const router = createBrowserRouter([
 	{
@@ -14,20 +15,26 @@ const router = createBrowserRouter([
 		errorElement: <ErrorBoundary />,
 		children: [
 			{
-				path: 'SignIn',
-				element: (
-					<React.Suspense fallback={<Loader />}>
-						<SignIn />
-					</React.Suspense>
-				),
-			},
-			{
-				path: 'SignUp',
-				element: (
-					<React.Suspense fallback={<Loader />}>
-						<SignUp />
-					</React.Suspense>
-				),
+				path: 'registration',
+				element: <Registration />,
+				children: [
+					{
+						path: 'SignIn',
+						element: (
+							<React.Suspense fallback={<Loader />}>
+								<SignIn />
+							</React.Suspense>
+						),
+					},
+					{
+						path: 'SignUp',
+						element: (
+							<React.Suspense fallback={<Loader />}>
+								<SignUp />
+							</React.Suspense>
+						),
+					},
+				],
 			},
 			{
 				path: 'profileId=:profileId',

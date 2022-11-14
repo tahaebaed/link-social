@@ -9,9 +9,7 @@ export const userInterceptor = axios.create({
 		'Access-Control-Allow-Origin': '*',
 		'Access-Control-Allow-Credentials': 'true',
 		'X-Requested-With': 'XMLHttpRequest',
-		'X-CSRF-TOKEN': document.head
-			.querySelector('meta[name="csrf-token"]')
-			.getAttribute('content'),
+		'X-CSRF-TOKEN': '{{ csrf_token() }}',
 	},
 });
 

@@ -36,7 +36,7 @@ const Profile = () => {
 									: 'https://via.placeholder.com/150'
 							}
 							alt={response.profile.user.user_name}
-							className='bg__image  rounded-t-2xl h-[40vh] w-full  object-fill'
+							className='bg__image  rounded-t-xl h-[40vh] w-full  object-fill'
 						/>
 						<img
 							src={
@@ -45,7 +45,7 @@ const Profile = () => {
 									: 'https://via.placeholder.com/150'
 							}
 							alt={response.profile.user.user_name}
-							className='profile-img absolute rounded-full top-2/4 border-4 left-2/4 translate-x-[-50%] z-10'
+							className='profile-img object-contain absolute rounded-full top-[55%] border-4 left-2/4 translate-x-[-50%] z-10'
 						/>
 						<ProfileNavbar
 							username={response.profile.user.user_name}

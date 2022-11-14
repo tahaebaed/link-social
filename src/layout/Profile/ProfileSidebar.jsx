@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProfileSidebar = (props) => {
 	return (
-		<div className='profile_data border rounded m-5 shadow-md bg-white'>
+		<div className='profile_data border rounded-xl my-5 mr-5 shadow-md bg-white'>
 			<h4 className='border-b border-gray-300 py-3 pl-3 font-medium'>
 				Profile Info
 			</h4>

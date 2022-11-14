@@ -8,14 +8,13 @@ import * as yup from 'yup';
 import FormikControl from '../components/FormFields/FormikControl.jsx';
 
 import { fetchUser } from '../utilities/store/user_reducer/extraReducers.js';
-
+import Button from '../components/Button.jsx';
 
 const SignUp = () => {
 	const initialValues = {
 		user_name: '',
 		email: '',
 		// Must be a valid email address.
-
 		password: '',
 		password_confirmation: '',
 		first_name: '',

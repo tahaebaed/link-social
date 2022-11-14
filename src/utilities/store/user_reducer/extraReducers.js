@@ -15,6 +15,7 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (user) => {
 		return err.response.data;
 	}
 });
+
 export const updateUser = createAsyncThunk('user/updateUser', async (user) => {
 	try {
 		const response = await userInterceptor({

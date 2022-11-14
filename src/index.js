@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ReduxProvider from './utilities/store';
 import './index.scss';
@@ -12,6 +14,7 @@ root.render(
 	<React.StrictMode>
 		<ReduxProvider>
 			<RouterProvider router={router} />
+			<ToastContainer />
 		</ReduxProvider>
 	</React.StrictMode>
 );

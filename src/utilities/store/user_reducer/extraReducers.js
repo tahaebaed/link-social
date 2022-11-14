@@ -36,17 +36,14 @@ export const extraReducers = {
 		state.loading = false;
 
 		if (!action.payload.status) {
-			state.error = `${
-				action.payload.errors.email ? action.payload.errors.email[0] : ''
-			} ${
-				action.payload.errors.password ? action.payload.errors.password[0] : ''
-			}`;
-			toast.error(
-				<>
-					<h4>{action.payload.message}</h4>
-					<p> {state.error}</p>
-				</>
-			);
+			Object.keys(action.payload.errors).forEach((key, i) => {
+				toast.error(
+					<>
+						<h4>{action.payload.message}</h4>
+						<p key={i}> {action.payload.errors[key]}</p>
+					</>
+				);
+			});
 		} else {
 			toast.success(action.payload.message);
 			state.user = action.payload.data.user;

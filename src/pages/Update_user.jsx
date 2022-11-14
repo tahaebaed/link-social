@@ -1,7 +1,6 @@
 import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { BsPerson } from 'react-icons/bs';
-import { HiOutlineMail } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 import FormikControl from '../components/FormFields/FormikControl';
 import * as yup from 'yup';
@@ -138,6 +137,9 @@ const Update_user = () => {
 									: formik.isValidating
 									? 'updating'
 									: 'submit'}
+							</button>
+							<button type='button' onClick={() => formik.resetForm()}>
+								cancel
 							</button>
 						</Form>
 					);

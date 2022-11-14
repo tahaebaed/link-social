@@ -1,11 +1,12 @@
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const ProtectedRoute = ({ user, children }) => {
-	const location = useLocation();
+const ProtectedRoute = ({ children }) => {
+	const user = useSelector((store) => store.userReducer.user);
 	if (!user) {
-		return <Navigate to='/login' state={{ from: location }} replace />;
+		return <Navigate to='/registration/SignIn' replace={true} />;
 	}
 	return children;
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import ErrorText from './ErrorText';
 
 const Input = (props) => {
-	const { name, label, icon, control } = props;
+	const { name, label, icon, type } = props;
 	return (
 		<div className='relative mb-5' style={{ height: '60px' }}>
 			<span
@@ -17,7 +17,7 @@ const Input = (props) => {
 				id={name}
 				name={name}
 				placeholder={label}
-				type={control || 'text'}
+				type={type || 'text'}
 			/>
 			<ErrorMessage name={name} component={ErrorText} />
 		</div>

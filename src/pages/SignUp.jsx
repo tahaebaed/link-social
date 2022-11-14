@@ -3,13 +3,13 @@ import { FaBeer } from 'react-icons/fa';
 import React from 'react';
 import FormikControl from '../components/FormFields/FormikControl.jsx';
 import * as yup from 'yup';
+import Button from '../components/Button.jsx';
 
 const SignUp = () => {
 	const initialValues = {
 		user_name: '',
 		email: '',
 		// Must be a valid email address.
-
 		password: '',
 		first_name: '',
 		last_name: '',
@@ -111,6 +111,7 @@ const SignUp = () => {
 									/>
 								</div>
 							</label>
+							<Button children='add' />
 						</div>
 					</Form>
 				)}

@@ -21,12 +21,12 @@ const Registration = () => {
 							the world. Share you thoughts, write blog posts.
 						</p>
 					</div>
-					<div className='bg-white h-[30rem] flex flex-col md:flex-row'>
-						<div className='registration-buttons flex items-start flex-row md:flex-col'>
+					<div className='bg-white h-[30rem] flex flex-col '>
+						<div className='registration-buttons w-[30rem] flex items-start flex-row'>
 							<NavLink
 								to='/registration/SignIn'
 								className={({ isActive }) =>
-									`h-[3rem] w-[15rem] md:h-[15rem] md:w-[3rem]  flex items-center justify-center border text-2xl text-gray-400 transition-colors ${
+									`h-[3rem] w-[15rem] flex items-center justify-center border text-2xl text-gray-400 transition-colors ${
 										isActive ? 'text-stone-600' : ''
 									}`
 								}
@@ -36,7 +36,7 @@ const Registration = () => {
 							<NavLink
 								to='/registration/SignUp'
 								className={({ isActive }) =>
-									`h-[3rem] w-[15rem] md:h-[15rem] md:w-[3rem]  flex items-center justify-center border text-2xl text-gray-400 transition-colors ${
+									`h-[3rem] w-[15rem] flex items-center justify-center border text-2xl text-gray-400 transition-colors ${
 										isActive ? 'text-stone-600' : ''
 									}`
 								}

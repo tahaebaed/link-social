@@ -1,0 +1,94 @@
+nav.navbar {
+	.dropdown.navbar-dropdown {
+		.dropdown-toggle {
+			.notification-count {
+				position: relative;
+
+				&:before {
+					content: attr(data-count);
+					position: absolute;
+					font-size: 12px;
+					font-weight: 700;
+					border-radius: 100%;
+					width: 19px;
+					height: 19px;
+					line-height: 19px;
+					top: 5px;
+					right: -30px;
+					color: #fff;
+					text-align: center;
+					background-color: #34d399;
+					z-index: 1;
+				}
+
+				&.friends {
+					&:before {
+						background-color: #0ea5e9;
+					}
+				}
+
+				&.messages {
+					&:before {
+						background-color: #a855f7;
+					}
+				}
+
+				&.notifications {
+					&:before {
+						background-color: #ef4444;
+					}
+				}
+			}
+
+			svg {
+				font-size: 1.8rem;
+				color: #333;
+				transition: 0.4s;
+
+				&:hover {
+					color: #999;
+				}
+			}
+		}
+
+		.dropdown-menu {
+			width: 400px;
+			max-height: 350px;
+			overflow-y: auto;
+
+			&::-webkit-scrollbar {
+				width: 5px;
+				border-radius: 5px;
+			}
+			&::-webkit-scrollbar-track {
+				background-color: #f1f1f1;
+			}
+			&::-webkit-scrollbar-thumb {
+				background-color: rgb(206, 203, 203);
+			}
+		}
+
+		&.navbar-dropdown {
+			.dropdown-menu {
+				li {
+					border-bottom: 1px solid #eff2f7;
+				}
+			}
+		}
+	}
+	.dropdown.avatar-dropdown {
+		.dropdown-toggle {
+			img {
+				width: 45px;
+				height: 45px;
+			}
+		}
+		.dropdown-menu {
+			.danger-item {
+				&:hover {
+					color: tomato;
+				}
+			}
+		}
+	}
+}

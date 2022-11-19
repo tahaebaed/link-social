@@ -3,9 +3,11 @@ import { extraReducers } from './extraReducers';
 import * as reducers from './actions';
 import Cookies from 'js-cookie';
 
+const userFromToken = JSON.parse(Cookies.get('user') || null);
+
 const initialState = {
 	loading: false,
-	user: !!Cookies.get('token') || null,
+	user: userFromToken,
 	error: false,
 };
 

@@ -1,0 +1,43 @@
+.react-calendar {
+	border: none;
+	margin-top: 10px;
+}
+.calendarCard {
+	width: 290px;
+	border: 1px solid #e1e1e1;
+	padding: 20px 30px;
+	h5 {
+		font-weight: 600;
+		border-bottom: 1px solid gray;
+		padding-bottom: 10px;
+	}
+}
+
+.react-calendar__tile--now {
+	background: rgba(221, 112, 44, 0.5) !important;
+	border-radius: 50%;
+}
+.react-calendar__tile--active {
+	background: rgb(221, 112, 44) !important;
+	border-radius: 100%;
+}
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+	background-color: #e6e6e6;
+	border-radius: 50%;
+}
+.react-calendar__month-view__days__day--weekend {
+	color: black;
+}
+
+abbr:where([title]) {
+	text-decoration: none;
+}
+abbr {
+	font-size: 0.75em;
+}
+
+.react-calendar__month-view__weekdays {
+	font-size: 0.9em;
+	color: rgb(98, 95, 95);
+}

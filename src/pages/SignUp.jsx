@@ -6,14 +6,15 @@ import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 
 import FormikControl from '../components/FormFields/FormikControl.jsx';
+
 import { fetchUser } from '../utilities/store/user_reducer/extraReducers.js';
+import Button from '../components/Button.jsx';
 
 const SignUp = () => {
 	const initialValues = {
 		user_name: '',
 		email: '',
 		// Must be a valid email address.
-
 		password: '',
 		password_confirmation: '',
 		first_name: '',
@@ -53,125 +54,131 @@ const SignUp = () => {
 
 	const dispatch = useDispatch();
 	const onSubmit = (values) => {
-		console.log(
-			document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-		);
-
 		dispatch(fetchUser(values));
 	};
 	return (
-		<section>
-			<Formik
-				initialValues={initialValues}
-				validationSchema={validationSchema}
-				onSubmit={onSubmit}
-			>
-				{(formik) => (
-					<Form>
-						<div className='w-full'>
-							<h2>User Name</h2>
-							<FormikControl
-								icon={<BsPerson />}
-								name='user_name'
-								id='user_name'
-								type='text'
-								label='user name'
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
-							<h2>Email</h2>
-							<FormikControl
-								name='email'
-								id='email'
-								icon={<HiOutlineMail />}
-								type='email'
-								label='email'
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
-							<h2>Password</h2>
-							<FormikControl
-								name='password'
-								id='password'
-								control='password'
-								label='password'
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
-							<h2>Confirm Password</h2>
-							<FormikControl
-								name='password_confirmation'
-								id='password_confirmation'
-								control='password'
-								label='confirm password'
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
-							<div className='flex w-full'>
-								<div>
-									<h2>First Name</h2>
-
-									<FormikControl
-										name='first_name'
-										id='first_name'
-										label='first name'
-										onChange={formik.handleChange}
-										onBlur={formik.handleBlur}
-									/>
-								</div>
-								<div>
-									<h2>Last Name</h2>
-
-									<FormikControl
-										name='last_name'
-										id='last_name'
-										label='last name'
-										onChange={formik.handleChange}
-										onBlur={formik.handleBlur}
-									/>
-								</div>
+		<Formik
+			initialValues={initialValues}
+			validationSchema={validationSchema}
+			onSubmit={onSubmit}
+		>
+			{(formik) => (
+				<Form className='h-[30rem] w-full text-sm'>
+					<div className='w-full'>
+						<div className='flex'>
+							<div className='w-3/6'>
+								<h2>User Name</h2>
+								<FormikControl
+									icon={<BsPerson />}
+									name='user_name'
+									id='user_name'
+									type='text'
+									label='user name'
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+								/>
 							</div>
-							<h2>Phone</h2>
-
-							<FormikControl
-								name='phone'
-								id='phone'
-								label='phone (optional)'
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
-							<label className='flex'>
-								<div className='w-2/6'>
-									<h2>age </h2>
-
-									<FormikControl
-										name='age'
-										id='age'
-										label='age (optional)'
-										onChange={formik.handleChange}
-										onBlur={formik.handleBlur}
-									/>
-								</div>
-								<div className='w-4/5 flex'>
-									<FormikControl
-										className='flex'
-										control='radio'
-										label='gender (optional)'
-										options={[
-											{ value: 'male', key: 'male' },
-											{ value: 'female', key: 'female' },
-										]}
-										name='gender'
-										id='gender'
-									/>
-								</div>
-							</label>
+							<div className='w-3/6'>
+								<h2>Email</h2>
+								<FormikControl
+									name='email'
+									id='email'
+									icon={<HiOutlineMail />}
+									type='email'
+									label='email'
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+								/>
+							</div>
 						</div>
-						<button type='submit'>submit</button>
-					</Form>
-				)}
-			</Formik>
-		</section>
+						<div className='flex'>
+							<div className='w-3/6'>
+								<h2>Password</h2>
+								<FormikControl
+									name='password'
+									id='password'
+									control='password'
+									label='password'
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+								/>
+							</div>
+							<div className='w-3/6'>
+								<h2>Confirm Password</h2>
+								<FormikControl
+									name='password_confirmation'
+									id='password_confirmation'
+									control='password'
+									label='confirm password'
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+								/>
+							</div>
+						</div>
+
+						<div className='flex w-full'>
+							<div className='w-3/6'>
+								<h2>First Name</h2>
+								<FormikControl
+									name='first_name'
+									id='first_name'
+									label='first name'
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+								/>
+							</div>
+							<div className='w-3/6'>
+								<h2>Last Name</h2>
+
+								<FormikControl
+									name='last_name'
+									id='last_name'
+									label='last name'
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+								/>
+							</div>
+						</div>
+						<h2>Phone</h2>
+
+						<FormikControl
+							name='phone'
+							id='phone'
+							label='phone (optional)'
+							onChange={formik.handleChange}
+							onBlur={formik.handleBlur}
+						/>
+						<label className='flex'>
+							<div className='w-2/6'>
+								<h2>age </h2>
+
+								<FormikControl
+									name='age'
+									id='age'
+									label='age (optional)'
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+								/>
+							</div>
+							<div className='w-4/5 flex'>
+								<FormikControl
+									className='flex'
+									control='radio'
+									label='gender (optional)'
+									options={[
+										{ value: 'male', key: 'male' },
+										{ value: 'female', key: 'female' },
+									]}
+									name='gender'
+									id='gender'
+								/>
+							</div>
+						</label>
+					</div>
+					<button type='submit'>submit</button>
+				</Form>
+			)}
+		</Formik>
 	);
 };
 

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 const ProtectedRoute = ({ children }) => {
 	const user = useSelector((store) => store.userReducer.user);
 	if (!user) {
-		return <Navigate to='/SignIn' replace={true} />;
+		return <Navigate to='/registration/SignIn' replace={true} />;
 	}
 	return children;
 };

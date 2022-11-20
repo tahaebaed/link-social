@@ -7,14 +7,14 @@ import Textarea from './Textarea';
 
 function FormikControl(props) {
 	switch (props.type) {
+		case 'radio':
+			return <RadioButton {...props} />;
 		case 'file':
 			return <FileInput {...props} />;
 		case 'textarea':
 			return <Textarea {...props} />;
 		case 'checkbox':
 			return <CheckBox {...props} />;
-		case 'radio':
-			return <RadioButton {...props} />;
 		default:
 			return <Input {...props} />;
 	}

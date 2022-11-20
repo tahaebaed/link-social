@@ -56,6 +56,7 @@ const SignUp = () => {
 	const onSubmit = (values) => {
 		dispatch(fetchUser(values));
 	};
+
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -63,7 +64,7 @@ const SignUp = () => {
 			onSubmit={onSubmit}
 		>
 			{(formik) => (
-				<Form className='h-[30rem] w-full text-sm'>
+				<Form className=' w-full text-sm'>
 					<div className='w-full'>
 						<div className='flex'>
 							<div className='w-3/6'>
@@ -73,6 +74,7 @@ const SignUp = () => {
 									name='user_name'
 									id='user_name'
 									type='text'
+									control='text'
 									label='user name'
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
@@ -85,6 +87,7 @@ const SignUp = () => {
 									id='email'
 									icon={<HiOutlineMail />}
 									type='email'
+									control='email'
 									label='email'
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
@@ -98,6 +101,7 @@ const SignUp = () => {
 									name='password'
 									id='password'
 									control='password'
+									type='password'
 									label='password'
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
@@ -109,6 +113,7 @@ const SignUp = () => {
 									name='password_confirmation'
 									id='password_confirmation'
 									control='password'
+									type='password'
 									label='confirm password'
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
@@ -139,30 +144,24 @@ const SignUp = () => {
 								/>
 							</div>
 						</div>
-						<h2>Phone</h2>
 
-						<FormikControl
-							name='phone'
-							id='phone'
-							label='phone (optional)'
-							onChange={formik.handleChange}
-							onBlur={formik.handleBlur}
-						/>
-						<label className='flex'>
-							<div className='w-2/6'>
-								<h2>age </h2>
+						<div className='flex w-full'>
+							<div className='w-3/6'>
+								<h2>Phone</h2>
 
 								<FormikControl
-									name='age'
-									id='age'
-									label='age (optional)'
+									name='phone'
+									id='phone'
+									label='phone (optional)'
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
 								/>
 							</div>
-							<div className='w-4/5 flex'>
+							<div className='w-3/6'>
+								<h2>gender</h2>
 								<FormikControl
 									className='flex'
+									type='radio'
 									control='radio'
 									label='gender (optional)'
 									options={[
@@ -173,9 +172,26 @@ const SignUp = () => {
 									id='gender'
 								/>
 							</div>
+						</div>
+
+						<label className='flex'>
+							<div className='w-2/6 flex flex-col justify-between'>
+								<h2>age </h2>
+								<FormikControl
+									name='age'
+									id='age'
+									label='age (optional)'
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+								/>
+							</div>
+							<div className='ml-auto mt-6'>
+								<Button sm className='' type='submit'>
+									submit
+								</Button>
+							</div>
 						</label>
 					</div>
-					<button type='submit'>submit</button>
 				</Form>
 			)}
 		</Formik>

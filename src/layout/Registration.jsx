@@ -9,9 +9,9 @@ import '../assets/sass/components/registration.scss';
 const Registration = () => {
 	return (
 		<section>
-			<div className='registration-bg-wrap'></div>
-			<div className='container mt-[4rem] flex items-center justify-center'>
-				<div className='flex h-3/4 items-center flex-col md:flex-row justify-around w-full"'>
+			<div className='registration-bg-wrap h-[120vh] md:h-[100%] '></div>
+			<div className='container flex items-center justify-center'>
+				<div className='flex h-3/4 mt-[1rem] items-center flex-col md:flex-row justify-around w-full"'>
 					<div className='mb-[3rem] md:mr-[5rem] flex flex-col content-around md:ml-[2rem]'>
 						<h2 className='text-lg md:text-2xl text-stone-100 mb-7 '>
 							Welcome to the your favorite Link platform
@@ -21,12 +21,12 @@ const Registration = () => {
 							the world. Share you thoughts, write blog posts.
 						</p>
 					</div>
-					<div className='bg-white h-[30rem] flex flex-col '>
-						<div className='registration-buttons w-[30rem] flex items-start flex-row'>
+					<div className='bg-white rounded-3xl h-[30rem] flex flex-col '>
+						<div className='registration-buttons flex items-start flex-row'>
 							<NavLink
 								to='/registration/SignIn'
 								className={({ isActive }) =>
-									`h-[3rem] w-[15rem] flex items-center justify-center border text-2xl text-gray-400 transition-colors ${
+									`h-[3rem] w-[15rem] rounded-tl-3xl flex items-center justify-center border text-2xl text-gray-400 transition-colors ${
 										isActive ? 'text-stone-600' : ''
 									}`
 								}
@@ -36,7 +36,7 @@ const Registration = () => {
 							<NavLink
 								to='/registration/SignUp'
 								className={({ isActive }) =>
-									`h-[3rem] w-[15rem] flex items-center justify-center border text-2xl text-gray-400 transition-colors ${
+									`h-[3rem] w-[15rem] rounded-tr-3xl flex items-center justify-center border text-2xl text-gray-400 transition-colors ${
 										isActive ? 'text-stone-600' : ''
 									}`
 								}

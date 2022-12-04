@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import FriendsDropdown from './navbar/FriendsDropdown';
 import MessageDropdown from './navbar/MessageDropdown';
 import NotificationDropdown from './navbar/NotificationDropdown';
@@ -12,16 +13,18 @@ function Navbar() {
 	return (
 		<nav className='navbar bg-slate-100 py-3'>
 			<div className='container mx-auto'>
-				<div className='navbar-wrapper grid grid-cols-3 items-center'>
-					<div className='favicon col-span-1'>
-						<img src={favicon} alt='favicon' width={100} />
+				<div className='navbar-wrapper grid md:grid-cols-4 grid-cols-5 items-center'>
+					<div className='favicon col-span-2 md:col-span-1'>
+						<Link to='/'>
+							<img src={favicon} alt='favicon' width={100} />
+						</Link>
 					</div>
-					<div className='navbar-menu col-span-2 hidden md:block'>
-						<div className='grid grid-cols-5 items-center'>
-							<div className='navbar-search col-span-2'>
+					<div className='navbar-menu md:col-span-3 col-span-2'>
+						<div className='md:grid grid-cols-6 items-center'>
+							<div className='navbar-search col-span-2 hidden md:block'>
 								<QuerySearch />
 							</div>
-							<div className='col-span-1'>
+							<div className='col-span-2 justify-self-end'>
 								<ul className='flex '>
 									<li className='flex mx-2'>
 										<FriendsDropdown />
@@ -34,14 +37,14 @@ function Navbar() {
 									</li>
 								</ul>
 							</div>
-							<div className='col-span-2'>
+							<div className='col-span-2 hidden md:block'>
 								<div className='flex justify-end'>
 									<UserDropdown />
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className='navbar-mobile-menu col-span-2 md:hidden'>
+					<div className='navbar-mobile-menu col-span-1 md:hidden'>
 						<MobileMenu />
 					</div>
 				</div>
@@ -49,6 +52,5 @@ function Navbar() {
 		</nav>
 	);
 }
-
 
 export default Navbar;

@@ -5,6 +5,7 @@ module.exports = {
 		extend: {
 			colors: {
 				aurora: '#34d399',
+				'aurora-hover': '#34d399',
 			},
 		},
 	},

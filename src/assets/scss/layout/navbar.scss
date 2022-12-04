@@ -56,6 +56,13 @@ nav.navbar {
 			max-height: 350px;
 			overflow-y: auto;
 
+			@media (max-width: 768px) {
+				width: calc(100vw - 2rem);
+				left: 1rem;
+				position: fixed;
+				top: 80px;
+			}
+
 			&::-webkit-scrollbar {
 				width: 5px;
 				border-radius: 5px;
@@ -76,6 +83,7 @@ nav.navbar {
 			}
 		}
 	}
+
 	.dropdown.avatar-dropdown {
 		.dropdown-toggle {
 			img {
@@ -84,6 +92,27 @@ nav.navbar {
 			}
 		}
 		.dropdown-menu {
+			.danger-item {
+				&:hover {
+					color: tomato;
+				}
+			}
+		}
+	}
+
+	.dropdown.humbugger-dropdown {
+		.dropdown-toggle {
+			svg {
+				font-size: 2.5rem;
+			}
+		}
+		.dropdown-menu {
+			min-width: 15rem;
+
+			.dropdown-item {
+				padding: 0.5rem 1rem;
+			}
+
 			.danger-item {
 				&:hover {
 					color: tomato;

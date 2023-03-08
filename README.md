@@ -6,13 +6,13 @@
 
 #### Usage
 
-| Props       | Type      | Default      | Description                            |
-| ----------- | --------- | ------------ | -------------------------------------- |
-| `noArrow`   | `Boolean` | `false`      | hide dropdown arrow                    |
-| `toLeft`    | `Boolean` | `false`      | change direction from left to right    |
-| `isOpen`    | `Boolean` | `false`      | change init state for showing dropdown |
-| `label`     | `String` `JSX.Element` | `<BsThreeDots />`                      | change displayed text (can be text or icon from `react-icon`) |
-| `className` | `String`  | `''`         | add class to dropdown wrapper          |
+| Props       | Type                   | Default           | Description                                                   |
+| ----------- | ---------------------- | ----------------- | ------------------------------------------------------------- |
+| `noArrow`   | `Boolean`              | `false`           | hide dropdown arrow                                           |
+| `toLeft`    | `Boolean`              | `false`           | change direction from left to right                           |
+| `isOpen`    | `Boolean`              | `false`           | change init state for showing dropdown                        |
+| `label`     | `String` `JSX.Element` | `<BsThreeDots />` | change displayed text (can be text or icon from `react-icon`) |
+| `className` | `String`               | `''`              | add class to dropdown wrapper                                 |
 
 #### Examples
 
@@ -83,4 +83,48 @@ import Button from './components/Button';
 <Button outline lg />
 <Button outline sm />
 <Button outline disabled />
+```
+
+## Layout
+
+### Navbar
+
+Consists of the following component:
+
+1. [`Friends Dropdown`](src/layout/navbar/FriendsDropdown.jsx)
+2. [`Messages Dropdown`](src/layout/navbar/MessageDropdown.jsx)
+3. [`Notification Dropdown`](src/layout/navbar/NotificationDropdown.jsx)
+4. [`User Dropdown`](src/layout/navbar/UserDropdown.jsx)
+5. [`Query Search`](src/layout/navbar/QuerySearch.jsx)
+6. [`Mobile Menu Dropdown`](src/layout/navbar/MobileMenu.jsx) (show only on mobile)
+
+all of them depend on the [`NavbarDropdown`](src/layout/navbar/NavbarDropdown.jsx) component
+
+#### Props
+
+| Props       | Type                     | Default | Description                                                                            |
+| ----------- | ------------------------ | ------- | -------------------------------------------------------------------------------------- |
+| `label`     | `String` `React.Element` | `label` | change dropdown toggle label                                                           |
+| `count`     | `Number`                 | `''`    | add notification counter                                                               |
+| `pageUrl`   | `String`                 | `''`    | specify href for it's page                                                             |
+| `pageLabel` | `String`                 | `''`    | change displayed text (can be text or icon from `react-icon`)                          |
+| `type`      | `String`                 | `''`    | change button & toggle counter color, can be one of `friends, messages, notifications` |
+
+#### Example
+
+```jsx
+<NavbarDropdown label={<MdOutlineEmojiEmotions />} count={21}>
+  // ...
+</NavbarDropdown>
+
+// with page button (messages dropdown)
+<NavbarDropdown
+  label={<HiOutlineChatBubbleLeftRight />}
+  count={61}
+  pageUrl='/messages'
+  pageLabel='View All Messages'
+  type='messages'
+>
+  // ...
+</NavbarDropdown>
 ```

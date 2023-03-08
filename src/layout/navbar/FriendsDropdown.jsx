@@ -3,19 +3,11 @@ import { FiUserCheck, FiUserMinus, FiUserPlus } from 'react-icons/fi';
 import { MdOutlineEmojiEmotions } from 'react-icons/md';
 import NavbarDropdown, { SingleNavbarDropdownItem } from './NavbarDropdown';
 
-function FriendsDropdown() {
-	return (
-		<NavbarDropdown
-			label={<MdOutlineEmojiEmotions />}
-			count={21}
-			pageUrl='/notification'
-			pageLabel='Check all your Events'
-			type='friends'
-		>
-			<SingleFriendDropdownItem
-				suggest
-				avatar='https://html.crumina.net/html-olympus/img/avatar57-sm.webp'
-			>
+const DUMMY_FRIENDS = [
+	{
+		avatar: 'https://html.crumina.net/html-olympus/img/avatar57-sm.webp',
+		children: (
+			<>
 				<a
 					href='#0'
 					className='transition duration-200 text-gray-600 hover:text-emerald-400'
@@ -25,9 +17,14 @@ function FriendsDropdown() {
 				<span className='text-sm text-gray-400 block'>
 					Mutual Friend: Sarah Hetfield
 				</span>
-			</SingleFriendDropdownItem>
-
-			<SingleFriendDropdownItem avatar='https://html.crumina.net/html-olympus/img/avatar55-sm.webp'>
+			</>
+		),
+		suggest: true,
+	},
+	{
+		avatar: 'https://html.crumina.net/html-olympus/img/avatar58-sm.webp',
+		children: (
+			<>
 				<span className='text-sm text-gray-400 block'>
 					You and{' '}
 					<a
@@ -38,12 +35,14 @@ function FriendsDropdown() {
 					</a>{' '}
 					just became friends. Write on her wall.
 				</span>
-			</SingleFriendDropdownItem>
-
-			<SingleFriendDropdownItem
-				suggest
-				avatar='https://html.crumina.net/html-olympus/img/avatar58-sm.webp'
-			>
+			</>
+		),
+		suggest: true,
+	},
+	{
+		avatar: 'https://html.crumina.net/html-olympus/img/avatar60-sm.webp',
+		children: (
+			<>
 				<a
 					href='#0'
 					className='transition duration-200 text-gray-600 hover:text-emerald-400'
@@ -51,12 +50,14 @@ function FriendsDropdown() {
 					Stagg Clothing
 				</a>
 				<span className='text-sm text-gray-400 block'>9 Friends in Common</span>
-			</SingleFriendDropdownItem>
-
-			<SingleFriendDropdownItem
-				avatar='https://html.crumina.net/html-olympus/img/avatar56-sm.webp'
-				suggest
-			>
+			</>
+		),
+		suggest: false,
+	},
+	{
+		avatar: 'https://html.crumina.net/html-olympus/img/avatar56-sm.webp',
+		children: (
+			<>
 				<a
 					href='#0'
 					className='transition duration-200 text-gray-600 hover:text-emerald-400'
@@ -64,13 +65,47 @@ function FriendsDropdown() {
 					Tony Stevens
 				</a>
 				<span className='text-sm text-gray-400 block'>4 Friends in Common</span>
-			</SingleFriendDropdownItem>
+			</>
+		),
+		suggest: true,
+	},
+];
+
+function FriendsDropdown() {
+	return (
+		<NavbarDropdown
+			label={<MdOutlineEmojiEmotions />}
+			count={21}
+			pageUrl='/notification'
+			pageLabel='Check all your Events'
+			type='friends'
+		>
+			{DUMMY_FRIENDS.map((friend, index) => (
+				<SingleFriendDropdownItem
+					avatar={friend.avatar}
+					suggest={friend.suggest}
+					key={index}
+				>
+					{friend.children}
+				</SingleFriendDropdownItem>
+			))}
 		</NavbarDropdown>
 	);
 }
 
+/**
+ * @usage
+- `avatar` to add user avatar
+- `suggest` to determine whether suggest or accepted request
+- `acceptUrl` to add accepted like uel
+- `denyUrl` to add deny like uel
+- `children` to add dropdown item content
+
+ * @param {{avatar:string,suggest:Boolean, acceptUrl:String, denyUrl:String, children:React.ReactElement}} props
+ * @returns {React.ReactElement}
+ */
 const SingleFriendDropdownItem = (props) => {
-	const { avatar, suggest = false, acceptUrl = '#', denyUrl = '#' } = props;
+	const { avatar, suggest, acceptUrl, denyUrl } = props;
 
 	const icon = suggest ? (
 		<>
@@ -97,6 +132,14 @@ const SingleFriendDropdownItem = (props) => {
 			{props.children}
 		</SingleNavbarDropdownItem>
 	);
+};
+
+SingleFriendDropdownItem.defaultProps = {
+	avatar: '',
+	suggest: false,
+	acceptUrl: '#',
+	denyUrl: '#',
+	children: '',
 };
 
 export default FriendsDropdown;

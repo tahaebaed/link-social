@@ -32,7 +32,7 @@ import Dropdown from '../../components/Dropdown';
 function NavbarDropdown(props) {
 	const { label, count, pageUrl, pageLabel, type } = props;
 
-	const dropdownLabel = () => {
+	const DropdownLabel = () => {
 		return count ? (
 			<span className={`notification-count ${type}`} data-count={count}>
 				{label}
@@ -42,35 +42,22 @@ function NavbarDropdown(props) {
 		);
 	};
 
-	const linkColor = () => {
-		switch (type) {
-			case 'friends':
-				return 'sky-400';
-			case 'messages':
-				return 'purple-400';
-			case 'notifications':
-				return 'red-500';
-			default:
-				return 'emerald-400';
-		}
-	};
-
 	return (
 		<Dropdown
 			noArrow
 			className='relative navbar-dropdown'
-			label={dropdownLabel()}
+			label={<DropdownLabel />}
 		>
 			{props.children}
 			{pageLabel && (
-				<li className='text-center'>
+				<div className='text-center'>
 					<Link
 						to={pageUrl}
-						className={`bg-${linkColor()} text-white py-2 block leading-10`}
+						className={`${type}-link text-white py-2 block leading-10`}
 					>
 						{pageLabel}
 					</Link>
-				</li>
+				</div>
 			)}
 		</Dropdown>
 	);
@@ -94,7 +81,7 @@ function SingleNavbarDropdownItem(props) {
 	const { avatar, icon } = props;
 
 	return (
-		<li className='flex relative p-6 items-center'>
+		<div className='flex relative px-6 py-3 items-center'>
 			{avatar && (
 				<img
 					loading='lazy'
@@ -105,9 +92,9 @@ function SingleNavbarDropdownItem(props) {
 					className='object-cover rounded-full inline-block'
 				/>
 			)}
-			<div className='inline-block mx-2'>{props.children}</div>
+			<div className='inline-block mx-2 w-64'>{props.children}</div>
 			{icon && <span className='ml-auto'>{icon}</span>}
-		</li>
+		</div>
 	);
 }
 

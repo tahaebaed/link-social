@@ -2,16 +2,12 @@ import React from 'react';
 import { HiOutlineChatBubbleLeftRight } from 'react-icons/hi2';
 import NavbarDropdown, { SingleNavbarDropdownItem } from './NavbarDropdown';
 
-function MessageDropdown() {
-	return (
-		<NavbarDropdown
-			label={<HiOutlineChatBubbleLeftRight />}
-			count={61}
-			pageUrl='/messages'
-			pageLabel='View All Messages'
-			type='messages'
-		>
-			<SingleMessageDropdownItem avatar='https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg'>
+const DUMMY_MESSAGES = [
+	{
+		avatar:
+			'https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg',
+		children: (
+			<>
 				<a
 					href='#0'
 					className='transition duration-200 text-gray-700 hover:text-emerald-400'
@@ -24,8 +20,13 @@ function MessageDropdown() {
 				<span className='text-xs text-gray-400 block mt-1'>
 					few seconds ago
 				</span>
-			</SingleMessageDropdownItem>
-			<SingleMessageDropdownItem avatar='https://html.crumina.net/html-olympus/img/avatar59-sm.webp'>
+			</>
+		),
+	},
+	{
+		avatar: 'https://html.crumina.net/html-olympus/img/avatar59-sm.webp',
+		children: (
+			<>
 				<a
 					href='#0'
 					className='transition duration-200 text-gray-700 hover:text-emerald-400'
@@ -37,9 +38,13 @@ function MessageDropdown() {
 					reschedule...
 				</span>
 				<span className='text-xs text-gray-400 block mt-1'>4 hours ago</span>
-			</SingleMessageDropdownItem>
-
-			<SingleMessageDropdownItem avatar='https://html.crumina.net/html-olympus/img/avatar60-sm.webp'>
+			</>
+		),
+	},
+	{
+		avatar: 'https://html.crumina.net/html-olympus/img/avatar60-sm.webp',
+		children: (
+			<>
 				<a
 					href='#0'
 					className='transition duration-200 text-gray-700 hover:text-emerald-400'
@@ -48,9 +53,13 @@ function MessageDropdown() {
 				</a>
 				<span className='text-sm text-gray-400 block'>9 Friends in Common</span>
 				<span className='text-xs text-gray-400 block mt-1'>4 hours ago</span>
-			</SingleMessageDropdownItem>
-
-			<SingleMessageDropdownItem avatar='https://html.crumina.net/html-olympus/img/avatar61-sm.webp'>
+			</>
+		),
+	},
+	{
+		avatar: 'https://html.crumina.net/html-olympus/img/avatar61-sm.webp',
+		children: (
+			<>
 				<a
 					href='#0'
 					className='transition duration-200 text-gray-700 hover:text-emerald-400'
@@ -64,11 +73,37 @@ function MessageDropdown() {
 				<span className='text-xs text-gray-400 block mt-1'>
 					Yesterday at 9:56pm
 				</span>
-			</SingleMessageDropdownItem>
+			</>
+		),
+	},
+];
+
+function MessageDropdown() {
+	return (
+		<NavbarDropdown
+			label={<HiOutlineChatBubbleLeftRight />}
+			count={61}
+			pageUrl='/messages'
+			pageLabel='View All Messages'
+			type='messages'
+		>
+			{DUMMY_MESSAGES.map((msg, index) => (
+				<SingleMessageDropdownItem avatar={msg.avatar} key={index}>
+					{msg.children}
+				</SingleMessageDropdownItem>
+			))}
 		</NavbarDropdown>
 	);
 }
 
+/**
+ * @usage
+- `avatar` to add user avatar
+- `children` to add dropdown item content
+
+ * @param {{avatar:string, children:React.ReactElement}} props
+ * @returns {React.ReactElement}
+ */
 const SingleMessageDropdownItem = (props) => {
 	return (
 		<SingleNavbarDropdownItem
@@ -78,6 +113,11 @@ const SingleMessageDropdownItem = (props) => {
 			{props.children}
 		</SingleNavbarDropdownItem>
 	);
+};
+
+SingleMessageDropdownItem.defaultProps = {
+	avatar: '',
+	children: '',
 };
 
 export default MessageDropdown;

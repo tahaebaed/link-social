@@ -49,6 +49,7 @@ const SignIn = () => {
 								id='login_password'
 								icon={<AiOutlineLock />}
 								control='password'
+								type='password'
 								label='password'
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}

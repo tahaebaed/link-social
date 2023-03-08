@@ -99,6 +99,7 @@ const Update_user = () => {
 								<div className='w-4/5 flex'>
 									<FormikControl
 										className='flex'
+										type='radio'
 										control='radio'
 										label='gender (optional)'
 										options={[

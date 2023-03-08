@@ -18,6 +18,9 @@ import '../assets/scss/components/dropdown.scss';
 <Dropdown label={<TbGridDots />} />
 <Dropdown isOpen={true} />
 <Dropdown noArrow toLeft />
+<Dropdown >
+	...
+</Dropdown>
 
  * @param {Object} props 
  * @returns 
@@ -63,12 +66,12 @@ function Dropdown(props) {
 				{props.label}
 			</span>
 
-			<ul
+			<div
 				className={`dropdown-menu ${isOpen ? 'open' : ''}`}
 				ref={dropdownMenuRef}
 			>
 				{props.children}
-			</ul>
+			</div>
 		</div>
 	);
 }
@@ -80,7 +83,7 @@ Dropdown.defaultProps = {
 	className: '',
 	label: <BsThreeDots />,
 	children: (
-		<>
+		<ul>
 			<li>
 				<a className='dropdown-item' href='#go-to-somewhere'>
 					Action
@@ -104,7 +107,7 @@ Dropdown.defaultProps = {
 					Separated link
 				</a>
 			</li>
-		</>
+		</ul>
 	),
 };
 

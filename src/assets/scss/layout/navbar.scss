@@ -13,8 +13,8 @@ nav.navbar {
 					width: 19px;
 					height: 19px;
 					line-height: 19px;
-					top: 5px;
-					right: -30px;
+					top: -15px;
+					right: 0;
 					color: #fff;
 					text-align: center;
 					background-color: #34d399;
@@ -73,6 +73,18 @@ nav.navbar {
 			&::-webkit-scrollbar-thumb {
 				background-color: rgb(206, 203, 203);
 			}
+
+			.friends-link {
+				background-color: #0ea5e9;
+			}
+
+			.messages-link {
+				background-color: #a855f7;
+			}
+
+			.notifications-link {
+				background-color: #ef4444;
+			}
 		}
 
 		&.navbar-dropdown {
@@ -95,6 +107,7 @@ nav.navbar {
 			.danger-item {
 				&:hover {
 					color: tomato;
+					background-color: rgba($color: tomato, $alpha: 0.1);
 				}
 			}
 		}

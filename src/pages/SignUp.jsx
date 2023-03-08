@@ -4,12 +4,13 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { AiOutlineLock, AiOutlineUnlock } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
-import * as yup from 'yup';
+
 
 import FormikControl from '../components/FormFields/FormikControl.jsx';
 
 import { fetchUser } from '../utilities/store/user_reducer/extraReducers.js';
 import Button from '../components/Button.jsx';
+import { signUpValidationSchema } from './schemas.js';
 
 const SignUp = () => {
 	const initialValues = {
@@ -25,34 +26,6 @@ const SignUp = () => {
 		gender: '', //optional,
 	};
 
-	const validationSchema = yup.object({
-		user_name: yup
-			.string()
-			.required('Your username is required')
-			.matches(/^[-\w.$@*!]{1,30}$/, "username mustn't contains any spaces"),
-		email: yup
-			.string()
-			.email('please enter a valid email')
-			.required('Your email is required'),
-		password: yup
-			.string()
-			.required('Your password is required')
-			.min(8, 'Your password is too short.')
-			.matches(
-				/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
-				'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character'
-			),
-		password_confirmation: yup
-			.string()
-			.required('Password confirmation is required')
-			.oneOf([yup.ref('password'), null], 'Passwords must match'),
-		first_name: yup.string().required('Your first name is required'),
-		last_name: yup.string().required('Your last name is required'),
-		phone: yup.string(),
-		age: yup.string(),
-		gender: yup.string(),
-	});
-
 	const dispatch = useDispatch();
 	const onSubmit = (values) => {
 		dispatch(fetchUser(values));
@@ -60,7 +33,7 @@ const SignUp = () => {
 	return (
 		<Formik
 			initialValues={initialValues}
-			validationSchema={validationSchema}
+			validationSchema={signUpValidationSchema}
 			onSubmit={onSubmit}
 		>
 			{(formik) => (
@@ -94,6 +67,7 @@ const SignUp = () => {
 									/>
 								</div>
 							</div>
+
 							<div className='flex'>
 								<div className='w-3/6'>
 									<h2 className='mb-4 ml-2'>Password</h2>
@@ -171,6 +145,7 @@ const SignUp = () => {
 									<h2 className='mb-4 ml-2'>Gender</h2>
 									<FormikControl
 										className='flex'
+										type='radio'
 										control='radio'
 										label='gender (optional)'
 										options={[

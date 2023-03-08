@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { BsPerson } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import FormikControl from '../components/FormFields/FormikControl';
-import * as yup from 'yup';
 
 import { updateUser } from '../utilities/store/user_reducer/extraReducers';
 import { useParams } from 'react-router-dom';
 import { userInterceptor } from '../utilities/interceptors/axios_instance';
+import { updateUserValidationSchema } from './schemas';
 
 const Update_user = () => {
 	const [value, setValue] = useState(null);
@@ -15,21 +15,6 @@ const Update_user = () => {
 	const initialValues = {
 		...value,
 	};
-	const validationSchema = yup.object({
-		user_name: yup
-			.string()
-			.required('please your username is required')
-			.matches(/^[-\w.$@*!]{1,30}$/, "username mustn't contains any spaces"),
-		email: yup
-			.string()
-			.email('please enter a valid email')
-			.required('please your email is required'),
-		first_name: yup.string().required('please your first name is required'),
-		last_name: yup.string().required('please your last name is required'),
-		phone: yup.string(),
-		age: yup.string(),
-		gender: yup.string().nullable(true),
-	});
 
 	const dispatch = useDispatch();
 	const onSubmit = (values) => {
@@ -47,7 +32,7 @@ const Update_user = () => {
 	return (
 		<Formik
 			initialValues={initialValues}
-			validationSchema={validationSchema}
+			validationSchema={updateUserValidationSchema}
 			onSubmit={onSubmit}
 			enableReinitialize
 		>

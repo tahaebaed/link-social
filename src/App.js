@@ -15,11 +15,11 @@ function App() {
 			<Outlet />
 		</div>
 	);
-function App() {
-  return <div className=''>
-		<Navbar />
-		<Outlet />
-	</div>
+	function App() {
+		return <div className=''>
+			<Navbar />
+			<Outlet />
+		</div>
+	}
 }
-
 export default App;

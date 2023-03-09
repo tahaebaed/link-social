@@ -1,5 +1,11 @@
 # Social media app
 
+## Routes
+
+| Page           | Path                      |
+| -------------- | ------------------------- |
+| Update Profile | `/setting/update-profile` |
+
 ## Components
 
 ### Dropdown
@@ -85,6 +91,26 @@ import Button from './components/Button';
 <Button outline disabled />
 ```
 
+### Banner
+
+#### Props
+
+| Props       | Type     | Default                                                       | Description                    |
+| ----------- | -------- | ------------------------------------------------------------- | ------------------------------ |
+| `cover`     | `String` | [`cover`](src/assets/images/background/banner-cover.webp)     | change Banner background image |
+| `overlay`   | `String` | [`overlay`](src/assets/images/background/banner-overlay.webp) | change overlay image           |
+| `title`     | `String` | `''`                                                          | add Banner title               |
+| `subtitle`  | `String` | `''`                                                          | add Banner subtitle            |
+| `className` | `String` | `''`                                                          | add class to Banner wrapper    |
+
+#### Usage
+
+```jsx
+import Banner from './components/Banner';
+
+<Banner title='Profile' subtitle="Welcome to your account dashboard!" />
+```
+
 ## Layout
 
 ### Navbar
@@ -128,3 +154,34 @@ all of them depend on the [`NavbarDropdown`](src/layout/navbar/NavbarDropdown.js
   // ...
 </NavbarDropdown>
 ```
+
+## Hooks
+
+### `usePageTitle`
+
+### props
+
+| Props | Type     | Default                    |
+| ----- | -------- | -------------------------- |
+| Title | `String` | The title for current page |
+
+Hook for change page title
+
+#### Example
+
+```jsx
+import usePageTitle from '../hooks/usePageTitle'
+
+usePageTitle('Homepage')             // title will be 'Link | Homepage'
+
+// Can use emoji
+usePageTitle('Update Profile 🎉');   // title will be 'Link | Update Profile 🎉'
+```
+
+## Resources
+
+- [`Github Repository`](https://github.com/tahaebaed/link-social)
+- [`Theme 1`](https://html.crumina.net/html-olympus/02-ProfilePage.html?)
+- [`Theme 2`](http://sociala.uitheme.net/home)
+- [`trello Dashboard`](https://trello.com/b/Jqjk9udQ/simple-project-board)
+- [`API Endpoint`](https://link-social.up.railway.app/api/v1)

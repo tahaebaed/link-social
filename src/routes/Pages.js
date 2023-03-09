@@ -2,15 +2,20 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import Loader from '../components/Loader';
-import { Profile, SignIn, SignUp, UpdateUser } from './lazyLoading';
+import Registration from '../layout/Registration';
 import ErrorBoundary from '../utilities/ErrorBoundary/ErrorBoundary';
 import NotFound from './NotFound';
 import ProtectedRoute from './ProtectedRoute';
-import Registration from '../layout/Registration';
+import {
+	Profile,
+	SignIn,
+	SignUp,
+	UpdateProfile,
+	UpdateUser,
+} from './lazyLoading';
 
-
-import Timeline from '../layout/Profile/Timeline';
 import About from '../layout/Profile/About';
+import Timeline from '../layout/Profile/Timeline';
 
 const router = createBrowserRouter([
 	{
@@ -62,14 +67,16 @@ const router = createBrowserRouter([
 						<Profile />
 					</React.Suspense>
 				),
-				children: [{
-					path: 'timeline',
-					element: <Timeline />
-				},
-				{
-					path: 'about',
-					element: <About />
-				}]
+				children: [
+					{
+						path: 'timeline',
+						element: <Timeline />,
+					},
+					{
+						path: 'about',
+						element: <About />,
+					},
+				],
 			},
 			{
 				path: 'profileId=:profileId',
@@ -85,27 +92,37 @@ const router = createBrowserRouter([
 						),
 					},
 				],
-			}, {
+			},
+			{
 				path: 'profile',
 				element: (
 					<React.Suspense fallback={<Loader />}>
 						<Profile />
 					</React.Suspense>
 				),
-				children: [{
-					path: 'timeline',
-					element: <Timeline />
-				},
-				{
-					path: 'about',
-					element: <About />
-				}]
+				children: [
+					{
+						path: 'timeline',
+						element: <Timeline />,
+					},
+					{
+						path: 'about',
+						element: <About />,
+					},
+				],
+			},
+			{
+				path: 'setting/update-profile',
+				element: (
+					<React.Suspense fallback={<Loader />}>
+						<UpdateProfile />
+					</React.Suspense>
+				),
 			},
 			{
 				path: '*',
 				element: <NotFound />,
 			},
-
 		],
 	},
 	{

@@ -10,7 +10,7 @@
 
 ### Dropdown
 
-#### Usage
+#### Props
 
 | Props       | Type                   | Default           | Description                                                   |
 | ----------- | ---------------------- | ----------------- | ------------------------------------------------------------- |
@@ -91,6 +91,36 @@ import Button from './components/Button';
 <Button outline disabled />
 ```
 
+### Preview
+
+#### Props
+
+| Props       | Type     | Default                                                                                                                                        | Description                               |
+| ----------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `img`       | `String` | [`Avatar`](https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg) | set initial image                         |
+| `id`        | `String` | `preview-id`                                                                                                                                   | set input id                              |
+| `name`      | `String` | `preview-`                                                                                                                                     | set input name                            |
+| `label`     | `String` | `Change Preview`                                                                                                                               | set input label                           |
+| `onChange`  | `String` | `() => {}`                                                                                                                                     | onChange function with file, event params |
+| `icon`      | `String` | `<BsPencil />`                                                                                                                                 | change label icon                         |
+| `className` | `String` | `''`                                                                                                                                           | add any additional className              |
+
+#### Examples
+
+Default Usage `<Preview />`
+
+![Default Usage](assets/images/components/preview/default.png)
+
+#### Playground
+
+```jsx
+import Preview from './components/Preview';
+
+<Preview onChange={file=>console.log(file)} />
+// to hide popover set label to null
+<Preview onChange={file=>console.log(file)} label='' />
+```
+
 ### Banner
 
 #### Props
@@ -103,7 +133,7 @@ import Button from './components/Button';
 | `subtitle`  | `String` | `''`                                                          | add Banner subtitle            |
 | `className` | `String` | `''`                                                          | add class to Banner wrapper    |
 
-#### Usage
+#### Props
 
 ```jsx
 import Banner from './components/Banner';

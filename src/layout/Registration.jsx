@@ -4,7 +4,7 @@ import { MdAddLink } from 'react-icons/md';
 import { IoLogInOutline } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 
-import '../assets/sass/components/registration.scss';
+import '../assets/scss/components/registration.scss';
 
 const Registration = () => {
 	return (

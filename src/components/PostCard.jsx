@@ -3,6 +3,7 @@ import { BsThreeDots } from 'react-icons/bs';
 import { FaRegHeart, FaShare } from 'react-icons/fa';
 import { BiMessageDetail } from 'react-icons/bi';
 import { users } from '../utilities/dummydata/users';
+import './../assets/scss/components/postCard.scss';
 function PostCard({
 	profileImg,
 	userName,

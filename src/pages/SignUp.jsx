@@ -140,6 +140,7 @@ const SignUp = () => {
 										onChange={formik.handleChange}
 										onBlur={formik.handleBlur}
 									/>
+
 								</div>
 								<div className='w-3/6 flex'>
 									<h2 className='mb-4 ml-2'>Gender</h2>

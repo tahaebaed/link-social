@@ -9,6 +9,7 @@ import { BsPencil } from 'react-icons/bs';
 - use `label` to set input label
 - use `onChange` add onChange function with file, event params
 - use `icon` to change label icon
+- use `circle` to make wrapper circle
 - use `className` to add any additional className
 
  * @example
@@ -17,10 +18,10 @@ import { BsPencil } from 'react-icons/bs';
 // to hide popover set label to null
 <Preview onChange={file=>console.log(file)} label='' />
 
- * @param {{ img:string, onChange:(file,evt)=>void, className:string, id:string, name:string, icon:React.ReactElement, label:string }} props 
+ * @param {{ img:string, onChange:(file,evt)=>void, className:string, id:string, name:string, icon:React.ReactElement, label:string, circle:boolean }} props 
  * @returns {React.ReactElement}
  */
-function Preview({ img, onChange, className, id, name, icon, label }) {
+function Preview({ img, onChange, circle, className, id, name, icon, label }) {
 	const [image, setImage] = useState(img);
 	const [isIconHover, setIsIconHover] = useState(false);
 
@@ -32,7 +33,9 @@ function Preview({ img, onChange, className, id, name, icon, label }) {
 	const Wrapper = () => {
 		return (
 			<div
-				className='border-4 border-white shadow-md rounded-md h-40 w-40'
+				className={`border-4 border-white shadow-md rounded-${
+					circle ? 'full' : 'md'
+				} h-40 w-40`}
 				style={{
 					background: `#eee center / cover no-repeat url('${image}')`,
 				}}
@@ -86,6 +89,7 @@ function Preview({ img, onChange, className, id, name, icon, label }) {
 Preview.defaultProps = {
 	id: 'preview-id',
 	name: 'preview',
+	circle: false,
 	img: 'https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg',
 	onChange: () => {},
 	label: 'Change Preview',

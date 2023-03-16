@@ -95,21 +95,26 @@ import Button from './components/Button';
 
 #### Props
 
-| Props       | Type     | Default                                                                                                                                        | Description                               |
-| ----------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| `img`       | `String` | [`Avatar`](https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg) | set initial image                         |
-| `id`        | `String` | `preview-id`                                                                                                                                   | set input id                              |
-| `name`      | `String` | `preview-`                                                                                                                                     | set input name                            |
-| `label`     | `String` | `Change Preview`                                                                                                                               | set input label                           |
-| `onChange`  | `String` | `() => {}`                                                                                                                                     | onChange function with file, event params |
-| `icon`      | `String` | `<BsPencil />`                                                                                                                                 | change label icon                         |
-| `className` | `String` | `''`                                                                                                                                           | add any additional className              |
+| Props       | Type      | Default                                                                                                                                        | Description                               |
+| ----------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `img`       | `String`  | [`Avatar`](https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg) | set initial image                         |
+| `id`        | `String`  | `preview-id`                                                                                                                                   | set input id                              |
+| `name`      | `String`  | `preview-`                                                                                                                                     | set input name                            |
+| `label`     | `String`  | `Change Preview`                                                                                                                               | set input label                           |
+| `onChange`  | `String`  | `() => {}`                                                                                                                                     | onChange function with file, event params |
+| `circle`    | `Boolean` | `false`                                                                                                                                        | change wrapper to circle                  |
+| `icon`      | `String`  | `<BsPencil />`                                                                                                                                 | change label icon                         |
+| `className` | `String`  | `''`                                                                                                                                           | add any additional className              |
 
 #### Examples
 
 Default Usage `<Preview />`
 
 ![Default Usage](assets/images/components/preview/default.png)
+
+Default Usage `<Preview circle />`
+
+![Circle Preview](assets/images/components/preview/circle.png)
 
 #### Playground
 
@@ -133,7 +138,7 @@ import Preview from './components/Preview';
 | `subtitle`  | `String` | `''`                                                          | add Banner subtitle            |
 | `className` | `String` | `''`                                                          | add class to Banner wrapper    |
 
-#### Props
+#### Usage
 
 ```jsx
 import Banner from './components/Banner';

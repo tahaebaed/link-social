@@ -2,9 +2,22 @@
 
 ## Routes
 
-| Page           | Path                      |
-| -------------- | ------------------------- |
-| Update Profile | `/setting/update-profile` |
+### No Authentication
+
+| Page     | Path            | Component                                   |
+| -------- | --------------- | ------------------------------------------- |
+| Homepage | `/`             | [`Homepage`](src/pages/noAuth/Homepage.jsx) |
+| 404      | `*`             | [`404`](src/pages/noAuth/404.jsx)           |
+| Sign In  | `/auth/sign-in` | [`SignIn`](src/pages/noAuth/SignIn.jsx)     |
+| Sign Up  | `/auth/sign-up` | [`SignUp`](src/pages/noAuth/SignUp.jsx)     |
+
+### Need Authentication
+
+| Page           | Path                      | Component                                               |
+| -------------- | ------------------------- | ------------------------------------------------------- |
+| Update Profile | `/setting/update-profile` | [`UpdateProfile`](src/pages/needAuth/UpdateProfile.jsx) |
+| Update User    | `/setting/update-user`    | [`UpdateUser`](src/pages/needAuth/UpdateUser.jsx)       |
+| Profile        | `/profile`                | [`UpdateUser`](src/pages/needAuth/Profile.jsx)          |
 
 ## Components
 
@@ -194,7 +207,7 @@ all of them depend on the [`NavbarDropdown`](src/layout/navbar/NavbarDropdown.js
 
 ### `usePageTitle`
 
-### props
+#### props
 
 | Props | Type     | Default                    |
 | ----- | -------- | -------------------------- |
@@ -218,5 +231,5 @@ usePageTitle('Update Profile ðŸŽ‰');   // title will be 'Link | Update Profile ð
 - [`Github Repository`](https://github.com/tahaebaed/link-social)
 - [`Theme 1`](https://html.crumina.net/html-olympus/02-ProfilePage.html?)
 - [`Theme 2`](http://sociala.uitheme.net/home)
-- [`trello Dashboard`](https://trello.com/b/Jqjk9udQ/simple-project-board)
+- [`Trello Dashboard`](https://trello.com/b/Jqjk9udQ/simple-project-board)
 - [`API Endpoint`](https://link-social.up.railway.app/api/v1)

@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { BsPerson } from 'react-icons/bs';
 import * as yup from 'yup';
 import Banner from '../components/Banner';
-import FormikControl from '../components/FormFields/FormikControl';
-import usePageTitle from '../hooks/usePageTitle';
 import Button from '../components/Button';
+import FormikControl from '../components/FormFields/FormikControl';
+import Preview from '../components/Preview';
+import usePageTitle from '../hooks/usePageTitle';
 
 function checkImageSize(files) {
 	let valid = true;
@@ -25,7 +26,7 @@ function checkImageType(files) {
 	let valid = true;
 	if (files) {
 		files.forEach((file) => {
-			if (!['image/jpeg', 'image/png'].includes(file.type)) {
+			if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
 				valid = false;
 			}
 		});
@@ -82,58 +83,67 @@ const UpdateProfile = () => {
 				subtitle="Welcome to your account dashboard! Here you'll find everything you need to change your profile information, settings, read notifications and requests, view your latest messages, change your password and much more! Also you can create or manage your own favorite page, have fun!"
 			/>
 
-			<Formik
-				initialValues={value}
-				validationSchema={validationSchema}
-				onSubmit={onFormSubmit}
-				enableReinitialize
-			>
-				{(formik) => {
-					return (
-						<Form>
-							<div className=''>
-								<h2>Bio</h2>
-								<FormikControl
-									icon={<BsPerson />}
-									name='bio'
-									id='user-bio'
-									type='textarea'
-									label='Bio'
-									onChange={formik.handleChange}
-									onBlur={formik.handleBlur}
-								/>
-								<h2>Cover</h2>
-								{value.cover &&<img src={value.cover?.url} alt='cover' />}
-								<FormikControl
-									icon={<BsPerson />}
-									name='cover'
-									id='user-cover'
-									type='file'
-									control='file'
-									label='Cover'
-									onChange={formik.handleChange}
-									onBlur={formik.handleBlur}
-									setFieldValue={(_file,cover)=>setValue(v=>({...v, cover}))}
-								/>
-							</div>
-							<Button
-								type='submit'
-								disabled={formik.initialValues === formik.values}
-							>
-								<SubmitBtnLabel formik={formik} />
-							</Button>
-							<Button
-								outline
-								className='mx-3'
-								type="button"
-								onClick={() => formik.resetForm()}
-							>
-								Cancel
-							</Button>
-						</Form>
-					);
-				}}
-			</Formik>
+			<div className='container mx-auto'>
+				<Preview onChange={(file) => console.log(file)} circle />
+				<p className='text-gray-500 text-sm'>
+					Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image
+					files are accepted
+				</p>
+				<Formik
+					initialValues={value}
+					validationSchema={validationSchema}
+					onSubmit={onFormSubmit}
+					enableReinitialize
+				>
+					{(formik) => {
+						return (
+							<Form>
+								<div className=''>
+									<h2>Bio</h2>
+									<FormikControl
+										icon={<BsPerson />}
+										name='bio'
+										id='user-bio'
+										type='textarea'
+										label='Bio'
+										onChange={formik.handleChange}
+										onBlur={formik.handleBlur}
+									/>
+									<h2>Cover</h2>
+									{value.cover && <img src={value.cover?.url} alt='cover' />}
+									<FormikControl
+										icon={<BsPerson />}
+										name='cover'
+										id='user-cover'
+										type='file'
+										control='file'
+										label='Cover'
+										onChange={formik.handleChange}
+										onBlur={formik.handleBlur}
+										setFieldValue={(_file, cover) =>
+											setValue((v) => ({ ...v, cover }))
+										}
+									/>
+								</div>
+								<Button
+									type='submit'
+									disabled={formik.initialValues === formik.values}
+								>
+									<SubmitBtnLabel formik={formik} />
+								</Button>
+								<Button
+									outline
+									className='mx-3'
+									type='button'
+									onClick={() => formik.resetForm()}
+								>
+									Cancel
+								</Button>
+							</Form>
+						);
+					}}
+				</Formik>
+			</div>
 		</>
 	);
 };

@@ -2,14 +2,14 @@ import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { BsPerson } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
-import FormikControl from '../components/FormFields/FormikControl';
+import FormikControl from '../../components/FormFields/FormikControl';
 import * as yup from 'yup';
 
-import { updateUser } from '../utilities/store/user_reducer/extraReducers';
+import { updateUser } from '../../utilities/store/user_reducer/extraReducers';
 import { useParams } from 'react-router-dom';
-import { userInterceptor } from '../utilities/interceptors/axios_instance';
+import { userInterceptor } from '../../apps/axiosInstance';
 
-const Update_user = () => {
+const UpdateUser = () => {
 	const [value, setValue] = useState(null);
 
 	const initialValues = {
@@ -146,4 +146,4 @@ const Update_user = () => {
 	);
 };
 
-export default Update_user;
+export default UpdateUser;

@@ -2,11 +2,11 @@ import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { BsPerson } from 'react-icons/bs';
 import * as yup from 'yup';
-import Banner from '../components/Banner';
-import Button from '../components/Button';
-import FormikControl from '../components/FormFields/FormikControl';
-import Preview from '../components/Preview';
-import usePageTitle from '../hooks/usePageTitle';
+import Banner from '../../components/Banner';
+import Button from '../../components/Button';
+import FormikControl from '../../components/FormFields/FormikControl';
+import Preview from '../../components/Preview';
+import usePageTitle from '../../hooks/usePageTitle';
 
 function checkImageSize(files) {
 	let valid = true;

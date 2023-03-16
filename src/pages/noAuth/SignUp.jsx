@@ -6,10 +6,10 @@ import { useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 
-import FormikControl from '../components/FormFields/FormikControl.jsx';
+import FormikControl from '../../components/FormFields/FormikControl.jsx';
 
-import { fetchUser } from '../utilities/store/user_reducer/extraReducers.js';
-import Button from '../components/Button.jsx';
+import { fetchUser } from '../../utilities/store/user_reducer/extraReducers.js';
+import Button from '../../components/Button.jsx';
 
 const SignUp = () => {
 	const initialValues = {

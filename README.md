@@ -1,10 +1,16 @@
 # Social media app
 
+## Routes
+
+| Page           | Path                      |
+| -------------- | ------------------------- |
+| Update Profile | `/setting/update-profile` |
+
 ## Components
 
 ### Dropdown
 
-#### Usage
+#### Props
 
 | Props       | Type                   | Default           | Description                                                   |
 | ----------- | ---------------------- | ----------------- | ------------------------------------------------------------- |
@@ -85,6 +91,61 @@ import Button from './components/Button';
 <Button outline disabled />
 ```
 
+### Preview
+
+#### Props
+
+| Props       | Type      | Default                                                                                                                                        | Description                               |
+| ----------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `img`       | `String`  | [`Avatar`](https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg) | set initial image                         |
+| `id`        | `String`  | `preview-id`                                                                                                                                   | set input id                              |
+| `name`      | `String`  | `preview-`                                                                                                                                     | set input name                            |
+| `label`     | `String`  | `Change Preview`                                                                                                                               | set input label                           |
+| `onChange`  | `String`  | `() => {}`                                                                                                                                     | onChange function with file, event params |
+| `circle`    | `Boolean` | `false`                                                                                                                                        | change wrapper to circle                  |
+| `icon`      | `String`  | `<BsPencil />`                                                                                                                                 | change label icon                         |
+| `className` | `String`  | `''`                                                                                                                                           | add any additional className              |
+
+#### Examples
+
+Default Usage `<Preview />`
+
+![Default Usage](assets/images/components/preview/default.png)
+
+Default Usage `<Preview circle />`
+
+![Circle Preview](assets/images/components/preview/circle.png)
+
+#### Playground
+
+```jsx
+import Preview from './components/Preview';
+
+<Preview onChange={file=>console.log(file)} />
+// to hide popover set label to null
+<Preview onChange={file=>console.log(file)} label='' />
+```
+
+### Banner
+
+#### Props
+
+| Props       | Type     | Default                                                       | Description                    |
+| ----------- | -------- | ------------------------------------------------------------- | ------------------------------ |
+| `cover`     | `String` | [`cover`](src/assets/images/background/banner-cover.webp)     | change Banner background image |
+| `overlay`   | `String` | [`overlay`](src/assets/images/background/banner-overlay.webp) | change overlay image           |
+| `title`     | `String` | `''`                                                          | add Banner title               |
+| `subtitle`  | `String` | `''`                                                          | add Banner subtitle            |
+| `className` | `String` | `''`                                                          | add class to Banner wrapper    |
+
+#### Usage
+
+```jsx
+import Banner from './components/Banner';
+
+<Banner title='Profile' subtitle="Welcome to your account dashboard!" />
+```
+
 ## Layout
 
 ### Navbar
@@ -128,3 +189,34 @@ all of them depend on the [`NavbarDropdown`](src/layout/navbar/NavbarDropdown.js
   // ...
 </NavbarDropdown>
 ```
+
+## Hooks
+
+### `usePageTitle`
+
+### props
+
+| Props | Type     | Default                    |
+| ----- | -------- | -------------------------- |
+| Title | `String` | The title for current page |
+
+Hook for change page title
+
+#### Example
+
+```jsx
+import usePageTitle from '../hooks/usePageTitle'
+
+usePageTitle('Homepage')             // title will be 'Link | Homepage'
+
+// Can use emoji
+usePageTitle('Update Profile 🎉');   // title will be 'Link | Update Profile 🎉'
+```
+
+## Resources
+
+- [`Github Repository`](https://github.com/tahaebaed/link-social)
+- [`Theme 1`](https://html.crumina.net/html-olympus/02-ProfilePage.html?)
+- [`Theme 2`](http://sociala.uitheme.net/home)
+- [`trello Dashboard`](https://trello.com/b/Jqjk9udQ/simple-project-board)
+- [`API Endpoint`](https://link-social.up.railway.app/api/v1)

@@ -4,11 +4,23 @@ import { FaRegHeart, FaShare } from 'react-icons/fa';
 import { BiMessageDetail } from 'react-icons/bi';
 import { users } from '../utilities/dummydata/users';
 import './../assets/scss/components/postCard.scss';
+import profilePic from '../assets/images/imgs/profilePic.png';
+
+/**
+ * 
+ * @param {string} profileImg to pass a dynamic profile picture
+ * @param {string} userName username of the post creator
+ * @param {string} postTime time of the post was created in
+ * @param {string} postDescription the content of the post that user wrote   
+ * @param {string} likesCount count of how many people liked the post
+ * @param {string} commentsCount how many people commented on the post   
+ * @param {string} shareCount how many people shared the post   
+  
+ */
 function PostCard({
-	profileImg,
+	profileImg = profilePic,
 	userName,
 	postTime,
-	cardWidth,
 	postDescription,
 	likesCount,
 	commentsCount,
@@ -16,7 +28,7 @@ function PostCard({
 }) {
 	return (
 		<>
-			<div className={`card_box ${cardWidth}`}>
+			<div className={`card_box w-[40rem]`}>
 				<div className='flex mb-3 justify-between'>
 					<div className='flex items-center'>
 						<div className='profile_img'>
@@ -85,14 +97,5 @@ function PostCard({
 			</div>
 		</>
 	);
-}
-// import PostCard from './components/PostCard'
-// import img from './assets/945269373692706886.webp'
-// import LoadingPlaceholder from './components/LoadingPlaceholder'
-//let des = "Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque."
-{
-	/* <PostCard profileImg={img} userName="James Spiegel" postTime="19 hours ago" cardWidth='w-[35rem]' postDescription={des} likesCount="8" commentsCount="17" shareCount="14" />
-
-<LoadingPlaceholder imgWidth="w-[40px]" imgheight="h-[40px]" carWidth="w-[35rem]" cardHeight="h-[315px]" authorWidth="w-[102px]" authorHeight="h-[18px]" bigBlockWidth="w-[120px]" smallBlockWidth="w-[80px]" btnWidth="w-[120px]" /> */
 }
 export default PostCard;

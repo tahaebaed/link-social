@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { MdAddLink } from 'react-icons/md';
 import { IoLogInOutline } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 
 import '../assets/scss/components/registration.scss';
 
-const Registration = () => {
+const Registration = (props) => {
 	return (
 		<section className='relative min-h-[90vh]'>
 			<div className='registration-bg-wrap'></div>
@@ -24,7 +24,7 @@ const Registration = () => {
 					<div className='bg-white flex flex-col '>
 						<div className='registration-buttons w-[38rem] flex items-start flex-row'>
 							<NavLink
-								to='/registration/SignIn'
+								to='/auth/sign-in'
 								className={({ isActive }) =>
 									`h-[3rem] w-[19rem] flex items-center justify-center border text-2xl text-gray-400 transition-colors ${
 										isActive ? 'text-stone-600' : ''
@@ -34,7 +34,7 @@ const Registration = () => {
 								<IoLogInOutline />
 							</NavLink>
 							<NavLink
-								to='/registration/SignUp'
+								to='/auth/sign-up'
 								className={({ isActive }) =>
 									`h-[3rem] w-[19rem] flex items-center justify-center border text-2xl text-gray-400 transition-colors ${
 										isActive ? 'text-stone-600' : ''
@@ -49,7 +49,7 @@ const Registration = () => {
 								whileInView={{ opacity: [0, 1] }}
 								transition={{ type: 'tween', delay: 0.2 }}
 							>
-								<Outlet />
+								{props.children}
 							</motion.div>
 						</div>
 					</div>

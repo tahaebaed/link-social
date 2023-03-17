@@ -5,6 +5,7 @@ import { AiOutlineLock } from 'react-icons/ai';
 import FormikControl from '../../components/FormFields/FormikControl.jsx';
 import * as yup from 'yup';
 import Button from '../../components/Button.jsx';
+import Registration from '../../layout/Registration.jsx';
 const SignIn = () => {
 	const initialValues = {
 		email: '',
@@ -19,49 +20,50 @@ const SignIn = () => {
 	});
 
 	return (
-		<Formik
-			initialValues={initialValues}
-			validationSchema={validationSchema}
-			onSubmit={() => {
-				console.log('done');
-			}}
-		>
-			{(formik) => (
-				<Form>
-					<div>
-						<h2 className='text-3xl mb-10 text-red-400'>Sign In</h2>
-						<div className='w-full'>
-							<h2 className='mb-4 ml-2'>Email</h2>
-							<FormikControl
-								name='email'
-								id='login_email'
-								icon={<HiOutlineMail />}
-								type='email'
-								label='email'
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
+		<Registration>
+			<Formik
+				initialValues={initialValues}
+				validationSchema={validationSchema}
+				onSubmit={() => {
+					console.log('done');
+				}}
+			>
+				{(formik) => (
+					<Form>
+						<div>
+							<h2 className='text-3xl mb-10 text-red-400'>Sign In</h2>
+							<div className='w-full'>
+								<h2 className='mb-4 ml-2'>Email</h2>
+								<FormikControl
+									name='email'
+									id='login_email'
+									icon={<HiOutlineMail />}
+									type='email'
+									label='email'
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+								/>
+							</div>
+							<div className='w-full'>
+								<h2 className='mb-4 ml-2'>Password</h2>
+								<FormikControl
+									name='password'
+									id='login_password'
+									icon={<AiOutlineLock />}
+									control='password'
+									label='password'
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+								/>
+							</div>
+							<Button className='bg-orange-400 border-orange-400 hover:text-orange-400'>
+								Submit
+							</Button>
 						</div>
-						<div className='w-full'>
-							<h2 className='mb-4 ml-2'>Password</h2>
-							<FormikControl
-								name='password'
-								id='login_password'
-								icon={<AiOutlineLock />}
-								control='password'
-								label='password'
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
-						</div>
-
-						<Button className='bg-orange-400 border-orange-400 hover:text-orange-400'>
-							Submit
-						</Button>
-					</div>
-				</Form>
-			)}
-		</Formik>
+					</Form>
+				)}
+			</Formik>
+		</Registration>
 	);
 };
 

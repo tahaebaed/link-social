@@ -76,6 +76,7 @@ const SignUp = () => {
 										id='password'
 										icon={<AiOutlineLock />}
 										control='password'
+										type='password'
 										label='password'
 										onChange={formik.handleChange}
 										onBlur={formik.handleBlur}
@@ -88,6 +89,7 @@ const SignUp = () => {
 										id='password_confirmation'
 										icon={<AiOutlineUnlock />}
 										control='password'
+										type='password'
 										label='confirm password'
 										onChange={formik.handleChange}
 										onBlur={formik.handleBlur}

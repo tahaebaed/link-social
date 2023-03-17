@@ -19,11 +19,11 @@ const router = createBrowserRouter([
 		errorElement: <ErrorBoundary />,
 		children: [
 			{
-				path: 'registration',
+				path: 'register',
 				element: <Registration />,
 				children: [
 					{
-						path: 'SignIn',
+						path: 'signin',
 						element: (
 							<React.Suspense fallback={<Loader />}>
 								<SignIn />
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
 						),
 					},
 					{
-						path: 'SignUp',
+						path: 'signup',
 						element: (
 							<React.Suspense fallback={<Loader />}>
 								<SignUp />

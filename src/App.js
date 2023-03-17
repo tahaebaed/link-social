@@ -6,6 +6,7 @@ import { ipInstance } from './utilities/weatherCard/ipInstance';
 
 
 function App() {
+
 	useEffect(() => {
 		ipInstance.get("")
 	}, [])

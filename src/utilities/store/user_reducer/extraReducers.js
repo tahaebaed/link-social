@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
-import { userInterceptor } from '../../interceptors/axios_instance';
+import { userInterceptor } from '../../../apps/axiosInstance';
 
 export const fetchUser = createAsyncThunk('user/fetchUser', async (user) => {
 	try {

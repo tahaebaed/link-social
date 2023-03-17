@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import PostCard from '../components/PostCard';
-import ProfileNavbar from '../layout/Profile/ProfileNavbar';
-import ProfileSidebar from '../layout/Profile/ProfileSidebar';
-import './../assets/scss/components/profile.scss';
+import ProfileNavbar from '../../layout/Profile/ProfileNavbar';
+import ProfileSidebar from '../../layout/Profile/ProfileSidebar';
+import './../../assets/scss/components/profile.scss';
 
 const Profile = () => {
 	const [response, setResponse] = useState(null);

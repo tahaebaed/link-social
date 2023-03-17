@@ -2,9 +2,9 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import { HiOutlineMail } from 'react-icons/hi';
 import { AiOutlineLock } from 'react-icons/ai';
-import FormikControl from '../components/FormFields/FormikControl.jsx';
+import FormikControl from '../../components/FormFields/FormikControl.jsx';
 import * as yup from 'yup';
-import Button from '../components/Button.jsx';
+import Button from '../../components/Button.jsx';
 const SignIn = () => {
 	const initialValues = {
 		email: '',

@@ -21,6 +21,7 @@ userInterceptor.interceptors.request.use((req) => {
 
 	return req;
 });
+
 userInterceptor.interceptors.response.use((res) => {
 	return res;
 });

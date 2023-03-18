@@ -156,8 +156,77 @@ import Preview from './components/Preview';
 ```jsx
 import Banner from './components/Banner';
 
-<Banner title='Profile' subtitle="Welcome to your account dashboard!" />
+<Banner title='Profile' subtitle='Welcome to your account dashboard!' />;
 ```
+
+### LoadingPlaceholder
+
+you can change the number of your blocks by adding a new object to the the array and passing it by props
+
+#### Usage
+
+| Props       | Type      | Default | Description          |
+| ----------- | --------- | ------- | -------------------- |
+| `sm`        | `Boolean` | `false` | create small blocks  |
+| `lg`        | `Boolean` | `false` | create bigger blocks |
+| `className` | `String`  | `''`    | add class to block   |
+
+#### Examples
+
+Default Usage `<LoadingPlaceholder />`
+
+![Default Usage](assets/images/components/placeholder/placeholder.png)
+
+#### Playground
+
+```jsx
+import LoadingPlaceholder from './components/placeholder/LoadingPlaceholder';
+
+
+<LoadingPlaceholder />
+<LoadingPlaceholder blocksSizes = [{ className: 'w-[400px]' },
+		{ sm: true },
+		{ sm: true },] />
+<LoadingPlaceholder blocksSizes = [{ className: 'w-[400px]' },
+		{ sm: true },
+		{ sm: true },
+		{ lg: true },
+		{ lg: true },] />
+```
+
+### PostCard
+
+#### Usage
+
+| Props             | Type     | Default | Description                            |
+| ----------------- | -------- | ------- | -------------------------------------- |
+| `profileImg`      | `String` | `''`    | profile image of post creator          |
+| `userName`        | `String` | `''`    | username of post creator               |
+| `postTime`        | `String` | `''`    | when post were created                 |
+| `postDescription` | `String` | `''`    | post content                           |
+| `likesCount`      | `String` | `''`    | count people who liked the post        |
+| `commentsCount`   | `String` | `''`    | count people who commented on the post |
+| `shareCount`      | `String` | `''`    | count people who shared the post       |
+
+#### Playground
+
+```jsx
+import PostCard from './components/PostCard';
+import profileImg from from '../assets/images/imgs/profilePic.png';
+<PostCard
+  Img={profileImg}
+	userName='James Spiegel'
+	postTime='19 hours ago'
+	description="Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque"
+	likesCount='8'
+	commentsCount='17'
+	shareCount='14'
+/>;
+```
+
+#### Playground result
+
+![Default Usage](assets/images/components/postCard/postCard.png)
 
 ## Layout
 
@@ -218,12 +287,12 @@ Hook for change page title
 #### Example
 
 ```jsx
-import usePageTitle from '../hooks/usePageTitle'
+import usePageTitle from '../hooks/usePageTitle';
 
-usePageTitle('Homepage')             // title will be 'Link | Homepage'
+usePageTitle('Homepage'); // title will be 'Link | Homepage'
 
 // Can use emoji
-usePageTitle('Update Profile 🎉');   // title will be 'Link | Update Profile 🎉'
+usePageTitle('Update Profile 🎉'); // title will be 'Link | Update Profile 🎉'
 ```
 
 ## Resources

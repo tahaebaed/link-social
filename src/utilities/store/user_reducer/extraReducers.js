@@ -58,5 +58,5 @@ export const extraReducers = {
 	[updateUser.pending]: (state) => {
 		state.loading = true;
 	},
-	[updateUser.fulfilled]: (state, action) => {},
+	[updateUser.fulfilled]: (state, action) => { },
 };

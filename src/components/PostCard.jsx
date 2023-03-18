@@ -8,20 +8,20 @@ import profilePic from '../assets/images/imgs/profilePic.png';
 
 /**
  * 
- * @param {string} profileImg to pass a dynamic profile picture
+ * @param {string} Img to pass a dynamic profile picture
  * @param {string} userName username of the post creator
  * @param {string} postTime time of the post was created in
- * @param {string} postDescription the content of the post that user wrote   
+ * @param {string} description the content of the post that user wrote   
  * @param {string} likesCount count of how many people liked the post
  * @param {string} commentsCount how many people commented on the post   
  * @param {string} shareCount how many people shared the post   
   
  */
 function PostCard({
-	profileImg = profilePic,
+	Img = profilePic,
 	userName,
 	postTime,
-	postDescription,
+	description,
 	likesCount,
 	commentsCount,
 	shareCount,
@@ -32,11 +32,7 @@ function PostCard({
 				<div className='flex mb-3 justify-between'>
 					<div className='flex items-center'>
 						<div className='profile_img'>
-							<img
-								className='rounded-full'
-								src={profileImg}
-								alt='profile img'
-							/>
+							<img className='rounded-full' src={Img} alt='profile img' />
 						</div>
 						<div className='mx-6'>
 							<h6 className='user_name'>{userName}</h6>
@@ -49,7 +45,7 @@ function PostCard({
 					</div>
 				</div>
 				<div className='post_content'>
-					<p>{postDescription}</p>
+					<p>{description}</p>
 				</div>
 
 				<div className='flex justify-between items-center post_reactions my-5 py-4'>

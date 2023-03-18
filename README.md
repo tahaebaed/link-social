@@ -1,10 +1,29 @@
 # Social media app
 
+## Routes
+
+### No Authentication
+
+| Page     | Path            | Component                                   |
+| -------- | --------------- | ------------------------------------------- |
+| Homepage | `/`             | [`Homepage`](src/pages/noAuth/Homepage.jsx) |
+| 404      | `*`             | [`404`](src/pages/noAuth/404.jsx)           |
+| Sign In  | `/auth/sign-in` | [`SignIn`](src/pages/noAuth/SignIn.jsx)     |
+| Sign Up  | `/auth/sign-up` | [`SignUp`](src/pages/noAuth/SignUp.jsx)     |
+
+### Need Authentication
+
+| Page           | Path                      | Component                                               |
+| -------------- | ------------------------- | ------------------------------------------------------- |
+| Update Profile | `/setting/update-profile` | [`UpdateProfile`](src/pages/needAuth/UpdateProfile.jsx) |
+| Update User    | `/setting/update-user`    | [`UpdateUser`](src/pages/needAuth/UpdateUser.jsx)       |
+| Profile        | `/profile`                | [`UpdateUser`](src/pages/needAuth/Profile.jsx)          |
+
 ## Components
 
 ### Dropdown
 
-#### Usage
+#### Props
 
 | Props       | Type                   | Default           | Description                                                   |
 | ----------- | ---------------------- | ----------------- | ------------------------------------------------------------- |
@@ -85,48 +104,59 @@ import Button from './components/Button';
 <Button outline disabled />
 ```
 
-## Layout
-
-### Navbar
-
-Consists of the following component:
-
-1. [`Friends Dropdown`](src/layout/navbar/FriendsDropdown.jsx)
-2. [`Messages Dropdown`](src/layout/navbar/MessageDropdown.jsx)
-3. [`Notification Dropdown`](src/layout/navbar/NotificationDropdown.jsx)
-4. [`User Dropdown`](src/layout/navbar/UserDropdown.jsx)
-5. [`Query Search`](src/layout/navbar/QuerySearch.jsx)
-6. [`Mobile Menu Dropdown`](src/layout/navbar/MobileMenu.jsx) (show only on mobile)
-
-all of them depend on the [`NavbarDropdown`](src/layout/navbar/NavbarDropdown.jsx) component
+### Preview
 
 #### Props
 
-| Props       | Type                     | Default | Description                                                                            |
-| ----------- | ------------------------ | ------- | -------------------------------------------------------------------------------------- |
-| `label`     | `String` `React.Element` | `label` | change dropdown toggle label                                                           |
-| `count`     | `Number`                 | `''`    | add notification counter                                                               |
-| `pageUrl`   | `String`                 | `''`    | specify href for it's page                                                             |
-| `pageLabel` | `String`                 | `''`    | change displayed text (can be text or icon from `react-icon`)                          |
-| `type`      | `String`                 | `''`    | change button & toggle counter color, can be one of `friends, messages, notifications` |
+| Props       | Type      | Default                                                                                                                                        | Description                               |
+| ----------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `img`       | `String`  | [`Avatar`](https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg) | set initial image                         |
+| `id`        | `String`  | `preview-id`                                                                                                                                   | set input id                              |
+| `name`      | `String`  | `preview-`                                                                                                                                     | set input name                            |
+| `label`     | `String`  | `Change Preview`                                                                                                                               | set input label                           |
+| `onChange`  | `String`  | `() => {}`                                                                                                                                     | onChange function with file, event params |
+| `circle`    | `Boolean` | `false`                                                                                                                                        | change wrapper to circle                  |
+| `icon`      | `String`  | `<BsPencil />`                                                                                                                                 | change label icon                         |
+| `className` | `String`  | `''`                                                                                                                                           | add any additional className              |
 
-#### Example
+#### Examples
+
+Default Usage `<Preview />`
+
+![Default Usage](assets/images/components/preview/default.png)
+
+Default Usage `<Preview circle />`
+
+![Circle Preview](assets/images/components/preview/circle.png)
+
+#### Playground
 
 ```jsx
-<NavbarDropdown label={<MdOutlineEmojiEmotions />} count={21}>
-  // ...
-</NavbarDropdown>
+import Preview from './components/Preview';
 
-// with page button (messages dropdown)
-<NavbarDropdown
-  label={<HiOutlineChatBubbleLeftRight />}
-  count={61}
-  pageUrl='/messages'
-  pageLabel='View All Messages'
-  type='messages'
->
-  // ...
-</NavbarDropdown>
+<Preview onChange={file=>console.log(file)} />
+// to hide popover set label to null
+<Preview onChange={file=>console.log(file)} label='' />
+```
+
+### Banner
+
+#### Props
+
+| Props       | Type     | Default                                                       | Description                    |
+| ----------- | -------- | ------------------------------------------------------------- | ------------------------------ |
+| `cover`     | `String` | [`cover`](src/assets/images/background/banner-cover.webp)     | change Banner background image |
+| `overlay`   | `String` | [`overlay`](src/assets/images/background/banner-overlay.webp) | change overlay image           |
+| `title`     | `String` | `''`                                                          | add Banner title               |
+| `subtitle`  | `String` | `''`                                                          | add Banner subtitle            |
+| `className` | `String` | `''`                                                          | add class to Banner wrapper    |
+
+#### Usage
+
+```jsx
+import Banner from './components/Banner';
+
+<Banner title='Profile' subtitle='Welcome to your account dashboard!' />;
 ```
 
 ### LoadingPlaceholder
@@ -197,3 +227,78 @@ import profileImg from from '../assets/images/imgs/profilePic.png';
 #### Playground result
 
 ![Default Usage](assets/images/components/postCard/postCard.png)
+
+## Layout
+
+### Navbar
+
+Consists of the following component:
+
+1. [`Friends Dropdown`](src/layout/navbar/FriendsDropdown.jsx)
+2. [`Messages Dropdown`](src/layout/navbar/MessageDropdown.jsx)
+3. [`Notification Dropdown`](src/layout/navbar/NotificationDropdown.jsx)
+4. [`User Dropdown`](src/layout/navbar/UserDropdown.jsx)
+5. [`Query Search`](src/layout/navbar/QuerySearch.jsx)
+6. [`Mobile Menu Dropdown`](src/layout/navbar/MobileMenu.jsx) (show only on mobile)
+
+all of them depend on the [`NavbarDropdown`](src/layout/navbar/NavbarDropdown.jsx) component
+
+#### Props
+
+| Props       | Type                     | Default | Description                                                                            |
+| ----------- | ------------------------ | ------- | -------------------------------------------------------------------------------------- |
+| `label`     | `String` `React.Element` | `label` | change dropdown toggle label                                                           |
+| `count`     | `Number`                 | `''`    | add notification counter                                                               |
+| `pageUrl`   | `String`                 | `''`    | specify href for it's page                                                             |
+| `pageLabel` | `String`                 | `''`    | change displayed text (can be text or icon from `react-icon`)                          |
+| `type`      | `String`                 | `''`    | change button & toggle counter color, can be one of `friends, messages, notifications` |
+
+#### Example
+
+```jsx
+<NavbarDropdown label={<MdOutlineEmojiEmotions />} count={21}>
+  // ...
+</NavbarDropdown>
+
+// with page button (messages dropdown)
+<NavbarDropdown
+  label={<HiOutlineChatBubbleLeftRight />}
+  count={61}
+  pageUrl='/messages'
+  pageLabel='View All Messages'
+  type='messages'
+>
+  // ...
+</NavbarDropdown>
+```
+
+## Hooks
+
+### `usePageTitle`
+
+#### props
+
+| Props | Type     | Default                    |
+| ----- | -------- | -------------------------- |
+| Title | `String` | The title for current page |
+
+Hook for change page title
+
+#### Example
+
+```jsx
+import usePageTitle from '../hooks/usePageTitle';
+
+usePageTitle('Homepage'); // title will be 'Link | Homepage'
+
+// Can use emoji
+usePageTitle('Update Profile 🎉'); // title will be 'Link | Update Profile 🎉'
+```
+
+## Resources
+
+- [`Github Repository`](https://github.com/tahaebaed/link-social)
+- [`Theme 1`](https://html.crumina.net/html-olympus/02-ProfilePage.html?)
+- [`Theme 2`](http://sociala.uitheme.net/home)
+- [`Trello Dashboard`](https://trello.com/b/Jqjk9udQ/simple-project-board)
+- [`API Endpoint`](https://link-social.up.railway.app/api/v1)

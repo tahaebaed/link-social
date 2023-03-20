@@ -64,18 +64,14 @@ Taps.defaultProps = {
 	onActiveTapChange: () => {},
 };
 
-function Navs({ activeTap, user }) {
-	if (!user) {
-		return <>No user data found</>;
-	}
-
+function Navs({ activeTap }) {
 	const Nav = TAPS.find((tap) => tap.id === activeTap)?.component;
 
 	if (Nav) {
-		return <Nav user={user} />;
+		return <Nav />;
 	}
 
-	return <About user={user} />;
+	return <About />;
 }
 
 Navs.defaultProps = {
@@ -83,4 +79,4 @@ Navs.defaultProps = {
 	user: null,
 };
 
-export { Taps, Navs };
+export { Navs, Taps };

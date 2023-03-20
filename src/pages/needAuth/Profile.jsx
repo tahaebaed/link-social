@@ -71,7 +71,7 @@ const Profile = () => {
 									<Button
 										as={Link}
 										to={`/add-friend/${profile.id}`}
-										className='font-bold mx-2 flex items-center'
+										className='font-bold mx-2 flex items-center'gi
 									>
 										<IoPersonAdd className='inline-block mr-2' />
 										<span>Add Friend</span>
@@ -89,7 +89,7 @@ const Profile = () => {
 							/>
 						</div>
 					</div>
-					<Navs activeTap={activeTap} user={profile} />
+					<Navs activeTap={activeTap} />
 				</>
 			);
 		} else {

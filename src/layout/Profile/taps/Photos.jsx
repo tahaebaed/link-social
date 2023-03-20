@@ -5,6 +5,7 @@ import { getUserImages } from '../../../utilities/store/profile.slice';
 import { profileSelector } from '../../../utilities/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import LoadingPlaceholder from '../../../components/placeholder/LoadingPlaceholder';
 
 const ImagesList = ({ images = [] }) => {
 	return (
@@ -44,7 +45,22 @@ function Photos() {
 	}, []);
 
 	if (isLoading) {
-		return <>Loading...</>;
+		return (
+			<div className='grid grid-cols-2 mt-3'>
+				<div className='col-span-2 md:col-span-1 m-3'>
+					<LoadingPlaceholder />
+				</div>
+				<div className='col-span-2 md:col-span-1 m-3'>
+					<LoadingPlaceholder />
+				</div>
+				<div className='col-span-2 md:col-span-1 m-3'>
+					<LoadingPlaceholder />
+				</div>
+				<div className='col-span-2 md:col-span-1 m-3'>
+					<LoadingPlaceholder />
+				</div>
+			</div>
+		);
 	} else if (error) {
 		return <pre>{JSON.stringify(error)}</pre>;
 	} else if (images) {

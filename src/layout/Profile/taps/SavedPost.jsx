@@ -1,9 +1,10 @@
-import PostCard from '../../../components/PostCard';
 import React, { useEffect } from 'react';
-import { getUserSavedPosts } from '../../../utilities/store/profile.slice';
-import { profileSelector } from '../../../utilities/store';
-import { useDispatch, useSelector } from 'react-redux';
 import { VscFeedback } from 'react-icons/vsc';
+import { useDispatch, useSelector } from 'react-redux';
+import PostCard from '../../../components/PostCard';
+import LoadingPlaceholder from '../../../components/placeholder/LoadingPlaceholder';
+import { profileSelector } from '../../../utilities/store';
+import { getUserSavedPosts } from '../../../utilities/store/profile.slice';
 
 const Timeline = () => {
 	return (
@@ -34,7 +35,22 @@ function SavedPost() {
 	}, []);
 
 	if (isLoading) {
-		return <>Loading...</>;
+		return (
+			<div className='grid grid-cols-2 mt-3'>
+				<div className='col-span-2 md:col-span-1 m-3'>
+					<LoadingPlaceholder />
+				</div>
+				<div className='col-span-2 md:col-span-1 m-3'>
+					<LoadingPlaceholder />
+				</div>
+				<div className='col-span-2 md:col-span-1 m-3'>
+					<LoadingPlaceholder />
+				</div>
+				<div className='col-span-2 md:col-span-1 m-3'>
+					<LoadingPlaceholder />
+				</div>
+			</div>
+		);
 	} else if (error) {
 		return <pre>{JSON.stringify(error)}</pre>;
 	} else {

@@ -4,17 +4,17 @@
 
 ### No Authentication
 
-| Page     | Path            | Component                                   |
-| -------- | --------------- | ------------------------------------------- |
-| Homepage | `/`             | [`Homepage`](src/pages/noAuth/Homepage.jsx) |
-| 404      | `*`             | [`404`](src/pages/noAuth/404.jsx)           |
-| Sign In  | `/auth/sign-in` | [`SignIn`](src/pages/noAuth/SignIn.jsx)     |
-| Sign Up  | `/auth/sign-up` | [`SignUp`](src/pages/noAuth/SignUp.jsx)     |
+| Page    | Path            | Component                               |
+| ------- | --------------- | --------------------------------------- |
+| 404     | `*`             | [`404`](src/pages/noAuth/404.jsx)       |
+| Sign In | `/auth/sign-in` | [`SignIn`](src/pages/noAuth/SignIn.jsx) |
+| Sign Up | `/auth/sign-up` | [`SignUp`](src/pages/noAuth/SignUp.jsx) |
 
 ### Need Authentication
 
 | Page           | Path                      | Component                                               |
 | -------------- | ------------------------- | ------------------------------------------------------- |
+| Homepage       | `/`                       | [`Homepage`](src/pages/noAuth/Homepage.jsx)             |
 | Update Profile | `/setting/update-profile` | [`UpdateProfile`](src/pages/needAuth/UpdateProfile.jsx) |
 | Update User    | `/setting/update-user`    | [`UpdateUser`](src/pages/needAuth/UpdateUser.jsx)       |
 | Profile        | `/profile`                | [`Profile`](src/pages/needAuth/Profile.jsx)             |

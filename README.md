@@ -219,14 +219,23 @@ import LoadingPlaceholder from './components/placeholder/LoadingPlaceholder';
 
 
 <LoadingPlaceholder />
-<LoadingPlaceholder blocksSizes = [{ className: 'w-[400px]' },
-		{ sm: true },
-		{ sm: true },] />
-<LoadingPlaceholder blocksSizes = [{ className: 'w-[400px]' },
-		{ sm: true },
-		{ sm: true },
-		{ lg: true },
-		{ lg: true },] />
+<LoadingPlaceholder 
+  blocksSizes = {[
+      { className: 'w-[400px]' },
+      { sm: true },
+      { sm: true },
+    ]
+    } 
+  />
+<LoadingPlaceholder 
+blocksSizes = {[
+    { sm: true },
+    { sm: true },
+    { lg: true },
+    { lg: true },
+  ]
+  } 
+/>
 ```
 
 ### PostCard
@@ -248,15 +257,16 @@ import LoadingPlaceholder from './components/placeholder/LoadingPlaceholder';
 ```jsx
 import PostCard from './components/PostCard';
 import profileImg from from '../assets/images/imgs/profilePic.png';
+
 <PostCard
   Img={profileImg}
-	userName='James Spiegel'
-	postTime='19 hours ago'
-	description="Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque"
-	likesCount='8'
-	commentsCount='17'
-	shareCount='14'
-/>;
+  userName='James Spiegel'
+  postTime='19 hours ago'
+  description="Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque"
+  likesCount='8'
+  commentsCount='17'
+  shareCount='14'
+/>
 ```
 
 #### Playground result

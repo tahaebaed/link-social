@@ -35,7 +35,7 @@ const PUBLIC_ROUTES = [
 
 const AUTH_ROUTES = [
 	{
-		path: '/profile',
+		path: '/profile/:profileId',
 		component: Profile,
 	},
 	{

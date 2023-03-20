@@ -17,7 +17,7 @@
 | -------------- | ------------------------- | ------------------------------------------------------- |
 | Update Profile | `/setting/update-profile` | [`UpdateProfile`](src/pages/needAuth/UpdateProfile.jsx) |
 | Update User    | `/setting/update-user`    | [`UpdateUser`](src/pages/needAuth/UpdateUser.jsx)       |
-| Profile        | `/profile`                | [`UpdateUser`](src/pages/needAuth/Profile.jsx)          |
+| Profile        | `/profile`                | [`Profile`](src/pages/needAuth/Profile.jsx)             |
 
 ## Components
 
@@ -25,13 +25,14 @@
 
 #### Props
 
-| Props       | Type                   | Default           | Description                                                   |
-| ----------- | ---------------------- | ----------------- | ------------------------------------------------------------- |
-| `noArrow`   | `Boolean`              | `false`           | hide dropdown arrow                                           |
-| `toLeft`    | `Boolean`              | `false`           | change direction from left to right                           |
-| `isOpen`    | `Boolean`              | `false`           | change init state for showing dropdown                        |
-| `label`     | `String` `JSX.Element` | `<BsThreeDots />` | change displayed text (can be text or icon from `react-icon`) |
-| `className` | `String`               | `''`              | add class to dropdown wrapper                                 |
+| Props       | Type                   | Default                                                                                                                                   | Description                                                   |
+| ----------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `noArrow`   | `Boolean`              | `false`                                                                                                                                   | hide dropdown arrow                                           |
+| `toLeft`    | `Boolean`              | `false`                                                                                                                                   | change direction from left to right                           |
+| `isOpen`    | `Boolean`              | `false`                                                                                                                                   | change init state for showing dropdown                        |
+| `label`     | `String` `JSX.Element` | `<BsThreeDots />`                                                                                                                         | change displayed text (can be text or icon from `react-icon`) |
+| `className` | `String`               | `''`                                                                                                                                      | add class to dropdown wrapper                                 |
+| `children`  | `JSX.Element`          | [`L86-L110`](https://github.com/tahaebaed/link-social/blob/1a08f394df55db26b3a90c780e130a1adc462e51/src/components/Dropdown.jsx#L86-L110) | add custom children                                           |
 
 #### Examples
 
@@ -69,17 +70,50 @@ import Dropdown from './components/Dropdown';
 </Dropdown>
 ```
 
+#### Using builtin structure
+
+The following example shows the default value for dropdown, make sure you use it in the right way.
+
+```html
+<ul>
+  <li>
+    <a className='dropdown-item' href='#'>
+      Action
+    </a>
+  </li>
+  <li>
+    <a className='dropdown-item' href='#'>
+      Another action
+    </a>
+  </li>
+  <li>
+    <a className='dropdown-item' href='#'>
+      Something else here
+    </a>
+  </li>
+  <li>
+    <hr className='dropdown-divider' />
+  </li>
+  <li>
+    <a className='dropdown-item' href='#'>
+      Separated link
+    </a>
+  </li>
+</ul>
+```
+
 ### Button
 
 #### Usage
 
-| Props       | Type      | Default | Description              |
-| ----------- | --------- | ------- | ------------------------ |
-| `outline`   | `Boolean` | `false` | create outline buttons   |
-| `sm`        | `Boolean` | `false` | create small buttons     |
-| `lg`        | `Boolean` | `false` | create bigger buttons    |
-| `disabled`  | `Boolean` | `false` | disabled buttons actions |
-| `className` | `String`  | `''`    | add class to button      |
+| Props       | Type      | Default  | Description              |
+| ----------- | --------- | -------- | ------------------------ |
+| `outline`   | `Boolean` | `false`  | create outline buttons   |
+| `sm`        | `Boolean` | `false`  | create small buttons     |
+| `lg`        | `Boolean` | `false`  | create bigger buttons    |
+| `as`        | `String`  | `button` | change button tag        |
+| `disabled`  | `Boolean` | `false`  | disabled buttons actions |
+| `className` | `String`  | `''`     | add class to button      |
 
 #### Examples
 
@@ -96,6 +130,7 @@ import Button from './components/Button';
 <Button lg />
 <Button sm />
 <Button disabled />
+<Button as='a' href='#taps'> taps </Button>
 
 // Outline
 <Button outline />

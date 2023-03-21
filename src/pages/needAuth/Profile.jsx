@@ -6,8 +6,9 @@ import { Link, useParams, useSearchParams } from 'react-router-dom';
 import Button from '../../components/Button';
 import usePageTitle from '../../hooks/usePageTitle';
 import { Navs, Taps } from '../../layout/Profile/TapsAndNavs';
-import { getUser, getUserPosts } from '../../utilities/store/profile.slice';
+import WithLeftSidebar from '../../layout/WithLeftSidebar';
 import { profileSelector } from '../../utilities/store';
+import { getUser, getUserPosts } from '../../utilities/store/profile.slice';
 
 const Profile = () => {
 	usePageTitle('Profile');
@@ -71,7 +72,7 @@ const Profile = () => {
 									<Button
 										as={Link}
 										to={`/add-friend/${profile.id}`}
-										className='font-bold mx-2 flex items-center'gi
+										className='font-bold mx-2 flex items-center'
 									>
 										<IoPersonAdd className='inline-block mr-2' />
 										<span>Add Friend</span>
@@ -98,12 +99,9 @@ const Profile = () => {
 	};
 
 	return (
-		<section className='relative md:grid grid-cols-4 min-h-screen items-start justify-center overflow-y-hidden border'>
-			<nav className=' z-[1035] h-screen col-span-1 bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] '></nav>
-			<div className='p-5 col-span-3 '>
-				<ProfileWrapper />
-			</div>
-		</section>
+		<WithLeftSidebar>
+			<ProfileWrapper />
+		</WithLeftSidebar>
 	);
 };
 

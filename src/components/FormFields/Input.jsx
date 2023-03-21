@@ -23,22 +23,24 @@ const Input = ({
 	icon,
 	type,
 	inputClasses,
+	wrapperClasses,
 	labelClasses,
 	...rest
 }) => (
-	<>
-		<span className={labelClasses} style={{ top: '17%' }}>
+	<div className={`relative ${wrapperClasses || 'h-[55px] px-2'}`}>
+		<span className={`absolute ${labelClasses || 'top-[22%] left-[0.6rem]'}`}>
 			{icon}
 		</span>
 		<Field
-			className={inputClasses}
+			className={inputClasses || 'py-2 px-5 w-full'}
 			id={name}
 			name={name}
 			placeholder={label}
 			type={type || 'text'}
+			{...rest}
 		/>
 		<ErrorMessage name={name} component={ErrorText} />
-	</>
+	</div>
 );
 
 Input.propTypes = {

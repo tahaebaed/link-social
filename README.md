@@ -17,7 +17,7 @@
 | Homepage       | `/`                       | [`Homepage`](src/pages/noAuth/Homepage.jsx)             |
 | Update Profile | `/setting/update-profile` | [`UpdateProfile`](src/pages/needAuth/UpdateProfile.jsx) |
 | Update User    | `/setting/update-user`    | [`UpdateUser`](src/pages/needAuth/UpdateUser.jsx)       |
-| Profile        | `/profile`                | [`Profile`](src/pages/needAuth/Profile.jsx)             |
+| Profile        | `/profile/profileId`      | [`Profile`](src/pages/needAuth/Profile.jsx)             |
 
 ## Components
 

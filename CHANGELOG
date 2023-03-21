@@ -1,0 +1,15 @@
+
+# CHANGELOG
+
+## TODO
+
+- [ ] Make sure saved post is fetched correctly
+- [ ] Need s Spinner component
+- [ ] Handel form fields type like select & radio
+
+## Bugs
+
+### API
+
+- [ ] followers & following are different on the data, like username, first name, last name
+- [ ] posts like count, user name not found

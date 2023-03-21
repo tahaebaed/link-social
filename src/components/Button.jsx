@@ -26,12 +26,12 @@ import React, { useState, useEffect } from 'react';
  * @param {Object} props 
  * @returns
  */
-function Button({ sm, lg, outline, disabled, ...props }) {
+function Button({ sm, lg, outline, disabled, as: As, ...props }) {
 	const [className, setClassName] = useState('');
 
 	useEffect(() => {
 		let initClass =
-			`btn-aurora rounded-full border border-aurora select-none inline-block font-normal text-center align-middle py-1.5 px-3 text-base transition duration-500 leading-tight` +
+			`btn-aurora rounded-full border border-aurora select-none inline-block font-normal text-center align-middle py-1.5 px-3 text-base transition duration-500 leading-tight ` +
 			props.className;
 		initClass += outline ? ' text-aurora bg-white ' : ' bg-aurora text-white ';
 		initClass += sm ? ' py-1 px-2 text-sm' : '';
@@ -52,9 +52,9 @@ function Button({ sm, lg, outline, disabled, ...props }) {
 	}, []);
 
 	return (
-		<props.as {...props} className={className} disabled={disabled}>
+		<As {...props} className={className} disabled={disabled}>
 			{props.children}
-		</props.as>
+		</As>
 	);
 }
 

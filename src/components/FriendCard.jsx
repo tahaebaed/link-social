@@ -21,7 +21,7 @@ function FriendCard({ friend }) {
 				<div className='mx-auto mt-8 p-4 text-center'>
 					<Link
 						to={`/profile/${friend.id}`}
-						className='text-2xl font-bold hover:text-aurora transition-all duration-300'
+						className='text-2xl font-bold hover:text-aurora transition-all duration-300 inline-block mt-10 md:mt-0'
 					>
 						{friend.first_name} {friend.last_name}
 					</Link>

@@ -11,7 +11,7 @@ import '../assets/scss/layout/navbar.scss';
 
 function Navbar() {
 	return (
-		<nav className='navbar bg-slate-100 py-3'>
+		<nav className='navbar bg-slate-100 py-1 sticky top-0 z-50'>
 			<div className='container mx-auto'>
 				<div className='navbar-wrapper grid md:grid-cols-4 grid-cols-5 items-center'>
 					<div className='favicon col-span-2 md:col-span-1'>

@@ -73,6 +73,7 @@ const SignUp = () => {
 								<div className='flex'>
 									<div className='w-3/6'>
 										<h2 className='mb-4 ml-2'>User Name</h2>
+										<div className='relative'>
 										<FormikControl
 											icon={<BsPerson />}
 											name='user_name'
@@ -82,6 +83,7 @@ const SignUp = () => {
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
 										/>
+										</div>
 									</div>
 									<div className='w-3/6'>
 										<h2 className='mb-4 ml-2'>Email</h2>
@@ -103,7 +105,7 @@ const SignUp = () => {
 											name='password'
 											id='password'
 											icon={<AiOutlineLock />}
-											control='password'
+											type='password'
 											label='password'
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
@@ -115,7 +117,7 @@ const SignUp = () => {
 											name='password_confirmation'
 											id='password_confirmation'
 											icon={<AiOutlineUnlock />}
-											control='password'
+											type='password'
 											label='confirm password'
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
@@ -167,17 +169,19 @@ const SignUp = () => {
 									</div>
 									<div className='w-3/6 flex'>
 										<h2 className='mb-4 ml-2'>Gender</h2>
-										<FormikControl
-											className='flex'
-											control='radio'
-											label='gender (optional)'
-											options={[
-												{ value: 'male', key: 'male' },
-												{ value: 'female', key: 'female' },
-											]}
-											name='gender'
-											id='gender'
-										/>
+										<div className='relative'>
+											<FormikControl
+												className='flex'
+												type='radio'
+												label='gender (optional)'
+												options={[
+													{ value: 'male', key: 'male' },
+													{ value: 'female', key: 'female' },
+												]}
+												name='gender'
+												id='gender'
+											/>
+										</div>
 									</div>
 								</label>
 							</div>

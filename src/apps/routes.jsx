@@ -27,7 +27,7 @@ const routesWrapper = (routes = []) => {
 
 function MainRoutes() {
 	const location = useLocation();
-	const user = useSelector((store) => store['userReducer']['user']);
+	const user = useSelector((store) => store['auth']['user']);
 
 	useEffect(() => {
 		window.scrollTo({ top: 0 });

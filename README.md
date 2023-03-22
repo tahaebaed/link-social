@@ -349,3 +349,5 @@ usePageTitle('Update Profile ðŸŽ‰'); // title will be 'Link | Update Profile ðŸŽ
 - [`Theme 2`](http://sociala.uitheme.net/home)
 - [`Trello Dashboard`](https://trello.com/b/Jqjk9udQ/simple-project-board)
 - [`API Endpoint`](https://link-social.up.railway.app/api/v1)
+- [`API Docs`](https://salehgoied.github.io/link-social/public/docs/#)
+- [`Tailwind Components`](https://tailwind-elements.com/docs/)

@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 - use `outline` to create outline buttons
 - use `sm` to create small buttons
 - use `lg` to create bigger buttons
+- use `as` to change button tag
 - use `disabled` to disabled buttons actions
 
  * @example
@@ -14,6 +15,7 @@ import React, { useState, useEffect } from 'react';
 <Button lg> Button </Button>
 <Button sm> Button </Button>
 <Button disabled> Button </Button>
+<Button as='a' href='#taps'> taps </Button>
 
 // Outline
 <Button outline> Button </Button>
@@ -24,12 +26,12 @@ import React, { useState, useEffect } from 'react';
  * @param {Object} props 
  * @returns
  */
-function Button({ sm, lg, outline, disabled, ...props }) {
+function Button({ sm, lg, outline, disabled, as: As, ...props }) {
 	const [className, setClassName] = useState('');
 
 	useEffect(() => {
 		let initClass =
-			`btn-aurora rounded-full border border-aurora select-none inline-block font-normal text-center align-middle py-1.5 px-3 text-base transition duration-500 ` +
+			`btn-aurora rounded-full border border-aurora select-none inline-block font-normal text-center align-middle py-1.5 px-3 text-base transition duration-500 leading-tight ` +
 			props.className;
 		initClass += outline ? ' text-aurora bg-white ' : ' bg-aurora text-white ';
 		initClass += sm ? ' py-1 px-2 text-sm' : '';
@@ -50,9 +52,9 @@ function Button({ sm, lg, outline, disabled, ...props }) {
 	}, []);
 
 	return (
-		<button {...props} className={className} disabled={disabled}>
+		<As {...props} className={className} disabled={disabled}>
 			{props.children}
-		</button>
+		</As>
 	);
 }
 
@@ -63,6 +65,7 @@ Button.defaultProps = {
 	sm: false,
 	lg: false,
 	disabled: false,
+	as: 'button',
 };
 
 export default Button;

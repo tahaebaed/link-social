@@ -1,148 +1,221 @@
 import { Form, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import { BsPerson } from 'react-icons/bs';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { BiBuilding } from 'react-icons/bi';
+import { BsGenderAmbiguous, BsPhone } from 'react-icons/bs';
+import { FaBirthdayCake } from 'react-icons/fa';
+import { FiUser } from 'react-icons/fi';
+import {
+	MdFamilyRestroom,
+	MdOutlineDriveFileRenameOutline,
+	MdOutlineMailOutline,
+} from 'react-icons/md';
+import { TbBuildingSkyscraper } from 'react-icons/tb';
+import { useSelector } from 'react-redux';
+import Button from '../../components/Button';
 import FormikControl from '../../components/FormFields/FormikControl';
-import * as yup from 'yup';
+import usePageTitle from '../../hooks/usePageTitle';
+import SettingWrapper from '../../layout/SettingWrapper';
+import { updateUserValidationSchema } from '../../validation/setting';
 
-import { updateUser } from '../../utilities/store/user_reducer/extraReducers';
-import { useParams } from 'react-router-dom';
-import { userInterceptor } from '../../apps/axiosInstance';
+const SubmitBtnLabel = ({ formik }) => {
+	if (formik.initialValues !== formik.values) {
+		return <>Save</>;
+	} else {
+		if (formik.isValidating) {
+			return <>Updating</>;
+		} else {
+			return <>Submit</>;
+		}
+	}
+};
 
 const UpdateUser = () => {
-	const [value, setValue] = useState(null);
+	usePageTitle('Setting | Update User');
+	const user = useSelector((store) => store['auth']['user']);
 
-	const initialValues = {
-		...value,
+	const onFormSubmit = (values) => {
+		console.log(values);
 	};
-	const validationSchema = yup.object({
-		user_name: yup
-			.string()
-			.required('please your username is required')
-			.matches(/^[-\w.$@*!]{1,30}$/, "username mustn't contains any spaces"),
-		email: yup
-			.string()
-			.email('please enter a valid email')
-			.required('please your email is required'),
-		first_name: yup.string().required('please your first name is required'),
-		last_name: yup.string().required('please your last name is required'),
-		phone: yup.string(),
-		age: yup.string(),
-		gender: yup.string().nullable(true),
-	});
-
-	const dispatch = useDispatch();
-	const onSubmit = (values) => {
-		dispatch(updateUser(values));
-	};
-
-	const params = useParams();
-	useEffect(() => {
-		userInterceptor({
-			method: 'get',
-			url: `api/v1/users/${params.profileId}`,
-		}).then((res) => setValue(res.data.data.user));
-	}, []);
 
 	return (
-		<Formik
-			initialValues={initialValues}
-			validationSchema={validationSchema}
-			onSubmit={onSubmit}
-			enableReinitialize
-		>
-			{(formik) => {
-				return (
-					<Form>
-						<div className='w-full'>
-							<h2>User Name</h2>
-							<FormikControl
-								icon={<BsPerson />}
-								name='user_name'
-								id='user_name'
-								type='text'
-								label='user name'
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
-							<h2>Email</h2>
-							<div className='flex w-full'>
-								<div>
-									<h2>First Name</h2>
+		<SettingWrapper>
+			<div className='my-20'>
+				<Formik
+					initialValues={{
+						birthday: user.birthday,
+						country: user.country,
+						email: user.email,
+						firstName: user.first_name,
+						gender: user.gender,
+						lastName: user.last_name,
+						phone: user.phone,
+						region: user.region,
+						status: user.status,
+						username: user.user_name,
+					}}
+					validationSchema={updateUserValidationSchema}
+					onSubmit={onFormSubmit}
+					enableReinitialize
+				>
+					{(formik) => {
+						return (
+							<Form>
+								<div className='md:grid grid-cols-2 '>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='username' className='mb-3 inline-block'>
+											Username
+										</label>
+										<FormikControl
+											icon={<MdOutlineDriveFileRenameOutline />}
+											name='username'
+											id='username'
+											type='text'
+											label='username'
+											onChange={formik.handleChange}
+										/>
+									</div>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='email' className='mb-3 inline-block'>
+											Email
+										</label>
+										<FormikControl
+											icon={<MdOutlineMailOutline />}
+											name='email'
+											id='email'
+											type='email'
+											label='email'
+											onChange={formik.handleChange}
+										/>
+									</div>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='firstName' className='mb-3 inline-block'>
+											First name
+										</label>
+										<FormikControl
+											icon={<FiUser />}
+											name='firstName'
+											id='firstName'
+											type='text'
+											label='firstName'
+											onChange={formik.handleChange}
+										/>
+									</div>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='lastName' className='mb-3 inline-block'>
+											Last name
+										</label>
+										<FormikControl
+											icon={<FiUser />}
+											name='lastName'
+											id='lastName'
+											type='text'
+											label='lastName'
+											onChange={formik.handleChange}
+										/>
+									</div>
 
-									<FormikControl
-										name='first_name'
-										id='first_name'
-										label='first name'
-										onChange={formik.handleChange}
-										onBlur={formik.handleBlur}
-									/>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='phone' className='mb-3 inline-block'>
+											Phone
+											<span className='text-sm text-gray-500'>(optional)</span>
+										</label>
+										<FormikControl
+											icon={<BsPhone />}
+											name='phone'
+											id='phone'
+											type='tel'
+											label='phone (optional)'
+											onChange={formik.handleChange}
+										/>
+									</div>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='birthday' className='mb-3 inline-block'>
+											Birthday
+										</label>
+										<FormikControl
+											icon={<FaBirthdayCake />}
+											name='birthday'
+											id='birthday'
+											type='date'
+											label='birthday'
+											onChange={formik.handleChange}
+										/>
+									</div>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='country' className='mb-3 inline-block'>
+											Country
+										</label>
+										<FormikControl
+											icon={<TbBuildingSkyscraper />}
+											name='country'
+											id='country'
+											type='text'
+											label='country'
+											onChange={formik.handleChange}
+										/>
+									</div>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='region' className='mb-3 inline-block'>
+											Region
+										</label>
+										<FormikControl
+											icon={<BiBuilding />}
+											name='region'
+											id='region'
+											type='text'
+											label='region'
+											onChange={formik.handleChange}
+										/>
+									</div>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='status' className='mb-3 inline-block'>
+											Status
+										</label>
+										<FormikControl
+											icon={<MdFamilyRestroom />}
+											name='status'
+											id='status'
+											type='select'
+											label='status'
+											onChange={formik.handleChange}
+										/>
+									</div>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='gender' className='mb-3 inline-block'>
+											Gender
+										</label>
+										<FormikControl
+											icon={<BsGenderAmbiguous />}
+											name='gender'
+											id='gender'
+											type='select'
+											label='gender'
+											onChange={formik.handleChange}
+										/>
+									</div>
 								</div>
-								<div>
-									<h2>Last Name</h2>
-
-									<FormikControl
-										name='last_name'
-										id='last_name'
-										label='last name'
-										onChange={formik.handleChange}
-										onBlur={formik.handleBlur}
-									/>
+								<div className='flex justify-center mt-10'>
+									<Button
+										type='submit'
+										// disabled={formik.initialValues === formik.values}
+									>
+										<SubmitBtnLabel formik={formik} />
+									</Button>
+									<Button
+										type='button'
+										outline
+										className='mx-2'
+										onClick={() => formik.resetForm()}
+									>
+										Cancel
+									</Button>
 								</div>
-							</div>
-							<h2>Phone</h2>
-
-							<FormikControl
-								name='phone'
-								id='phone'
-								label='phone (optional)'
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
-							<label className='flex'>
-								<div className='w-2/6'>
-									<h2>age </h2>
-
-									<FormikControl
-										name='age'
-										id='age'
-										label='age (optional)'
-										onChange={formik.handleChange}
-										onBlur={formik.handleBlur}
-									/>
-								</div>
-								<div className='w-4/5 flex'>
-									<FormikControl
-										className='flex'
-										control='radio'
-										label='gender (optional)'
-										options={[
-											{ value: 'male', key: 'male' },
-											{ value: 'female', key: 'female' },
-										]}
-										name='gender'
-										id='gender'
-									/>
-								</div>
-							</label>
-						</div>
-						<button
-							type='submit'
-							disabled={formik.initialValues === formik.values}
-						>
-							{formik.initialValues !== formik.values
-								? 'save'
-								: formik.isValidating
-								? 'updating'
-								: 'submit'}
-						</button>
-						<button type='button' onClick={() => formik.resetForm()}>
-							cancel
-						</button>
-					</Form>
-				);
-			}}
-		</Formik>
+							</Form>
+						);
+					}}
+				</Formik>
+			</div>
+		</SettingWrapper>
 	);
 };
 

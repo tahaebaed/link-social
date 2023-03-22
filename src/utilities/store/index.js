@@ -1,15 +1,26 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
-import weatherReducer from './weather_reducer/weatherSlice'
-import userReducer from './user_reducer/userSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import React from 'react';
+import { Provider } from 'react-redux';
+import profileReducer from './profile.slice';
+import userReducer from './user_reducer/userSlice';
+import weatherReducer from './weather_reducer/weatherSlice';
 
 export const store = configureStore({
-	reducer: { userReducer, weatherReducer },
-	devTools: process.env !== 'production',
-})
+	reducer: { auth: userReducer, weatherReducer, profile: profileReducer },
+	devTools: process.env.toString() !== 'production',
+});
 
 const ReduxProvider = ({ children }) => (
 	<Provider store={store}>{children}</Provider>
-)
+);
 
-export default ReduxProvider
+const profileSelector = {
+	about: (state) => state.profile.about,
+	follow: (state) => state.profile.follow,
+	images: (state) => state.profile.images,
+	posts: (state) => state.profile.posts,
+	saved: (state) => state.profile.saved,
+};
+
+export default ReduxProvider;
+export { profileSelector };

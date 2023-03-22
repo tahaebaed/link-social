@@ -10,6 +10,8 @@ import { BsPencil } from 'react-icons/bs';
 - use `onChange` add onChange function with file, event params
 - use `icon` to change label icon
 - use `circle` to make wrapper circle
+- use `width` to change wrapper width (depend on tailwindcss h,w-class)
+- use `height` to change wrapper height (depend on tailwindcss h,w-class)
 - use `className` to add any additional className
 
  * @example
@@ -18,28 +20,38 @@ import { BsPencil } from 'react-icons/bs';
 // to hide popover set label to null
 <Preview onChange={file=>console.log(file)} label='' />
 
- * @param {{ img:string, onChange:(file,evt)=>void, className:string, id:string, name:string, icon:React.ReactElement, label:string, circle:boolean }} props 
+ * @param {{ img:string, onChange:(file,evt)=>void, className:string, width:string, height:string, id:string, name:string, icon:React.ReactElement, label:string, circle:boolean }} props 
  * @returns {React.ReactElement}
  */
-function Preview({ img, onChange, circle, className, id, name, icon, label }) {
+function Preview({
+	img,
+	onChange,
+	circle,
+	className,
+	id,
+	name,
+	icon,
+	label,
+	width,
+	height,
+}) {
 	const [image, setImage] = useState(img);
 	const [isIconHover, setIsIconHover] = useState(false);
 
 	const OnInputChange = (evt) => {
-		onChange(evt.target.files[0], evt);
+		onChange(evt, evt.target.files[0]);
 		setImage(URL.createObjectURL(evt.target.files[0]));
 	};
 
 	const Wrapper = () => {
 		return (
-			<div
-				className={`border-4 border-white shadow-md rounded-${
+			<img
+				src={image}
+				alt={label}
+				className={`border-4 object-cover border-white shadow-md rounded-${
 					circle ? 'full' : 'md'
-				} h-40 w-40`}
-				style={{
-					background: `#eee center / cover no-repeat url('${image}')`,
-				}}
-			></div>
+				} h-${height} w-${width}`}
+			/>
 		);
 	};
 
@@ -64,7 +76,9 @@ function Preview({ img, onChange, circle, className, id, name, icon, label }) {
 	};
 
 	return (
-		<div className={`relative rounded-md inline-block ${className}`}>
+		<div
+			className={`relative rounded-md inline-block h-${height} w-${width} ${className}`}
+		>
 			<Wrapper />
 			<label
 				htmlFor={id}
@@ -93,6 +107,8 @@ Preview.defaultProps = {
 	img: 'https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg',
 	onChange: () => {},
 	label: 'Change Preview',
+	width: '40',
+	height: '40',
 	className: '',
 	icon: <BsPencil />,
 };

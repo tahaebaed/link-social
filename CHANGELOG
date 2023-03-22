@@ -1,0 +1,28 @@
+
+# CHANGELOG
+
+## TODO
+
+- [ ] Make sure saved post is fetched correctly
+- [ ] Need s Spinner component
+- [ ] Handel form fields type like select & radio
+
+## Bugs
+
+### API
+
+- [ ] followers & following are different on the data, like username, first name, last name
+- [ ] posts like count, user name not found
+
+## Changes
+
+### 21 Mar 2023
+
+- Start using `day.js` for date formate
+- Create setting pages
+- Finish profile page
+- Add `as` props to button component
+
+### 20 Mar 2023
+
+- Add Preview Component

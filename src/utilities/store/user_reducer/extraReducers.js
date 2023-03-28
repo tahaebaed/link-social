@@ -8,7 +8,7 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (user) => {
 		const response = await userInterceptor({
 			method: 'post',
 			data: user,
-			url: 'api/v1/auth/register',
+			url: '/auth/register',
 		});
 		return response.data;
 	} catch (err) {
@@ -21,7 +21,7 @@ export const updateUser = createAsyncThunk('user/updateUser', async (user) => {
 		const response = await userInterceptor({
 			method: 'put',
 			data: user,
-			url: 'api/v1/users',
+			url: '/users',
 		});
 		return response.data;
 	} catch (err) {

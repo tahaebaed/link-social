@@ -5,7 +5,7 @@ import ErrorText from './ErrorText';
 const Input = (props) => {
 	const { name, label, icon, type } = props;
 	return (
-		<div className='relative mb-5 mx-2' style={{ height: '60px' }}>
+		<div className='relative' style={{ height: '60px' }}>
 			<span
 				className='icon absolute p-1 rounded-full w-fit left-2 opacity-40'
 				style={{ top: '17%' }}

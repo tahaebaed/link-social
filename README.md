@@ -275,6 +275,25 @@ import profileImg from from '../assets/images/imgs/profilePic.png';
 
 ![Default Usage](assets/images/components/postCard/postCard.png)
 
+### ProfileImg
+
+#### Usage
+
+| Props       | Type      | Default      | Description         |
+| ----------- | --------- | ------------ | ------------------- |
+| `border`    | `Boolean` | `false`      | add border to image |
+| `className` | `String`  | `''`         | add class to image  |
+| `img`       | `String`  | `'user img'` | img url             |
+
+#### Example
+
+```jsx
+import ProfileImg from './ProfileImg';
+<ProfileImg />
+<ProfileImg border img='url' />
+<ProfileImg border >
+```
+
 ## Layout
 
 ### Navbar

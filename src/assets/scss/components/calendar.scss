@@ -2,10 +2,16 @@
 	border: none;
 	margin-top: 10px;
 }
+abbr,
+.calendarCard h5 {
+	color: #888da8;
+}
+
 .calendarCard {
 	width: 290px;
 	border: 1px solid #e1e1e1;
 	padding: 20px 30px;
+	margin: auto;
 	h5 {
 		font-weight: 600;
 		border-bottom: 1px solid gray;
@@ -20,6 +26,9 @@
 .react-calendar__tile--active {
 	background: rgb(221, 112, 44) !important;
 	border-radius: 100%;
+}
+.react-calendar__tile--active abbr {
+	color: white;
 }
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {

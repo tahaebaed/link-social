@@ -3,7 +3,7 @@ import { weatherInstance } from "../../weatherCard/WeatherInstance";
 
 export const getData = createAsyncThunk('getData', async (payload) => {
 	return await weatherInstance.get(
-		`forecast.json?key=2abfec7503be4283914185104230803&q=${payload}&days=5`
+		`forecast.json?key=2abfec7503be4283914185104230803&q=${payload}&days=7`
 	).then(res => {
 		return res.data
 	})

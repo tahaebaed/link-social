@@ -25,8 +25,13 @@ function LoadingPlaceholder({
 				</div>
 				<div className='content_hover my-8'>
 					<div className='flex flex-wrap'>
-						{blocksSizes.map((size) => (
-							<Block sm={size.sm} lg={size.lg} className={size.className} />
+						{blocksSizes.map((size, i) => (
+							<Block
+								key={i}
+								sm={size.sm}
+								lg={size.lg}
+								className={size.className}
+							/>
 						))}
 					</div>
 				</div>

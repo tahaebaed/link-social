@@ -4,20 +4,20 @@
 
 ### No Authentication
 
-| Page     | Path            | Component                                   |
-| -------- | --------------- | ------------------------------------------- |
-| Homepage | `/`             | [`Homepage`](src/pages/noAuth/Homepage.jsx) |
-| 404      | `*`             | [`404`](src/pages/noAuth/404.jsx)           |
-| Sign In  | `/auth/sign-in` | [`SignIn`](src/pages/noAuth/SignIn.jsx)     |
-| Sign Up  | `/auth/sign-up` | [`SignUp`](src/pages/noAuth/SignUp.jsx)     |
+| Page    | Path            | Component                               |
+| ------- | --------------- | --------------------------------------- |
+| 404     | `*`             | [`404`](src/pages/noAuth/404.jsx)       |
+| Sign In | `/auth/sign-in` | [`SignIn`](src/pages/noAuth/SignIn.jsx) |
+| Sign Up | `/auth/sign-up` | [`SignUp`](src/pages/noAuth/SignUp.jsx) |
 
 ### Need Authentication
 
 | Page           | Path                      | Component                                               |
 | -------------- | ------------------------- | ------------------------------------------------------- |
+| Homepage       | `/`                       | [`Homepage`](src/pages/noAuth/Homepage.jsx)             |
 | Update Profile | `/setting/update-profile` | [`UpdateProfile`](src/pages/needAuth/UpdateProfile.jsx) |
 | Update User    | `/setting/update-user`    | [`UpdateUser`](src/pages/needAuth/UpdateUser.jsx)       |
-| Profile        | `/profile`                | [`UpdateUser`](src/pages/needAuth/Profile.jsx)          |
+| Profile        | `/profile/profileId`      | [`Profile`](src/pages/needAuth/Profile.jsx)             |
 
 ## Components
 
@@ -25,13 +25,14 @@
 
 #### Props
 
-| Props       | Type                   | Default           | Description                                                   |
-| ----------- | ---------------------- | ----------------- | ------------------------------------------------------------- |
-| `noArrow`   | `Boolean`              | `false`           | hide dropdown arrow                                           |
-| `toLeft`    | `Boolean`              | `false`           | change direction from left to right                           |
-| `isOpen`    | `Boolean`              | `false`           | change init state for showing dropdown                        |
-| `label`     | `String` `JSX.Element` | `<BsThreeDots />` | change displayed text (can be text or icon from `react-icon`) |
-| `className` | `String`               | `''`              | add class to dropdown wrapper                                 |
+| Props       | Type                   | Default                                                                                                                                   | Description                                                   |
+| ----------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `noArrow`   | `Boolean`              | `false`                                                                                                                                   | hide dropdown arrow                                           |
+| `toLeft`    | `Boolean`              | `false`                                                                                                                                   | change direction from left to right                           |
+| `isOpen`    | `Boolean`              | `false`                                                                                                                                   | change init state for showing dropdown                        |
+| `label`     | `String` `JSX.Element` | `<BsThreeDots />`                                                                                                                         | change displayed text (can be text or icon from `react-icon`) |
+| `className` | `String`               | `''`                                                                                                                                      | add class to dropdown wrapper                                 |
+| `children`  | `JSX.Element`          | [`L86-L110`](https://github.com/tahaebaed/link-social/blob/1a08f394df55db26b3a90c780e130a1adc462e51/src/components/Dropdown.jsx#L86-L110) | add custom children                                           |
 
 #### Examples
 
@@ -69,17 +70,50 @@ import Dropdown from './components/Dropdown';
 </Dropdown>
 ```
 
+#### Using builtin structure
+
+The following example shows the default value for dropdown, make sure you use it in the right way.
+
+```html
+<ul>
+  <li>
+    <a className='dropdown-item' href='#'>
+      Action
+    </a>
+  </li>
+  <li>
+    <a className='dropdown-item' href='#'>
+      Another action
+    </a>
+  </li>
+  <li>
+    <a className='dropdown-item' href='#'>
+      Something else here
+    </a>
+  </li>
+  <li>
+    <hr className='dropdown-divider' />
+  </li>
+  <li>
+    <a className='dropdown-item' href='#'>
+      Separated link
+    </a>
+  </li>
+</ul>
+```
+
 ### Button
 
 #### Usage
 
-| Props       | Type      | Default | Description              |
-| ----------- | --------- | ------- | ------------------------ |
-| `outline`   | `Boolean` | `false` | create outline buttons   |
-| `sm`        | `Boolean` | `false` | create small buttons     |
-| `lg`        | `Boolean` | `false` | create bigger buttons    |
-| `disabled`  | `Boolean` | `false` | disabled buttons actions |
-| `className` | `String`  | `''`    | add class to button      |
+| Props       | Type      | Default  | Description              |
+| ----------- | --------- | -------- | ------------------------ |
+| `outline`   | `Boolean` | `false`  | create outline buttons   |
+| `sm`        | `Boolean` | `false`  | create small buttons     |
+| `lg`        | `Boolean` | `false`  | create bigger buttons    |
+| `as`        | `String`  | `button` | change button tag        |
+| `disabled`  | `Boolean` | `false`  | disabled buttons actions |
+| `className` | `String`  | `''`     | add class to button      |
 
 #### Examples
 
@@ -96,6 +130,7 @@ import Button from './components/Button';
 <Button lg />
 <Button sm />
 <Button disabled />
+<Button as='a' href='#taps'> taps </Button>
 
 // Outline
 <Button outline />
@@ -117,6 +152,8 @@ import Button from './components/Button';
 | `onChange`  | `String`  | `() => {}`                                                                                                                                     | onChange function with file, event params |
 | `circle`    | `Boolean` | `false`                                                                                                                                        | change wrapper to circle                  |
 | `icon`      | `String`  | `<BsPencil />`                                                                                                                                 | change label icon                         |
+| `height`    | `String`  | `40`                                                                                                                                           | change preview height                     |
+| `width`     | `String`  | `40`                                                                                                                                           | change preview width                      |
 | `className` | `String`  | `''`                                                                                                                                           | add any additional className              |
 
 #### Examples
@@ -184,14 +221,23 @@ import LoadingPlaceholder from './components/placeholder/LoadingPlaceholder';
 
 
 <LoadingPlaceholder />
-<LoadingPlaceholder blocksSizes = [{ className: 'w-[400px]' },
-		{ sm: true },
-		{ sm: true },] />
-<LoadingPlaceholder blocksSizes = [{ className: 'w-[400px]' },
-		{ sm: true },
-		{ sm: true },
-		{ lg: true },
-		{ lg: true },] />
+<LoadingPlaceholder 
+  blocksSizes = {[
+      { className: 'w-[400px]' },
+      { sm: true },
+      { sm: true },
+    ]
+    } 
+  />
+<LoadingPlaceholder 
+blocksSizes = {[
+    { sm: true },
+    { sm: true },
+    { lg: true },
+    { lg: true },
+  ]
+  } 
+/>
 ```
 
 ### PostCard
@@ -213,15 +259,16 @@ import LoadingPlaceholder from './components/placeholder/LoadingPlaceholder';
 ```jsx
 import PostCard from './components/PostCard';
 import profileImg from from '../assets/images/imgs/profilePic.png';
+
 <PostCard
   Img={profileImg}
-	userName='James Spiegel'
-	postTime='19 hours ago'
-	description="Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque"
-	likesCount='8'
-	commentsCount='17'
-	shareCount='14'
-/>;
+  userName='James Spiegel'
+  postTime='19 hours ago'
+  description="Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque"
+  likesCount='8'
+  commentsCount='17'
+  shareCount='14'
+/>
 ```
 
 #### Playground result
@@ -321,3 +368,5 @@ usePageTitle('Update Profile ðŸŽ‰'); // title will be 'Link | Update Profile ðŸŽ
 - [`Theme 2`](http://sociala.uitheme.net/home)
 - [`Trello Dashboard`](https://trello.com/b/Jqjk9udQ/simple-project-board)
 - [`API Endpoint`](https://link-social.up.railway.app/api/v1)
+- [`API Docs`](https://salehgoied.github.io/link-social/public/docs/#)
+- [`Tailwind Components`](https://tailwind-elements.com/docs/)

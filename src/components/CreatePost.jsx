@@ -30,7 +30,7 @@ const CreatePost = ({ avatar = iconAvatar }) => (
 						type='textarea'
 						name='postContent'
 						label='what on your mind...'
-						inputclasses='w-full h-[5rem] pl-[4rem] pt-4 create-post__textarea'
+						inputClasses='w-full h-[5rem] pl-[4rem] pt-4 create-post__textarea'
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
 						values={formik.values}

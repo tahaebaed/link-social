@@ -15,11 +15,6 @@ const Profile = React.lazy(() => import('../pages/needAuth/Profile'));
 
 const PUBLIC_ROUTES = [
 	{
-		path: '/',
-		component: Homepage,
-	},
-
-	{
 		path: '/auth/sign-in',
 		component: SignIn,
 	},
@@ -35,7 +30,11 @@ const PUBLIC_ROUTES = [
 
 const AUTH_ROUTES = [
 	{
-		path: '/profile',
+		path: '/',
+		component: Homepage,
+	},
+	{
+		path: '/profile/:profileId',
 		component: Profile,
 	},
 	{

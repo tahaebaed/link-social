@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const userInterceptor = axios.create({
-	baseURL: 'https://link-social.up.railway.app/api/v1/',
+	baseURL: 'https://link-social.up.railway.app/api/v1',
 	headers: {
 		'Content-Type': 'application/json',
 		Accept: '*/*',

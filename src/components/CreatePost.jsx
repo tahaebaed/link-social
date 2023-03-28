@@ -27,9 +27,10 @@ const CreatePost = ({ avatar = iconAvatar }) => (
 						alt='user avatar'
 					/>
 					<FormikControl
-						control='textarea'
+						type='textarea'
 						name='postContent'
 						label='what on your mind...'
+						inputClasses='w-full h-[5rem] pl-[4rem] pt-4 create-post__textarea'
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
 						values={formik.values}

@@ -5,4 +5,24 @@ const users = [
 	{ userImg: img, userName: 'hana' },
 	{ userImg: img, userName: 'hana' },
 ];
-export { users };
+const friends = [
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+	{ userImg: img, firstName: 'James', lassName: 'Spiegel', online: true },
+];
+export { users, friends };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { HiOutlineFaceSmile } from 'react-icons/hi2';
 
-import iconAvatar from '../assets/attachment_15960883.svg';
+import iconAvatar from '../assets/images/icons/favicon.svg';
 import Button from './Button';
 import '../assets/scss/components/CreatePost.scss';
 import { Form, Formik } from 'formik';
@@ -19,7 +19,7 @@ import FormikControl from './FormFields/FormikControl';
 const CreatePost = ({ avatar = iconAvatar }) => (
 	<Formik initialValues={{ file: '', postContent: '' }}>
 		{(formik) => (
-			<Form className='w-[80%] mx-auto py-4 px-8 border-2 rounded-3xl'>
+			<Form className='mx-auto py-4 px-8 border-2 rounded-3xl'>
 				<div className='relative'>
 					<img
 						src={avatar}
@@ -27,9 +27,10 @@ const CreatePost = ({ avatar = iconAvatar }) => (
 						alt='user avatar'
 					/>
 					<FormikControl
-						control='textarea'
+						type='textarea'
 						name='postContent'
 						label='what on your mind...'
+						inputclasses='w-full h-[5rem] pl-[4rem] pt-4 create-post__textarea'
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
 						values={formik.values}
@@ -38,7 +39,7 @@ const CreatePost = ({ avatar = iconAvatar }) => (
 				<div className='flex justify-between mt-2 w-auto'>
 					<div className='flex'>
 						<FormikControl
-							control='file'
+							type='file'
 							name='file'
 							label='Photos/Videos'
 							{...formik}
@@ -51,7 +52,7 @@ const CreatePost = ({ avatar = iconAvatar }) => (
 							<span className='small-hidden'>feeling</span>
 						</button>
 					</div>
-					<Button className='px-6 py-2' sm>
+					<Button className='' sm>
 						add post
 					</Button>
 				</div>

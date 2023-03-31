@@ -14,14 +14,18 @@ const SuspenseWrapper = (props) => {
 const routesWrapper = (routes = []) => {
 	return routes.map((route) => (
 		<Route
-			path={route.path}
 			key={route.path}
-			element={
-				<SuspenseWrapper>
-					<route.component />
-				</SuspenseWrapper>
-			}
-		/>
+			element={route.layout ? <route.layout /> : <Layout />}
+		>
+			<Route
+				path={route.path}
+				element={
+					<SuspenseWrapper>
+						<route.component />
+					</SuspenseWrapper>
+				}
+			/>
+		</Route>
 	));
 };
 
@@ -36,10 +40,8 @@ function MainRoutes() {
 
 	return (
 		<Routes>
-			<Route path='/' element={<Layout />}>
-				{routesWrapper(PUBLIC_ROUTES)}
-				{user && routesWrapper(AUTH_ROUTES)}
-			</Route>
+			{routesWrapper(PUBLIC_ROUTES)}
+			{user && routesWrapper(AUTH_ROUTES)}
 		</Routes>
 	);
 }

@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Layout
+import Registration from '../layout/Registration';
+
 // No Auth
 const Homepage = React.lazy(() => import('../pages/noAuth/Homepage'));
 const SignIn = React.lazy(() => import('../pages/noAuth/SignIn'));
@@ -17,10 +20,12 @@ const PUBLIC_ROUTES = [
 	{
 		path: '/auth/sign-in',
 		component: SignIn,
+		layout: Registration,
 	},
 	{
 		path: '/auth/sign-up',
 		component: SignUp,
+		layout: Registration,
 	},
 	{
 		path: '*',

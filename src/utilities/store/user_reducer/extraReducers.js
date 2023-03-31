@@ -8,7 +8,20 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (user) => {
 		const response = await userInterceptor({
 			method: 'post',
 			data: user,
-			url: 'api/v1/auth/register',
+			url: '/auth/register',
+		});
+		return response.data;
+	} catch (err) {
+		return err.response.data;
+	}
+});
+
+export const login = createAsyncThunk('user/login', async (user) => {
+	try {
+		const response = await userInterceptor({
+			method: 'post',
+			data: user,
+			url: '/auth/login',
 		});
 		return response.data;
 	} catch (err) {
@@ -21,7 +34,7 @@ export const updateUser = createAsyncThunk('user/updateUser', async (user) => {
 		const response = await userInterceptor({
 			method: 'put',
 			data: user,
-			url: 'api/v1/users',
+			url: '/users',
 		});
 		return response.data;
 	} catch (err) {
@@ -53,6 +66,31 @@ export const extraReducers = {
 		}
 	},
 	[fetchUser.rejected]: (state, action) => {
+		state.error = "couldn't fetch data";
+	},
+	[login.pending]: (state) => {
+		state.loading = true;
+	},
+	[login.fulfilled]: (state, action) => {
+		state.loading = false;
+
+		if (!action.payload.status) {
+			Object.keys(action.payload.errors).forEach((key, i) => {
+				toast.error(
+					<>
+						<h4>{action.payload.message}</h4>
+						<p key={i}> {action.payload.errors[key]}</p>
+					</>
+				);
+			});
+		} else {
+			toast.success(action.payload.message);
+			state.user = action.payload.data.user;
+			Cookies.set('token', action.payload.data.token);
+			Cookies.set('user', JSON.stringify(state.user));
+		}
+	},
+	[login.rejected]: (state, action) => {
 		state.error = "couldn't fetch data";
 	},
 	[updateUser.pending]: (state) => {

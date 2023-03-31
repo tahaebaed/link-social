@@ -15,6 +15,7 @@ const CalendarCard = () => {
 		<div className='calendarCard'>
 			<h5 className='text-center'>{month}</h5>
 			<Calendar
+				className='bg-slate-400'
 				onChange={setDate}
 				value={date}
 				showNavigation={false}

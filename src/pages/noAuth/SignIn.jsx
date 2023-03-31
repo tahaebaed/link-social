@@ -5,12 +5,15 @@ import { HiOutlineMail } from 'react-icons/hi';
 import * as yup from 'yup';
 import Button from '../../components/Button';
 import FormikControl from '../../components/FormFields/FormikControl';
+import { useDispatch } from 'react-redux';
+import { login } from '../../utilities/store/user_reducer/extraReducers.js';
 
 const SignIn = () => {
 	const initialValues = {
 		email: '',
 		password: '',
 	};
+	const dispatch = useDispatch();
 	const validationSchema = yup.object({
 		email: yup
 			.string()
@@ -23,8 +26,8 @@ const SignIn = () => {
 		<Formik
 			initialValues={initialValues}
 			validationSchema={validationSchema}
-			onSubmit={() => {
-				console.log('done');
+			onSubmit={(values) => {
+				dispatch(login(values));
 			}}
 		>
 			{(formik) => (
@@ -49,7 +52,7 @@ const SignIn = () => {
 								name='password'
 								id='login_password'
 								icon={<AiOutlineLock />}
-								control='password'
+								type='password'
 								label='password'
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}

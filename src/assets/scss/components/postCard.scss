@@ -30,6 +30,8 @@
 		.post_likes {
 			.heart_icon {
 				@extend %iconsstyle;
+				color: #f25555;
+				cursor: pointer;
 			}
 			.likes_count {
 				color: #9a9fbf;

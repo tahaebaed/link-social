@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { userInterceptor } from '../../../apps/axiosInstance';
-export const getPosts = createAsyncThunk('getPosts', async (payload) => {
+export const getPosts = createAsyncThunk('getPosts', async () => {
 	try {
-		const response = await userInterceptor.request({
+		const response = await userInterceptor({
 			method: 'GET',
-			url: '/posts'
+			url: `/posts`
 		})
+		console.log(response.data.data.posts)
 		return response.data.data.posts;
 	} catch (err) {
 		return err.response.data
@@ -14,12 +15,20 @@ export const getPosts = createAsyncThunk('getPosts', async (payload) => {
 const initialState = {
 	loading: false,
 	posts: [],
-	error: false,
+	error: '',
 };
 
 const postsSlice = createSlice({
 	name: 'posts',
 	initialState,
+	reducers: {
+		updatePostRect: (state, action) => {
+			console.log(action.payload, "payload")
+			state.posts = state.posts.map((post) => post.id === action.payload.postId ? { ...post, is_react: !post.is_react, reacts_count: action.payload.reactsCount } : post)
+
+
+		}
+	},
 	extraReducers: {
 		[getPosts.pending]: (state) => {
 			state.loading = true
@@ -27,6 +36,7 @@ const postsSlice = createSlice({
 		[getPosts.fulfilled]: (state, action) => {
 			state.loading = false
 			state.posts = action.payload
+			console.log(state.posts)
 		},
 		[getPosts.error]: (state, action) => {
 			state.loading = false
@@ -35,4 +45,5 @@ const postsSlice = createSlice({
 	}
 })
 
+export const { updatePostRect } = postsSlice.actions
 export default postsSlice.reducer

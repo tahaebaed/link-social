@@ -7,7 +7,7 @@
  * @param {string} props.inputClasses - The CSS classes for the input element.
  * @param {string} props.labelClasses - The CSS classes for the label element.
  * @param {Object} props.rest - Any additional props to be spread on the input element.
- * 
+ *
  * @returns {JSX.Element} - A JSX element representing the file input component.
  */
 
@@ -22,9 +22,9 @@ const Input = ({
 	label,
 	icon,
 	type,
-	inputClasses,
+	inputClasses = 'rounded-full border py-2 pl-9 w-full outline-sky-100',
 	wrapperClasses,
-	labelClasses,
+	labelClasses = 'icon fixed p-1 rounded-full w-fit left-4 top-2 opacity-40',
 	...rest
 }) => (
 	<div className={`relative ${wrapperClasses || 'h-[55px] px-2'}`}>

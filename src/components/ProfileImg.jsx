@@ -5,8 +5,7 @@ function ProfileImg({ img = profilePic, border, online, ...props }) {
 	const [onlineState, setOnlineState] = useState('');
 	useEffect(() => {
 		let initClass =
-			`rounded-full w-full h-full object-cover p-1 w-[45px] h-[45px] ` +
-			props.className;
+			`rounded-full object-cover p-1 w-[45px] h-[45px] ` + props.className;
 		let initOnline = `profile_img relative`;
 
 		initClass += border ? ' border border-emerald-400' : '';

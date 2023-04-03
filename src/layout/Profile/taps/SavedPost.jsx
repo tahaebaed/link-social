@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { VscFeedback } from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
-import PostCard from '../../../components/PostCard';
+import PostCard from '../../../components/post/PostCard';
 import LoadingPlaceholder from '../../../components/placeholder/LoadingPlaceholder';
 import { profileSelector } from '../../../utilities/store';
 import { getUserSavedPosts } from '../../../utilities/store/profile.slice';

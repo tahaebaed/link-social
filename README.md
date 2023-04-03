@@ -76,29 +76,21 @@ The following example shows the default value for dropdown, make sure you use it
 
 ```html
 <ul>
-  <li>
-    <a className='dropdown-item' href='#'>
-      Action
-    </a>
-  </li>
-  <li>
-    <a className='dropdown-item' href='#'>
-      Another action
-    </a>
-  </li>
-  <li>
-    <a className='dropdown-item' href='#'>
-      Something else here
-    </a>
-  </li>
-  <li>
-    <hr className='dropdown-divider' />
-  </li>
-  <li>
-    <a className='dropdown-item' href='#'>
-      Separated link
-    </a>
-  </li>
+	<li>
+		<a className="dropdown-item" href="#"> Action </a>
+	</li>
+	<li>
+		<a className="dropdown-item" href="#"> Another action </a>
+	</li>
+	<li>
+		<a className="dropdown-item" href="#"> Something else here </a>
+	</li>
+	<li>
+		<hr className="dropdown-divider" />
+	</li>
+	<li>
+		<a className="dropdown-item" href="#"> Separated link </a>
+	</li>
 </ul>
 ```
 
@@ -221,22 +213,22 @@ import LoadingPlaceholder from './components/placeholder/LoadingPlaceholder';
 
 
 <LoadingPlaceholder />
-<LoadingPlaceholder 
+<LoadingPlaceholder
   blocksSizes = {[
       { className: 'w-[400px]' },
       { sm: true },
       { sm: true },
     ]
-    } 
+    }
   />
-<LoadingPlaceholder 
+<LoadingPlaceholder
 blocksSizes = {[
     { sm: true },
     { sm: true },
     { lg: true },
     { lg: true },
   ]
-  } 
+  }
 />
 ```
 
@@ -257,7 +249,7 @@ blocksSizes = {[
 #### Playground
 
 ```jsx
-import PostCard from './components/PostCard';
+import PostCard from './post/components/PostCard';
 import profileImg from from '../assets/images/imgs/profilePic.png';
 
 <PostCard
@@ -273,7 +265,7 @@ import profileImg from from '../assets/images/imgs/profilePic.png';
 
 #### Playground result
 
-![Default Usage](assets/images/components/postCard/postCard.png)
+![Default Usage](assets/images/components/post/postCard/postCard.png)
 
 ### ProfileImg
 

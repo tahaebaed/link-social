@@ -28,6 +28,7 @@ function Preview({
 	onChange,
 	circle,
 	className,
+	imageClassName,
 	id,
 	name,
 	icon,
@@ -41,18 +42,6 @@ function Preview({
 	const OnInputChange = (evt) => {
 		onChange(evt, evt.target.files[0]);
 		setImage(URL.createObjectURL(evt.target.files[0]));
-	};
-
-	const Wrapper = () => {
-		return (
-			<img
-				src={image}
-				alt={label}
-				className={`border-4 object-cover border-white shadow-md rounded-${
-					circle ? 'full' : 'md'
-				} h-${height} w-${width}`}
-			/>
-		);
 	};
 
 	const Popover = () => {
@@ -79,7 +68,13 @@ function Preview({
 		<div
 			className={`relative rounded-md inline-block h-${height} w-${width} ${className}`}
 		>
-			<Wrapper />
+			<img
+				src={image}
+				alt={label}
+				className={`border-4 object-cover border-white shadow-md rounded-${
+					circle ? 'full' : 'md'
+				} h-40 w-40 max-h-full max-w-full ${imageClassName}`}
+			/>
 			<label
 				htmlFor={id}
 				onMouseEnter={() => setIsIconHover(true)}
@@ -107,9 +102,8 @@ Preview.defaultProps = {
 	img: 'https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg',
 	onChange: () => {},
 	label: 'Change Preview',
-	width: '40',
-	height: '40',
 	className: '',
+	imageClassName: '',
 	icon: <BsPencil />,
 };
 

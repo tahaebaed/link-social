@@ -152,8 +152,6 @@ import Button from './components/Button';
 | `onChange`  | `String`  | `() => {}`                                                                                                                                     | onChange function with file, event params |
 | `circle`    | `Boolean` | `false`                                                                                                                                        | change wrapper to circle                  |
 | `icon`      | `String`  | `<BsPencil />`                                                                                                                                 | change label icon                         |
-| `height`    | `String`  | `40`                                                                                                                                           | change preview height                     |
-| `width`     | `String`  | `40`                                                                                                                                           | change preview width                      |
 | `className` | `String`  | `''`                                                                                                                                           | add any additional className              |
 
 #### Examples

@@ -10,7 +10,7 @@ import {
 import { TbBuildingSkyscraper } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
 import CreatePost from '../../../components/CreatePost';
-import PostCard from '../../../components/PostCard';
+import PostCard from '../../../components/post/PostCard';
 import { timeToX } from '../../../utilities/days';
 import { profileSelector } from '../../../utilities/store';
 

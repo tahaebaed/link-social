@@ -80,6 +80,7 @@ const UpdateProfile = () => {
 											id='user-bio'
 											type='textarea'
 											label='Bio'
+											inputClasses='h-96'
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
 										/>

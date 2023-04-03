@@ -52,7 +52,7 @@ const FileInput = ({
 			<Field name={name}>
 				{({ field }) => (
 					<label htmlFor={name} className={labelClasses}>
-						<HiOutlineCamera className='mr-1 text-2xl' />
+						<HiOutlineCamera className='mr-1 text-2xl text-green-500' />
 						<span className='small-hidden'>{label}</span>
 						<input
 							className={inputClasses}

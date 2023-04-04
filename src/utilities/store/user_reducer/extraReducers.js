@@ -50,14 +50,12 @@ export const extraReducers = {
 		state.loading = false;
 
 		if (!action.payload.status) {
-			Object.keys(action.payload.errors).forEach((key, i) => {
-				toast.error(
-					<>
-						<h4>{action.payload.message}</h4>
-						<p key={i}> {action.payload.errors[key]}</p>
-					</>
-				);
-			});
+			toast.error(
+				<>
+					<h4>Something went wrong</h4>
+					<p> {action.payload.message}</p>
+				</>
+			);
 		} else {
 			toast.success(action.payload.message);
 			state.user = action.payload.data.user;
@@ -75,14 +73,12 @@ export const extraReducers = {
 		state.loading = false;
 
 		if (!action.payload.status) {
-			Object.keys(action.payload.errors).forEach((key, i) => {
-				toast.error(
-					<>
-						<h4>{action.payload.message}</h4>
-						<p key={i}> {action.payload.errors[key]}</p>
-					</>
-				);
-			});
+			toast.error(
+				<>
+					<h4>Something Went wrong</h4>
+					<p> {action.payload.error}</p>
+				</>
+			);
 		} else {
 			toast.success(action.payload.message);
 			state.user = action.payload.data.user;
@@ -96,5 +92,5 @@ export const extraReducers = {
 	[updateUser.pending]: (state) => {
 		state.loading = true;
 	},
-	[updateUser.fulfilled]: (state, action) => { },
+	[updateUser.fulfilled]: (state, action) => {},
 };

@@ -10,9 +10,9 @@
  * @param {string} inputClasses - Additional classes to apply to the radio button input field
  * @param {string} labelClasses - Additional classes to apply to the radio button labels
  * @param {object} rest - The rest of the props you can add
- * 
+ *
  * @returns {JSX.Element} - A JSX element representing the file input component.
- * 
+ *
  * @example
  *
  * const options = [
@@ -36,36 +36,38 @@ import PropTypes from 'prop-types';
 
 import ErrorText from './ErrorText';
 
-
 const RadioButton = ({
 	name,
 	options,
 	type,
 	inputClasses,
 	labelClasses,
+	wrapperClasses,
 	...rest
 }) => (
 	<>
 		<Field name={name}>
-			{({ field }) =>
-				options.map((option) => {
-					return (
-						<div key={option.key}>
-							<input
-								className={inputClasses}
-								type={type}
-								id={option.value}
-								{...field}
-								value={option.value}
-								checked={field.value === option.value}
-							/>
-							<label htmlFor={option.value} className={labelClasses}>
-								{option.key}
-							</label>
-						</div>
-					);
-				})
-			}
+			{({ field }) => (
+				<div className={wrapperClasses}>
+					{options.map((option) => {
+						return (
+							<div key={option.key}>
+								<input
+									className={inputClasses}
+									type={type}
+									id={option.value}
+									{...field}
+									value={option.value}
+									checked={field.value === option.value}
+								/>
+								<label htmlFor={option.value} className={labelClasses}>
+									{option.key}
+								</label>
+							</div>
+						);
+					})}
+				</div>
+			)}
 		</Field>
 		<ErrorMessage component={ErrorText} name={name} />
 	</>

@@ -29,6 +29,7 @@ const SignIn = () => {
 				validationSchema={validationSchema}
 				onSubmit={(values) => {
 					dispatch(login(values));
+					
 				}}
 			>
 				{(formik) => (
@@ -41,8 +42,10 @@ const SignIn = () => {
 									name='email'
 									id='login_email'
 									icon={<HiOutlineMail />}
+									inputClasses='border outline-sky-100 pl-10 py-2 rounded-lg w-full'
+									wrapperClasses='h-[65px]'
 									type='email'
-									label='email'
+									label='Email'
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
 								/>
@@ -53,8 +56,10 @@ const SignIn = () => {
 									name='password'
 									id='login_password'
 									icon={<AiOutlineLock />}
+									inputClasses='border outline-sky-100 pl-10 py-2 rounded-lg w-full'
+									wrapperClasses='h-[65px]'
 									type='password'
-									label='password'
+									label='Password'
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
 								/>

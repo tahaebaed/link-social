@@ -75,7 +75,7 @@ const Profile = () => {
 										className='font-bold mx-2 flex items-center'
 									>
 										<IoPersonAdd className='inline-block mr-2' />
-										<span>Add Friend</span>
+										<span>Follow</span>
 									</Button>
 									<Button as={Link} to={`/message/${profile.id}`} outline lg>
 										<HiOutlineChatBubbleLeftRight />

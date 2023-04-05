@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Layout from '../layout';
 import { AUTH_ROUTES, PUBLIC_ROUTES } from './lazyLoading';
@@ -25,9 +25,26 @@ const routesWrapper = (routes = []) => {
 	));
 };
 
+const AuthRoutes = ({children}) => {
+	const user = useSelector((store) => store['auth']['user']);
+	if(user) {
+	return	<Navigate to='/auth/sign-in' replace />
+	}
+	return children
+}
+
+const NotAuthRoutes = ({children}) => {
+	const user = useSelector((store) => store['auth']['user']);
+	if(!user) {
+	return	<Navigate to='/' replace />
+	}
+	return children
+}
+
+
+
 function MainRoutes() {
 	const location = useLocation();
-	const user = useSelector((store) => store['auth']['user']);
 
 	useEffect(() => {
 		window.scrollTo({ top: 0 });

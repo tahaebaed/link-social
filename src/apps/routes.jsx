@@ -39,7 +39,7 @@ const publicRoutes = PUBLIC_ROUTES.map((route) => (
 			</ProtectedPublicRoutes>
 		}
 	/>
-))
+));
 
 const authRoutes = AUTH_ROUTES.map((route) => (
 	<Route
@@ -51,7 +51,7 @@ const authRoutes = AUTH_ROUTES.map((route) => (
 			</ProtectedAuthRoutes>
 		}
 	/>
-))
+));
 
 function MainRoutes() {
 	const location = useLocation();

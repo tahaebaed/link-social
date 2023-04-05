@@ -13,13 +13,9 @@ export const userInterceptor = axios.create({
 	},
 });
 
-userInterceptor.interceptors.request.use((req) => {
-	if (!!Cookies.get('token'))
-		userInterceptor.defaults.headers.common[
-			'Authorization'
-		] = `Bearer ${Cookies.get('token')}`;
-
-	return req;
+userInterceptor.interceptors.request.use((config) => {
+	config.headers.authorization = `Bearer ${Cookies.get('token')}`;
+	return config;
 });
 
 userInterceptor.interceptors.response.use((res) => {

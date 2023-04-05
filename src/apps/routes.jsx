@@ -11,37 +11,47 @@ const SuspenseWrapper = (props) => {
 	);
 };
 
-const routesWrapper = (routes = []) => {
-	return routes.map((route) => (
-		<Route
-			path={route.path}
-			key={route.path}
-			element={
-				<SuspenseWrapper>
-					<route.component />
-				</SuspenseWrapper>
-			}
-		/>
-	));
+const routesWrapper = (routes = []) => {};
+
+const ProtectedAuthRoutes = ({ children }) => {
+	const user = useSelector((store) => store['auth']['user']);
+	if (!user) {
+		return <Navigate to='/auth/sign-in' replace />;
+	}
+	return children;
 };
 
-const AuthRoutes = ({children}) => {
+const ProtectedPublicRoutes = ({ children }) => {
 	const user = useSelector((store) => store['auth']['user']);
-	if(user) {
-	return	<Navigate to='/auth/sign-in' replace />
+	if (user) {
+		return <Navigate to='/' replace />;
 	}
-	return children
-}
+	return children;
+};
 
-const NotAuthRoutes = ({children}) => {
-	const user = useSelector((store) => store['auth']['user']);
-	if(!user) {
-	return	<Navigate to='/' replace />
-	}
-	return children
-}
+const publicRoutes = PUBLIC_ROUTES.map((route) => (
+	<Route
+		path={route.path}
+		key={route.path}
+		element={
+			<ProtectedPublicRoutes>
+				<route.component />
+			</ProtectedPublicRoutes>
+		}
+	/>
+))
 
-
+const authRoutes = AUTH_ROUTES.map((route) => (
+	<Route
+		path={route.path}
+		key={route.path}
+		element={
+			<ProtectedAuthRoutes>
+				<route.component />
+			</ProtectedAuthRoutes>
+		}
+	/>
+))
 
 function MainRoutes() {
 	const location = useLocation();
@@ -52,12 +62,14 @@ function MainRoutes() {
 	}, [location]);
 
 	return (
-		<Routes>
-			<Route path='/' element={<Layout />}>
-				{routesWrapper(PUBLIC_ROUTES)}
-				{routesWrapper(AUTH_ROUTES)}
-			</Route>
-		</Routes>
+		<SuspenseWrapper>
+			<Routes>
+				<Route path='/' element={<Layout />}>
+					{publicRoutes}
+					{authRoutes}
+				</Route>
+			</Routes>
+		</SuspenseWrapper>
 	);
 }
 

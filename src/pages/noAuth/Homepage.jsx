@@ -7,7 +7,6 @@ import WeatherCard from '../../layout/WeatherCard';
 import { FaUserFriends } from 'react-icons/fa';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { AiOutlineAppstore } from 'react-icons/ai';
-import OffCanvas from '../../components/OffCanvas';
 
 function Homepage() {
 	const [showSideList, setshowSideList] = useState(false);

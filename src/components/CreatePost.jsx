@@ -40,7 +40,9 @@ const CreatePost = ({ avatar = iconAvatar }) => (
 							name='file'
 							label='Photos/Videos'
 							labelClasses='flex items-center'
-							//	{...formik}
+							setFieldValue={formik.setFieldValue}
+							onBlur={formik.handleBlur}
+							values={formik.values}
 						/>
 						<button className='px-4 py-2 flex items-center'>
 							<HiOutlineFaceSmile

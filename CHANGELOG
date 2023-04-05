@@ -11,8 +11,44 @@
 
 ### API
 
-- [ ] followers & following are different on the data, like username, first name, last name
-- [ ] posts like count, user name not found
+- [ ] how to save images
+- [ ] email can't be change
+- [ ] there is no default avatar or cover
+
+## Set temp cookie
+
+```js
+  Cookies.set(
+    'user',
+    JSON.stringify({
+      id: 4,
+      first_name: 'Michele',
+      last_name: 'Gibson',
+      user_name: 'Francesca-Kuhic',
+      phone: '307-679-9091',
+      birthday: '1957-02-28',
+      country: 'Andorra',
+      status: 'engaged',
+      region: 'ipsa',
+      gender: 'female',
+      email: 'orville.veum@example.net',
+      email_verified_at: '2023-03-30T11:44:48.000000Z',
+      created_at: '2023-03-30T11:44:56.000000Z',
+      updated_at: '2023-03-30T11:44:56.000000Z',
+      following: [],
+      profile: {
+        id: 4,
+        user_id: 4,
+        description: 'Facere aliquam et nisi unde animi harum sequi.',
+        avatar: 'https://picsum.photos/200',
+        cover: 'https://picsum.photos/200',
+        created_at: '2023-03-30T11:44:56.000000Z',
+        updated_at: '2023-03-30T11:45:57.000000Z',
+        followers: [],
+      },
+    })
+  );
+```	
 
 ## Changes
 

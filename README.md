@@ -174,6 +174,18 @@ import Preview from './components/Preview';
 <Preview onChange={file=>console.log(file)} label='' />
 ```
 
+#### How to change preview picker
+
+```jsx
+// 1. first pass noLabel props to disable default picker
+// 2. then change the id to what you want
+// 3. the custom picker must be wrap on label tag
+// 4. pass the same id to Preview component
+<label htmlFor='custom-picker-id' >Open Preview</label> 
+<Preview noLabel id='custom-picker-id' />
+
+```
+
 ### Banner
 
 #### Props

@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
-import { BiBuilding } from 'react-icons/bi';
+import { BiBuilding, BiLockAlt } from 'react-icons/bi';
 import { BsGenderAmbiguous, BsPhone } from 'react-icons/bs';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { FiUser } from 'react-icons/fi';
@@ -10,12 +10,13 @@ import {
 	MdOutlineMailOutline,
 } from 'react-icons/md';
 import { TbBuildingSkyscraper } from 'react-icons/tb';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/Button';
 import FormikControl from '../../components/FormFields/FormikControl';
 import usePageTitle from '../../hooks/usePageTitle';
 import SettingWrapper from '../../layout/SettingWrapper';
 import { updateUserValidationSchema } from '../../validation/setting';
+import { putUpdateUser } from '../../utilities/store/setting.slice';
 
 const SubmitBtnLabel = ({ formik }) => {
 	if (formik.initialValues !== formik.values) {
@@ -31,10 +32,12 @@ const SubmitBtnLabel = ({ formik }) => {
 
 const UpdateUser = () => {
 	usePageTitle('Setting | Update User');
+	const dispatch = useDispatch();
 	const user = useSelector((store) => store['auth']['user']);
 
 	const onFormSubmit = (values) => {
 		console.log(values);
+		dispatch(putUpdateUser(values));
 	};
 
 	return (
@@ -45,13 +48,15 @@ const UpdateUser = () => {
 						birthday: user.birthday,
 						country: user.country,
 						email: user.email,
-						firstName: user.first_name,
+						first_name: user.first_name,
+						last_name: user.last_name,
 						gender: user.gender,
-						lastName: user.last_name,
 						phone: user.phone,
 						region: user.region,
 						status: user.status,
-						username: user.user_name,
+						user_name: user.user_name,
+						current_password: user.current_password,
+						new_password: user.new_password,
 					}}
 					validationSchema={updateUserValidationSchema}
 					onSubmit={onFormSubmit}
@@ -62,15 +67,15 @@ const UpdateUser = () => {
 							<Form>
 								<div className='md:grid grid-cols-2 '>
 									<div className='col-span-1 mx-3 my-1'>
-										<label htmlFor='username' className='mb-3 inline-block'>
-											Username
+										<label htmlFor='user_name' className='mb-3 inline-block'>
+											User_name
 										</label>
 										<FormikControl
 											icon={<MdOutlineDriveFileRenameOutline />}
-											name='username'
-											id='username'
+											name='user_name'
+											id='user_name'
 											type='text'
-											label='username'
+											label='user name'
 											onChange={formik.handleChange}
 										/>
 									</div>
@@ -88,28 +93,28 @@ const UpdateUser = () => {
 										/>
 									</div>
 									<div className='col-span-1 mx-3 my-1'>
-										<label htmlFor='firstName' className='mb-3 inline-block'>
+										<label htmlFor='first_name' className='mb-3 inline-block'>
 											First name
 										</label>
 										<FormikControl
 											icon={<FiUser />}
-											name='firstName'
-											id='firstName'
+											name='first_name'
+											id='first_name'
 											type='text'
-											label='firstName'
+											label='first_name'
 											onChange={formik.handleChange}
 										/>
 									</div>
 									<div className='col-span-1 mx-3 my-1'>
-										<label htmlFor='lastName' className='mb-3 inline-block'>
+										<label htmlFor='last_name' className='mb-3 inline-block'>
 											Last name
 										</label>
 										<FormikControl
 											icon={<FiUser />}
-											name='lastName'
-											id='lastName'
+											name='last_name'
+											id='last_name'
 											type='text'
-											label='lastName'
+											label='last_name'
 											onChange={formik.handleChange}
 										/>
 									</div>
@@ -190,6 +195,35 @@ const UpdateUser = () => {
 											id='gender'
 											type='select'
 											label='gender'
+											onChange={formik.handleChange}
+										/>
+									</div>
+									<div className='col-span-1 mx-3 my-1'>
+										<label
+											htmlFor='current_password'
+											className='mb-3 inline-block'
+										>
+											current password
+										</label>
+										<FormikControl
+											icon={<BiLockAlt />}
+											name='current_password'
+											id='current_password'
+											type='password'
+											label='current password'
+											onChange={formik.handleChange}
+										/>
+									</div>
+									<div className='col-span-1 mx-3 my-1'>
+										<label htmlFor='new_password' className='mb-3 inline-block'>
+											new password
+										</label>
+										<FormikControl
+											icon={<BiLockAlt />}
+											name='new_password'
+											id='new_password'
+											type='password'
+											label='new password'
 											onChange={formik.handleChange}
 										/>
 									</div>

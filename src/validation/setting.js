@@ -57,8 +57,18 @@ const updateUserValidationSchema = yup.object({
 	first_name: yup.string().required('please your first name is required'),
 	last_name: yup.string().required('please your last name is required'),
 	phone: yup.string(),
-	age: yup.string(),
+	age: yup.number(),
 	gender: yup.string().nullable(true),
+	birthday: yup.date(),
+	country: yup.string(),
+	region: yup.string(),
+	status: yup.string(),
+	current_password: yup
+		.string()
+		.min(8, 'Password is too short - should be 8 chars minimum.'),
+	new_password: yup
+		.string()
+		.min(8, 'Password is too short - should be 8 chars minimum.'),
 });
 
 export { updateProfileValidationSchema, updateUserValidationSchema };

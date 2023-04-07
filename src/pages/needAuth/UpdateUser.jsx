@@ -33,10 +33,9 @@ const SubmitBtnLabel = ({ formik }) => {
 const UpdateUser = () => {
 	usePageTitle('Setting | Update User');
 	const dispatch = useDispatch();
-	const user = useSelector((store) => store['auth']['user']);
+	const user = useSelector((store) => store['setting']['user']);
 
 	const onFormSubmit = (values) => {
-		console.log(values);
 		dispatch(putUpdateUser(values));
 	};
 
@@ -45,18 +44,18 @@ const UpdateUser = () => {
 			<div className='my-20'>
 				<Formik
 					initialValues={{
-						birthday: user.birthday,
-						country: user.country,
-						email: user.email,
-						first_name: user.first_name,
-						last_name: user.last_name,
-						gender: user.gender,
-						phone: user.phone,
-						region: user.region,
-						status: user.status,
-						user_name: user.user_name,
-						current_password: user.current_password,
-						new_password: user.new_password,
+						birthday: user?.birthday,
+						country: user?.country,
+						email: user?.email,
+						first_name: user?.first_name,
+						last_name: user?.last_name,
+						gender: user?.gender,
+						phone: user?.phone,
+						region: user?.region,
+						status: user?.status,
+						user_name: user?.user_name,
+						current_password: user?.current_password,
+						new_password: user?.new_password,
 					}}
 					validationSchema={updateUserValidationSchema}
 					onSubmit={onFormSubmit}

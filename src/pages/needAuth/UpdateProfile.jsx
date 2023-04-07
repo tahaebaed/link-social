@@ -1,31 +1,36 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/Button';
 import Preview from '../../components/Preview';
 import usePageTitle from '../../hooks/usePageTitle';
 import SettingWrapper from '../../layout/SettingWrapper';
+import { putUpdateProfile } from '../../utilities/store/setting.slice';
 
 const UpdateProfile = () => {
 	usePageTitle('Setting | Update Profile');
-	const { profile } = useSelector((store) => store['auth']['user']);
-	const initState = {
-		bio: profile.description,
-		cover: profile.cover,
-		avatar: profile.avatar,
-	};
-	const [profileData, setProfileData] = useState(initState);
+	const dispatch = useDispatch();
+	const user = useSelector((store) => store['setting']['user']);
 
-	const isChange = JSON.stringify(initState) !== JSON.stringify(profileData);
+	const [profileData, setProfileData] = useState({
+		bio: user?.profile?.description,
+		cover: user?.profile?.cover,
+		avatar: user?.profile?.avatar,
+	});
 
 	const onFormSubmit = (evt) => {
 		evt.preventDefault();
-		console.log(profileData);
+		const fd = new FormData();
+		fd.append('avatar', profileData['avatar']);
+		fd.append('cover', profileData['cover']);
+		fd.append('bio', profileData['bio']);
+
+		dispatch(putUpdateProfile(fd));
 	};
 
-	const onInputChange = (evt) => {
+	const onInputChange = (name, value) => {
 		setProfileData((prev) => ({
 			...prev,
-			[evt.target.name]: evt.target.value,
+			[name]: value,
 		}));
 	};
 
@@ -43,7 +48,7 @@ const UpdateProfile = () => {
 							img={profileData.cover}
 							className='w-[100%] h-72'
 							imageClassName='w-[100%] h-72'
-							onChange={onInputChange}
+							onChange={(file) => onInputChange('cover', file)}
 							name='cover'
 						/>
 					</div>
@@ -57,10 +62,10 @@ const UpdateProfile = () => {
 								id='avatar'
 								name='avatar'
 								img={profileData.avatar}
-								onChange={onInputChange}
-								noLabel
+								onChange={(file, evt) =>
+									onInputChange('avatar', evt.target.files[0])
+								}
 							/>
-							<label htmlFor="avatar">a</label>
 						</div>
 						<div className='col-span-2'>
 							<h4 className='mb-5 first-letter:text-4xl first-letter:text-aurora text-xl font-bold'>
@@ -70,14 +75,14 @@ const UpdateProfile = () => {
 								name='bio'
 								id='user-bio'
 								value={profileData.bio}
-								onChange={onInputChange}
+								onChange={(evt) =>
+									onInputChange(evt.target.name, evt.target.value)
+								}
 							/>
 						</div>
 					</div>
 					<div className='flex mt-4 justify-center'>
-						<Button type={isChange ? 'submit' : 'button'}>
-							{isChange ? 'Save Changes' : 'No Change'}
-						</Button>
+						<Button type='submit'>Save Changes</Button>
 					</div>
 				</form>
 			</div>

@@ -20,7 +20,7 @@ import { BsPencil } from 'react-icons/bs';
 // to hide popover set label to null
 <Preview onChange={(_, file)=>console.log(file)} label='' />
 
- * @param {{ img:string, onChange:(evt, file)=>void, className:string, imageClassName:string, id:string, name:string, icon:React.ReactElement, label:string, circle:boolean, noLabel:boolean }} props 
+ * @param {{ img:string, onChange:(file, evt)=>void, className:string, imageClassName:string, id:string, name:string, icon:React.ReactElement, label:string, circle:boolean, noLabel:boolean }} props 
  * @returns {React.ReactElement}
  */
 function Preview(props) {
@@ -28,7 +28,7 @@ function Preview(props) {
 	const [isIconHover, setIsIconHover] = useState(false);
 
 	const OnInputChange = (evt) => {
-		props.onChange(evt, evt.target.files[0]);
+		props.onChange(evt.target.files[0], evt);
 		setImage(URL.createObjectURL(evt.target.files[0]));
 	};
 

@@ -19,6 +19,7 @@ function SettingWrapper(props) {
 
 	useEffect(() => {
 		dispatch(getUser());
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const Render = () => {

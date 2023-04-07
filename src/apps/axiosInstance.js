@@ -13,9 +13,11 @@ export const userInterceptor = axios.create({
 	},
 });
 
-userInterceptor.interceptors.request.use((config) => {
-	config.headers.authorization = `Bearer ${Cookies.get('token')}`;
-	return config;
+userInterceptor.interceptors.request.use((req) => {
+	if (!!Cookies.get('token')) {
+		req.headers.authorization = `Bearer ${Cookies.get('token')}`
+	}
+	return req;
 });
 
 userInterceptor.interceptors.response.use((res) => {

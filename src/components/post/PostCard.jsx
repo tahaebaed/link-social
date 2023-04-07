@@ -1,11 +1,13 @@
-import React from 'react';
-import { FaRegHeart, FaShare } from 'react-icons/fa';
+import { FaRegHeart, FaShare, FaHeart } from 'react-icons/fa';
 import { BiMessageDetail } from 'react-icons/bi';
-import { users } from '../utilities/dummydata/users';
-import './../assets/scss/components/postCard.scss';
-import profilePic from '../assets/images/imgs/profilePic.png';
-import Dropdown from '../components/Dropdown';
-import ProfileImg from './ProfileImg';
+import { users } from '../../utilities/dummydata/users';
+import './../../assets/scss/components/postCard.scss';
+import profilePic from '../../assets/images/imgs/profilePic.png';
+import Dropdown from '../Dropdown';
+import ProfileImg from '../ProfileImg';
+import { userInterceptor } from '../../apps/axiosInstance';
+import { updatePostRect } from '../../utilities/store/posts_reducer/postsSlice';
+import { useDispatch } from 'react-redux';
 
 /**
  * 
@@ -18,7 +20,7 @@ import ProfileImg from './ProfileImg';
  * @param {string} shareCount how many people shared the post   
   
  */
-//#f25555
+
 function PostCard({
 	Img = profilePic,
 	userName,
@@ -27,14 +29,29 @@ function PostCard({
 	likesCount,
 	commentsCount,
 	shareCount,
+	postId,
+	likeState,
 }) {
+	const dispatch = useDispatch();
+	const ReactToPost = () => {
+		userInterceptor
+			.request({
+				method: 'POST',
+				url: `/reacts/post/${postId}`,
+			})
+			.then((res) => {
+				const reactsCount = res.data.data.reacts.length;
+				console.log(res, 'react');
+				dispatch(updatePostRect({ reactsCount, postId }));
+			});
+	};
 	return (
 		<>
 			<div className='card_box sh shadow my-4 mx-2'>
 				<div className='flex mb-3 justify-between'>
 					<div className='flex items-center'>
 						<ProfileImg border img={Img} />
-						<div className='mx-6'>
+						<div className='mx-3'>
 							<h6 className='user_name'>{userName}</h6>
 							<span className='post_time'>{postTime}</span>
 						</div>
@@ -51,11 +68,22 @@ function PostCard({
 				<div className='flex justify-between items-center post_reactions my-3 py-3'>
 					<div className='flex'>
 						<div className='flex items-center post_likes'>
-							<FaRegHeart className='heart_icon' />
-							<span className='mx-3 likes_count'>{likesCount}</span>
+							{likeState ? (
+								<FaHeart
+									className='heart_icon'
+									onClick={() => ReactToPost(postId)}
+								/>
+							) : (
+								<FaRegHeart
+									className='heart_icon'
+									onClick={() => ReactToPost(postId)}
+								/>
+							)}
+
+							<span className='ml-1 mr-3 likes_count'>{likesCount}</span>
 						</div>
 						<div className='flex items-center'>
-							<ul className='ml-4 users_likes'>
+							<ul className='ml-3 users_likes'>
 								{users.map((user, i) => (
 									<li key={i} className='user_like_img'>
 										<a

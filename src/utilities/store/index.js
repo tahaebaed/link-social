@@ -5,6 +5,7 @@ import profileReducer from './profile.slice';
 import userReducer from './user_reducer/userSlice';
 import weatherReducer from './weather_reducer/weatherSlice';
 import postsReducer from './posts_reducer/postsSlice';
+import reactsReducer from './posts_reducer/reactsSlice';
 import settingReducer from './setting.slice';
 
 export const store = configureStore({
@@ -12,6 +13,7 @@ export const store = configureStore({
 		auth: userReducer,
 		weatherReducer,
 		postsReducer,
+		reactsReducer,
 		profile: profileReducer,
 		setting: settingReducer,
 	},

@@ -16,6 +16,10 @@
 - [x] On setting update the response must return user and profile data
 - [x] There is no default avatar or cover
 
+### Bug
+
+- updateProfile: input is blur after single letter
+
 ## Set temp cookie
 
 ```js

@@ -1,15 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Banner from '../components/Banner';
 import WithLeftSidebar from './WithLeftSidebar';
 import { VscFeedback } from 'react-icons/vsc';
 import { BsPersonBoundingBox } from 'react-icons/bs';
+import { getUser } from '../utilities/store/setting.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import LoadingPlaceholder from '../components/placeholder/LoadingPlaceholder';
 
 function SettingWrapper(props) {
+	const dispatch = useDispatch();
+	const { user, isLoading, error } = useSelector((store) => store['setting']);
+
 	const navLinkClassName = ({ isActive }) =>
 		`p-2 transition duration-500 border-2 hover:text-aurora hover:border-aurora ${
 			isActive ? 'border-aurora text-aurora ' : 'text-gray-400'
 		} `;
+
+	useEffect(() => {
+		dispatch(getUser());
+	}, []);
+
+	const Render = () => {
+		if (isLoading) {
+			return (
+				<div className=' mt-3'>
+					<LoadingPlaceholder />
+				</div>
+			);
+		}
+		if (user) {
+			return props.children;
+		} else {
+			return <>Something goes wrong, {JSON.stringify(error)}</>;
+		}
+	};
 
 	return (
 		<WithLeftSidebar>
@@ -29,7 +54,9 @@ function SettingWrapper(props) {
 					</NavLink>
 				</div>
 			</div>
-			<div className='md:mx-20'>{props.children}</div>
+			<div className='md:mx-20'>
+				<Render />
+			</div>
 		</WithLeftSidebar>
 	);
 }

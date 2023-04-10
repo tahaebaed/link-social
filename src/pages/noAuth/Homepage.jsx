@@ -9,6 +9,7 @@ import { AiFillCloseCircle, AiOutlineAppstore } from 'react-icons/ai';
 import OffCanvas from '../../components/OffCanvas';
 import MobileMenu from '../../components/post/MobileMenu';
 
+
 function Homepage(props) {
 	const [showCanvas, setshowCanvas] = useState(false);
 	const openCanvas = () => {

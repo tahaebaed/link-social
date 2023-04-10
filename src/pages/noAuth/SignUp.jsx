@@ -55,6 +55,7 @@ const SignUp = () => {
 	});
 
 	const dispatch = useDispatch();
+	
 	const onSubmit = (values) => {
 		dispatch(fetchUser(values));
 	};
@@ -77,6 +78,8 @@ const SignUp = () => {
 										<FormikControl
 											icon={<BsPerson />}
 											name='user_name'
+											inputClasses='border outline-sky-100 pl-7 py-2 rounded-lg w-full'
+											wrapperClasses='h-[65px] px-3'
 											id='user_name'
 											type='text'
 											label='user name'
@@ -91,6 +94,8 @@ const SignUp = () => {
 											name='email'
 											id='email'
 											icon={<HiOutlineMail />}
+											inputClasses='border outline-sky-100 pl-7 py-2 rounded-lg w-full'
+											wrapperClasses='h-[65px] px-3'
 											type='email'
 											label='email'
 											onChange={formik.handleChange}
@@ -106,6 +111,8 @@ const SignUp = () => {
 											id='password'
 											icon={<AiOutlineLock />}
 											type='password'
+											inputClasses='border outline-sky-100 pl-7 py-2 rounded-lg w-full'
+											wrapperClasses='h-[65px] px-3'
 											label='password'
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
@@ -117,6 +124,8 @@ const SignUp = () => {
 											name='password_confirmation'
 											id='password_confirmation'
 											icon={<AiOutlineUnlock />}
+											inputClasses='border outline-sky-100 pl-9 py-2 rounded-lg w-full'
+											wrapperClasses='h-[65px]'
 											type='password'
 											label='confirm password'
 											onChange={formik.handleChange}
@@ -132,6 +141,8 @@ const SignUp = () => {
 											id='first_name'
 											icon={<BsPerson />}
 											label='first name'
+											inputClasses='border outline-sky-100 pl-7 py-2 rounded-lg w-full'
+											wrapperClasses='h-[65px] px-3'
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
 										/>
@@ -142,6 +153,8 @@ const SignUp = () => {
 											name='last_name'
 											id='last_name'
 											icon={<BsPerson />}
+											inputClasses='border outline-sky-100 pl-9 py-2 rounded-lg w-full'
+											wrapperClasses='h-[65px]'
 											label='last name'
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
@@ -152,6 +165,8 @@ const SignUp = () => {
 								<FormikControl
 									name='phone'
 									id='phone'
+									inputClasses='border outline-sky-100 pl-9 py-2 rounded-lg w-full'
+									wrapperClasses='h-[65px]'
 									label='phone (optional)'
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
@@ -162,16 +177,19 @@ const SignUp = () => {
 										<FormikControl
 											name='age'
 											id='age'
+											inputClasses='border outline-sky-100 pl-9 py-2 rounded-lg w-full'
+											wrapperClasses='h-[65px]'
 											label='age (optional)'
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
 										/>
 									</div>
-									<div className='w-3/6 flex'>
+									<div className='w-3/6 flex flex-col'>
 										<h2 className='mb-4 ml-2'>Gender</h2>
 										<div className='relative'>
 											<FormikControl
-												className='flex'
+												wrapperClasses='flex flex-col ml-6'
+												inputClasses="mb-2 mr-2"
 												type='radio'
 												label='gender (optional)'
 												options={[

@@ -38,11 +38,11 @@ const CreatePost = ({ avatar = iconAvatar }) => {
 					<div className='relative'>
 						<ProfileImg className='absolute left-2 top-2 rounded-full border-2 w-[40px] h-[40px] p-0' />
 						<FormikControl
-							type='textarea'
-							name='postContent'
-							label="what's on your mind?"
-							inputClasses='w-full h-[5rem] pl-[4rem] pt-4 border border-1 rounded-lg min-h-[6rem] outline-sky-100 create-post__textarea '
-							onChange={formik.handleChange}
+							type='file'
+							name='file'
+							label='Photos/Videos'
+							labelClasses='flex items-center'
+							setFieldValue={formik.setFieldValue}
 							onBlur={formik.handleBlur}
 							values={formik.values}
 						/>

@@ -62,7 +62,6 @@ const FileInput = ({
 							name={name}
 							hidden
 							onChange={uploadFileHandler}
-							{...rest}
 						/>
 					</label>
 				)}

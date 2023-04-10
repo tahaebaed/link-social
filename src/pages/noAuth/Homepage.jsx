@@ -5,22 +5,33 @@ import FriendsList from '../../layout/FriendsList';
 import HomeFeeds from '../../layout/HomeFeeds';
 import WeatherCard from '../../layout/WeatherCard';
 import { FaUserFriends } from 'react-icons/fa';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { AiOutlineAppstore } from 'react-icons/ai';
+import { AiFillCloseCircle, AiOutlineAppstore } from 'react-icons/ai';
+import OffCanvas from '../../components/OffCanvas';
+import MobileMenu from '../../components/post/MobileMenu';
 
-function Homepage() {
-	const [showSideList, setshowSideList] = useState(false);
-	const [showLeftCanvas, setshowLeftCanvas] = useState(false);
-	const showSideMenu = () => {
-		setshowSideList(!showSideList);
+
+function Homepage(props) {
+	const [showCanvas, setshowCanvas] = useState(false);
+	const openCanvas = () => {
+		setshowCanvas(true);
 	};
-	const openLeftCanvas = () => {
-		setshowLeftCanvas(!showLeftCanvas);
+	const closeCanvas = () => {
+		setshowCanvas(false);
 	};
+
 	return (
 		<div>
 			<div className='mobile_leftMenu'>
-				{/* <OffCanvas showCanvas={showLeftCanvas} /> */}
+				{showCanvas ? (
+					<OffCanvas openCanvas={showCanvas}>
+						<div onClick={closeCanvas}>
+							<AiFillCloseCircle className='text-red-400' />
+						</div>
+						<p>OffCanvas</p>
+					</OffCanvas>
+				) : (
+					''
+				)}
 			</div>
 			<div className='grid grid-cols-4'>
 				<div className='lg:col-span-1 hidden lg:block'>
@@ -38,28 +49,17 @@ function Homepage() {
 					<FriendsList />
 				</div>
 			</div>
-			<div
-				className={`mobile_icons fixed top-[12vh] bg-slate-100 rounded p-4 transition-all ease-in-out duration-1000 ${
-					showSideList ? 'right-0' : 'right-[-68px]'
-				}`}
-			>
+			<MobileMenu>
 				<div className='show_friendsList mx-2 my-4 cursor-pointer'>
 					<FaUserFriends className='text-fuchsia-600 w-[20px]' />
 				</div>
 				<div className='show_leftSidebar mx-2 my-4 cursor-pointer'>
 					<AiOutlineAppstore
-						onClick={openLeftCanvas}
+						onClick={openCanvas}
 						className='text-pink-600 w-[20px] h-[25px]'
 					/>
 				</div>
-				<div
-					id='showList'
-					className={`absolute top-[32%] left-[-30%] text-white bg-aurora w-[20px] h-[30px] rounded-[3px] flex justify-center items-center cursor-pointer`}
-					onClick={showSideMenu}
-				>
-					{showSideList ? <IoIosArrowForward /> : <IoIosArrowBack />}
-				</div>
-			</div>
+			</MobileMenu>
 		</div>
 	);
 }

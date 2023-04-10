@@ -5,10 +5,9 @@ import profileReducer from './profile.slice';
 import userReducer from './user_reducer/userSlice';
 import weatherReducer from './weather_reducer/weatherSlice';
 import postsReducer from './posts_reducer/postsSlice'
-import reactsReducer from './posts_reducer/reactsSlice'
 
 export const store = configureStore({
-	reducer: { auth: userReducer, weatherReducer, postsReducer, reactsReducer, profile: profileReducer },
+	reducer: { auth: userReducer, weatherReducer, postsReducer, profile: profileReducer },
 	devTools: process.env.toString() !== 'production',
 });
 

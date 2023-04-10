@@ -38,7 +38,7 @@ function MainRoutes() {
 		<Routes>
 			<Route path='/' element={<Layout />}>
 				{routesWrapper(PUBLIC_ROUTES)}
-				{routesWrapper(AUTH_ROUTES)}
+				{user && routesWrapper(AUTH_ROUTES)}
 			</Route>
 		</Routes>
 	);

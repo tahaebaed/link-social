@@ -33,7 +33,7 @@ const postsSlice = createSlice({
 		},
 		[getPosts.fulfilled]: (state, action) => {
 			state.posts.loading = false
-			state.posts.posts = action.payload
+			state.posts.posts = action.payload.data
 			console.log(state.posts.posts)
 		},
 		[getPosts.rejected]: (state, action) => {

@@ -47,7 +47,7 @@ function postReactExtra() {
 		},
 		[postReacts.fulfilled]: (state, action) => {
 			state.reacts.loading = false;
-			state.posts = state.posts.map((post) =>
+			state.posts.posts = state.posts.posts.map((post) =>
 				post.id === action.payload.postId
 					? {
 						...post,

@@ -67,7 +67,7 @@ const UpdateUser = () => {
 								<div className='md:grid grid-cols-2 '>
 									<div className='col-span-1 mx-3 my-1'>
 										<label htmlFor='user_name' className='mb-3 inline-block'>
-											User_name
+											Username
 										</label>
 										<FormikControl
 											icon={<MdOutlineDriveFileRenameOutline />}
@@ -202,7 +202,7 @@ const UpdateUser = () => {
 											htmlFor='current_password'
 											className='mb-3 inline-block'
 										>
-											current password
+											Current password
 										</label>
 										<FormikControl
 											icon={<BiLockAlt />}
@@ -215,7 +215,7 @@ const UpdateUser = () => {
 									</div>
 									<div className='col-span-1 mx-3 my-1'>
 										<label htmlFor='new_password' className='mb-3 inline-block'>
-											new password
+											New password
 										</label>
 										<FormikControl
 											icon={<BiLockAlt />}

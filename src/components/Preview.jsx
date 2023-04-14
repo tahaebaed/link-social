@@ -16,18 +16,22 @@ import { BsPencil } from 'react-icons/bs';
 
  * @example
 
-<Preview onChange={evt=>console.log(evt)} />
+<Preview onChange={(file)=>console.log(file)} />
 // to hide popover set label to null
-<Preview onChange={(_, file)=>console.log(file)} label='' />
+<Preview label='' />
 
  * @param {{ img:string, onChange:(file, evt)=>void, className:string, imageClassName:string, id:string, name:string, icon:React.ReactElement, label:string, circle:boolean, noLabel:boolean }} props 
  * @returns {React.ReactElement}
  */
 function Preview(props) {
-	const [image, setImage] = useState(props.img);
+	const [image, setImage] = useState(() =>
+		Object.prototype.toString.call(props.img) === '[object File]'
+			? URL.createObjectURL(props.img)
+			: props.img
+	);
 	const [isIconHover, setIsIconHover] = useState(false);
 
-	const OnInputChange = (evt) => {
+	const onInputChange = (evt) => {
 		props.onChange(evt.target.files[0], evt);
 		setImage(URL.createObjectURL(evt.target.files[0]));
 	};
@@ -46,8 +50,8 @@ function Preview(props) {
 			{!props.noLabel && (
 				<label
 					htmlFor={props.id}
-					onMouseEnter={() => setIsIconHover(true)}
-					onMouseLeave={() => setIsIconHover(false)}
+					onMouseEnter={() => props.label && setIsIconHover(true)}
+					onMouseLeave={() => props.label && setIsIconHover(false)}
 				>
 					{props.label && <Popover label={props.label} isHover={isIconHover} />}
 					<Icon icon={props.icon} />
@@ -59,7 +63,7 @@ function Preview(props) {
 				id={props.id}
 				accept='image/*'
 				name={props.name}
-				onChange={OnInputChange}
+				onChange={onInputChange}
 			/>
 		</div>
 	);

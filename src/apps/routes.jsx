@@ -29,14 +29,18 @@ const ProtectedPublicRoutes = ({ children }) => {
 
 const publicRoutes = PUBLIC_ROUTES.map((route) => (
 	<Route
-		path={route.path}
 		key={route.path}
-		element={
-			<ProtectedPublicRoutes>
-				<route.component />
-			</ProtectedPublicRoutes>
-		}
-	/>
+		element={route.layout ? <route.layout /> : <Layout />}
+	>
+		<Route
+			path={route.path}
+			element={
+				<ProtectedPublicRoutes>
+					<route.component />
+				</ProtectedPublicRoutes>
+			}
+		/>
+	</Route>
 ));
 
 const authRoutes = AUTH_ROUTES.map((route) => (

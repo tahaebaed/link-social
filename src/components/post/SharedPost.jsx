@@ -7,7 +7,7 @@ function SharedPost({
 	userName,
 	postTime,
 	description,
-	Img,
+	img,
 	commentsCount,
 	shareCount,
 	likesCount,
@@ -15,6 +15,7 @@ function SharedPost({
 	postId,
 	userSharedName,
 	sharedUserImg,
+	sharedTime,
 }) {
 	return (
 		<div className='card_box sh shadow my-4 mx-2'>
@@ -24,7 +25,7 @@ function SharedPost({
 						<ProfileImg border img={sharedUserImg} />
 						<div className='mx-3'>
 							<h6 className='user_name'>{userSharedName}</h6>
-							<span className='post_time'>{postTime}</span>
+							<span className='post_time'>{sharedTime}</span>
 						</div>
 					</div>
 
@@ -36,16 +37,12 @@ function SharedPost({
 			<div className='border bottom-0 p-4'>
 				<div className='flex mb-3 justify-between'>
 					<div className='flex items-center'>
-						<ProfileImg border img={Img} />
+						<ProfileImg border img={img} />
 						<div className='mx-3'>
 							<h6 className='user_name'>{userName}</h6>
 							<span className='post_time'>{postTime}</span>
 						</div>
 					</div>
-
-					{/* <div className='post_menu_dots flex items-center justify-center'>
-						<Dropdown noArrow />
-					</div> */}
 				</div>
 				<div className='post_content'>
 					<p>{description}</p>

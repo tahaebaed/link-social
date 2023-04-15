@@ -17,6 +17,7 @@ export const store = configureStore({
 		profile: profileReducer,
 		setting: settingReducer,
 	},
+
 	devTools: process.env.toString() !== 'production',
 });
 

@@ -1,0 +1,89 @@
+import React, { useState } from 'react';
+import InputEmoji from 'react-input-emoji';
+import Dropdown from '../../../components/Dropdown';
+import Receiver from './Receiver';
+import Sender from './Sender';
+import { BiSend } from 'react-icons/bi';
+import ProfileImg from '../../../components/ProfileImg';
+import {
+	BsFillCameraVideoFill,
+	BsFillMicFill,
+	BsTelephoneFill,
+} from 'react-icons/bs';
+
+function ChatView() {
+	const [text, setText] = useState('');
+
+	function handleOnEnter(text) {
+		console.log('enter', text);
+	}
+	return (
+		<div>
+			<div className='chat_header flex justify-between px-10 py-3 shadow'>
+				<div className='flex items-center'>
+					<div className='user_img'>
+						<ProfileImg
+							online
+							className='w-[50px] h-[50px] border border-gray-200'
+						/>
+					</div>
+					<div className='user_name text-lg mx-3 font-medium text-gray-700'>
+						<p className=''> Sadye Nolan</p>
+						<p className='text-xs text-gray-400'>online</p>
+					</div>
+				</div>
+
+				<div className='flex justify-center items-center'>
+					<BsTelephoneFill className='text-teal-400 text-2xl mx-3' />
+					<BsFillCameraVideoFill className='text-teal-400 text-2xl mx-3' />
+					<div className='ml-4'>
+						<Dropdown noArrow />
+					</div>
+				</div>
+			</div>
+			<div className='chat_body px-4 pt-2 pb-8 fixed h-[73vh] overflow-auto w-[75%]'>
+				<Receiver />
+				<Sender />
+				<Receiver />
+				<Sender />
+				<Receiver />
+				<Sender />
+				<Receiver />
+				<Sender />
+				<Receiver />
+				<Sender />
+				<Receiver />
+				<Sender />
+				<Receiver />
+				<Sender />
+				<Receiver />
+				<Sender />
+				<Receiver />
+				<Sender />
+			</div>
+			<div className='chat_footer fixed bottom-0 bg-slate-100 w-[75%]'>
+				<div className='border grid grid-cols-12 items-center'>
+					<div className='col-span-1 text-center'>
+						<BsFillMicFill className='text-teal-400 text-2xl mx-auto' />
+					</div>
+					<div className='col-span-10'>
+						<InputEmoji
+							value={text}
+							onChange={setText}
+							cleanOnEnter
+							onEnter={handleOnEnter}
+							placeholder='Type a message'
+						/>
+					</div>
+					<div className='col-span-1 text-center'>
+						<button className='rounded-full text-xl w-[45px] h-[45px] bg-teal-300 text-white flex justify-center items-center'>
+							<BiSend />
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+export default ChatView;

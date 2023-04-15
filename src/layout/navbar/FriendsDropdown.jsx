@@ -76,8 +76,8 @@ function FriendsDropdown() {
 		<NavbarDropdown
 			label={<MdOutlineEmojiEmotions />}
 			count={21}
-			pageUrl='/notification'
-			pageLabel='Check all your Events'
+			pageUrl='/network'
+			pageLabel='Check all your Network'
 			type='friends'
 		>
 			{DUMMY_FRIENDS.map((friend, index) => (

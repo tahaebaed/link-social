@@ -11,6 +11,8 @@ const UpdateUser = React.lazy(() => import('../pages/needAuth/UpdateUser'));
 const UpdateProfile = React.lazy(() =>
 	import('../pages/needAuth/UpdateProfile')
 );
+const ChatBox = React.lazy(() => import('../pages/needAuth/chat/ChatBox'));
+
 const Profile = React.lazy(() => import('../pages/needAuth/Profile'));
 
 const PUBLIC_ROUTES = [
@@ -40,6 +42,14 @@ const AUTH_ROUTES = [
 	{
 		path: '/setting/update-user',
 		component: UpdateUser,
+	},
+	{
+		path: '/setting/update-profile',
+		component: UpdateProfile,
+	},
+	{
+		path: '/chat',
+		component: ChatBox,
 	},
 	{
 		path: '/setting/update-profile',

@@ -13,20 +13,54 @@ import CreatePost from '../../../components/CreatePost';
 import PostCard from '../../../components/post/PostCard';
 import { timeToX } from '../../../utilities/days';
 import { profileSelector } from '../../../utilities/store';
+import SharedPost from '../../../components/post/SharedPost';
 
 const Timeline = ({ posts = [], username }) => {
 	return (
 		<>
 			{posts.map((post, index) => (
-				<PostCard
-					key={index}
-					userName={username}
-					postTime={timeToX(post.created_at)}
-					description={post.body}
-					likesCount='00'
-					commentsCount='00'
-					shareCount='00'
-				/>
+				// <PostCard
+				// 	key={index}
+				// 	userName={username}
+				// 	postTime={timeToX(post.created_at)}
+				// 	description={post.body}
+				// 	likesCount='00'
+				// 	commentsCount='00'
+				// 	shareCount='00'
+				// />
+				<div key={index}>
+					{post.parent ? (
+						<SharedPost
+							userName={post.parent.user.user_name}
+							postTime={timeToX(post.parent.created_at)}
+							description={post.parent.body}
+							likesCount={post.parent.reacts_count}
+							commentsCount={post.parent.comments_count}
+							shareCount={post.parent.children_count}
+							postId={post.parent.id}
+							likeState={post.is_react}
+							img={post.parent.user.profile.avatar}
+							userSharedName={post.user.user_name}
+							sharedUserImg={post.parent.user.profile.avatar}
+							sharedTime={timeToX(post.created_at)}
+							userId={post.parent.user_id}
+						/>
+					) : (
+						<PostCard
+							userName={post.user.user_name}
+							postTime={timeToX(post.created_at)}
+							description={post.body}
+							likesCount={post.reacts_count}
+							commentsCount={posts.comments_count}
+							shareCount={post.children_count}
+							postId={post.id}
+							likeState={post.is_react}
+							img={post.user.profile.avatar}
+							reacts={post.reacts}
+							userId={post.user_id}
+						/>
+					)}
+				</div>
 			))}
 		</>
 	);

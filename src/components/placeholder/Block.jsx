@@ -12,13 +12,14 @@ import React, { useEffect, useState } from 'react';
   <Block className="w-[40px]"/>
 
  */
-function Block({ sm, lg, ...props }) {
+function Block({ sm, lg, rounded, ...props }) {
 	const [className, setClassName] = useState('');
 	useEffect(() => {
 		let initClass = `my-3 mx-2 ` + props.className;
 
-		initClass += sm ? 'w-[80px]' : '';
+		initClass += sm ? 'block_animation w-[80px]' : '';
 		initClass += lg ? 'w-[120px]' : '';
+		initClass += rounded ? 'w-[40px] h-[40px] img_hover' : '';
 
 		setClassName(initClass);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,5 +30,6 @@ Block.defaultProps = {
 	className: '',
 	sm: false,
 	lg: false,
+	rounded: false,
 };
 export default Block;

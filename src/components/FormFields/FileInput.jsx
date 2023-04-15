@@ -28,7 +28,7 @@ const FileInput = ({
 	const uploadFileHandler = (e) => {
 		const fd = new FormData();
 		fd.append('file', e.target.files[0]);
-		fd.append('public_id', e.target.files[0].name);
+		//fd.append('public_id', e.target.files[0].name.replace('.png', ''));
 		fd.append('upload_preset', 'jqmus7oo');
 		fd.append('api_key', 'tahaebaed2@gmail.com');
 
@@ -43,7 +43,8 @@ const FileInput = ({
 				},
 			})
 			.then((res) => {
-				rest.setFieldValue('file', res.data);
+				//	rest.setFieldValue('postImg', [res.data]);
+				rest.arrayHelpers.push(res.data.url);
 			});
 	};
 

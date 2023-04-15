@@ -17,13 +17,8 @@
 .placeholder_card {
 	background-color: #f5f5f5;
 	border-radius: 5px;
-
 	padding: 20px;
-	.img_hover {
-		animation: placeholderOpacity 2s ease-in-out infinite;
-		border-radius: 50%;
-		background-color: #cdced3;
-	}
+
 	.author_name {
 		background-color: #cdced3;
 		animation: placeholderOpacity 2s ease infinite;
@@ -41,5 +36,15 @@
 		background-color: #cdced3;
 		height: 40px;
 	}
+}
+.img_hover {
+	animation: placeholderOpacity 2s ease-in-out infinite;
+	border-radius: 50%;
+	background-color: #cdced3;
+}
+.block_animation {
+	animation: placeholderOpacity 2s ease infinite;
+	background-color: #cdced3;
+	height: 18px;
 }
 @include placeholder_animation('placeholderOpacity', 0.3);

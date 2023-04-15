@@ -1,8 +1,8 @@
 import './../../assets/scss/components/postCard.scss';
-import profilePic from '../../assets/images/imgs/profilePic.png';
 import PostFooter from './components/PostFooter';
 import ProfileImg from '../ProfileImg';
 import Dropdown from '../Dropdown';
+import { Link } from 'react-router-dom';
 
 /**
  * 
@@ -17,7 +17,7 @@ import Dropdown from '../Dropdown';
  */
 
 function PostCard({
-	Img = profilePic,
+	img,
 	userName,
 	postTime,
 	description,
@@ -33,9 +33,12 @@ function PostCard({
 			<div className='card_box sh shadow my-4 mx-2'>
 				<div className='flex mb-3 justify-between'>
 					<div className='flex items-center'>
-						<ProfileImg border img={Img} />
+						<ProfileImg border img={`${img}`} />
 						<div className='mx-3'>
-							<h6 className='user_name'>{userName}</h6>
+							<Link to={`/profile/${rest.userId}`}>
+								<h6 className='user_name'>{userName}</h6>
+							</Link>
+
 							<span className='post_time'>{postTime}</span>
 						</div>
 					</div>
@@ -44,9 +47,14 @@ function PostCard({
 						<Dropdown noArrow />
 					</div>
 				</div>
-				<div className='post_content'>
-					<p>{description}</p>
-				</div>
+				{description ? (
+					<div className='post_content'>
+						<p>{description}</p>
+					</div>
+				) : (
+					''
+				)}
+
 				<PostFooter
 					commentsCount={commentsCount}
 					shareCount={shareCount}

@@ -18,7 +18,7 @@ function ProfileImg({ img = profilePic, border, online, ...props }) {
 	}, []);
 	return (
 		<div className={onlineState}>
-			<img {...props} className={className} src={img} alt='profile img' />
+			<img {...props} className={className} src={`${img}`} alt='profile img' />
 		</div>
 	);
 }

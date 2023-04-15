@@ -1,14 +1,15 @@
-import React from 'react';
-import { HiOutlineFaceSmile } from 'react-icons/hi2';
+import React, { useState } from 'react';
+import { HiOutlineCamera, HiOutlineFaceSmile } from 'react-icons/hi2';
 
 import iconAvatar from '../assets/images/icons/favicon.svg';
 import Button from './Button';
 import '../assets/scss/components/CreatePost.scss';
-import { Form, Formik } from 'formik';
+import { Field, FieldArray, Form, Formik } from 'formik';
 import FormikControl from './FormFields/FormikControl';
 import ProfileImg from './ProfileImg';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPosts } from '../utilities/store/posts_reducer/postReactsExtraReducer';
+import Preview from './Preview';
 
 /**
  * @usage
@@ -20,19 +21,16 @@ import { createPosts } from '../utilities/store/posts_reducer/postReactsExtraRed
  */
 
 const CreatePost = ({ avatar = iconAvatar }) => {
-	const user = useSelector((store) => store['auth']['user']);
-
 	const dispatch = useDispatch();
-	const submitForm = (valuse) => {
-		console.log(valuse);
-		console.log('weee');
-		console.log(user, 'user');
-
-		dispatch(createPosts(valuse.postContent));
-		valuse.postContent = '';
+	const submitForm = (valuse, { resetForm }) => {
+		dispatch(createPosts({ body: valuse.postContent, photos: valuse.postImg }));
+		resetForm();
 	};
 	return (
-		<Formik initialValues={{ file: '', postContent: '' }} onSubmit={submitForm}>
+		<Formik
+			initialValues={{ postImg: [], postContent: '' }}
+			onSubmit={submitForm}
+		>
 			{(formik) => (
 				<Form className='mx-auto py-4 px-8 shadow rounded-md my-5'>
 					<div className='relative'>
@@ -47,17 +45,31 @@ const CreatePost = ({ avatar = iconAvatar }) => {
 							values={formik.values}
 						/>
 					</div>
+					<div>
+						{formik.values.postImg.map((img) => (
+							<Preview img={img} key={img} />
+						))}
+					</div>
 					<div className='flex justify-between mt-2 w-auto'>
 						<div className='flex items-center'>
-							<FormikControl
-								type='file'
-								name='file'
-								label='Photos/Videos'
-								labelClasses='flex items-center'
-								setFieldValue={formik.setFieldValue}
-								onBlur={formik.handleBlur}
-								values={formik.values}
-							/>
+							<FieldArray
+								name='postImg'
+								render={(arrayHelpers) => (
+									<>
+										<FormikControl
+											type='file'
+											name='postImg'
+											label='Photos/Videos'
+											labelClasses='flex items-center'
+											setFieldValue={formik.setFieldValue}
+											onBlur={formik.handleBlur}
+											values={formik.values}
+											arrayHelpers={arrayHelpers}
+										/>
+									</>
+								)}
+							></FieldArray>
+
 							<button className='px-4 py-2 flex items-center'>
 								<HiOutlineFaceSmile
 									aria-hidden='true'

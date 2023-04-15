@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PostCard from '../components/post/PostCard';
 import { VscFeedback } from 'react-icons/vsc';
 import { profileSelector, store } from '../utilities/store/index';
@@ -11,14 +11,16 @@ import Loadingdots from '../components/Loadingdots';
 import SharedPost from '../components/post/SharedPost';
 
 function HomeFeeds() {
+	const dispatch = useDispatch();
 	const { posts, loading, error } = useSelector(
 		(store) => store.postsReducer.posts
 	);
+
 	useEffect(() => {
-		store.dispatch(getPosts());
+		store.dispatch(getPosts(1));
 	}, []);
 	const getMorePosts = () => {
-		store.dispatch(getPosts());
+		dispatch(getPosts());
 	};
 	if (loading) {
 		return (
@@ -40,6 +42,7 @@ function HomeFeeds() {
 	} else if (error) {
 		return <pre>{JSON.stringify(error)}</pre>;
 	} else if (posts) {
+		console.log(posts);
 		return (
 			<>
 				{posts.length > 0 ? (
@@ -48,30 +51,33 @@ function HomeFeeds() {
 							<div key={i}>
 								{post.parent ? (
 									<SharedPost
-										userName={post.user.user_name}
+										userName={post.parent.user.user_name}
 										postTime={timeToX(post.parent.created_at)}
 										description={post.parent.body}
 										likesCount={post.parent.reacts_count}
 										commentsCount={post.parent.comments_count}
-										shareCount='14'
+										shareCount={post.parent.children_count}
 										postId={post.parent.id}
-										likeState={post.parent.is_react}
+										likeState={post.is_react}
 										img={post.parent.user.profile.avatar}
-										userSharedName={post.parent.user.user_name}
+										userSharedName={post.user.user_name}
 										sharedUserImg={post.parent.user.profile.avatar}
+										sharedTime={timeToX(post.created_at)}
+										userId={post.parent.user_id}
 									/>
 								) : (
 									<PostCard
-										userName={post.user.user_name}
+										userName={post.user?.user_name}
 										postTime={timeToX(post.created_at)}
 										description={post.body}
 										likesCount={post.reacts_count}
 										commentsCount={posts.comments_count}
-										shareCount='14'
+										shareCount={post.children_count}
 										postId={post.id}
 										likeState={post.is_react}
 										img={post.user.profile.avatar}
 										reacts={post.reacts}
+										userId={post.user_id}
 									/>
 								)}
 							</div>

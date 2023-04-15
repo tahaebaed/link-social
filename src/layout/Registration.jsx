@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { MdAddLink } from 'react-icons/md';
 import { IoLogInOutline } from 'react-icons/io5';
 import { motion } from 'framer-motion';
@@ -8,9 +8,9 @@ import '../assets/scss/components/registration.scss';
 
 const Registration = (props) => {
 	return (
-		<section className='relative min-h-[90vh]'>
+		<section className='relative min-h-screen'>
 			<div className='registration-bg-wrap'></div>
-			<div className='container mt-[4rem] flex items-center justify-center'>
+			<div className='container pt-28 flex items-center justify-center'>
 				<div className='flex h-3/4 items-center flex-col md:flex-row justify-around w-full"'>
 					<div className='mb-[3rem] md:mr-[5rem] flex flex-col content-around md:ml-[2rem]'>
 						<h2 className='text-lg md:text-2xl text-stone-100 mb-7 '>
@@ -49,7 +49,7 @@ const Registration = (props) => {
 								whileInView={{ opacity: [0, 1] }}
 								transition={{ type: 'tween', delay: 0.2 }}
 							>
-								{props.children}
+								<Outlet />
 							</motion.div>
 						</div>
 					</div>

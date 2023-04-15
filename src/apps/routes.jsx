@@ -11,8 +11,6 @@ const SuspenseWrapper = (props) => {
 	);
 };
 
-const routesWrapper = (routes = []) => {};
-
 const ProtectedAuthRoutes = ({ children }) => {
 	const user = useSelector((store) => store['auth']['user']);
 	if (!user) {
@@ -31,26 +29,34 @@ const ProtectedPublicRoutes = ({ children }) => {
 
 const publicRoutes = PUBLIC_ROUTES.map((route) => (
 	<Route
-		path={route.path}
 		key={route.path}
-		element={
-			<ProtectedPublicRoutes>
-				<route.component />
-			</ProtectedPublicRoutes>
-		}
-	/>
+		element={route.layout ? <route.layout /> : <Layout />}
+	>
+		<Route
+			path={route.path}
+			element={
+				<ProtectedPublicRoutes>
+					<route.component />
+				</ProtectedPublicRoutes>
+			}
+		/>
+	</Route>
 ));
 
 const authRoutes = AUTH_ROUTES.map((route) => (
 	<Route
-		path={route.path}
 		key={route.path}
-		element={
-			<ProtectedAuthRoutes>
-				<route.component />
-			</ProtectedAuthRoutes>
-		}
-	/>
+		element={route.layout ? <route.layout /> : <Layout />}
+	>
+		<Route
+			path={route.path}
+			element={
+				<ProtectedAuthRoutes>
+					<route.component />
+				</ProtectedAuthRoutes>
+			}
+		/>
+	</Route>
 ));
 
 function MainRoutes() {
@@ -64,7 +70,7 @@ function MainRoutes() {
 	return (
 		<SuspenseWrapper>
 			<Routes>
-				<Route path='/' element={<Layout />}>
+				<Route path='/'>
 					{publicRoutes}
 					{authRoutes}
 				</Route>

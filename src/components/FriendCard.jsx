@@ -23,9 +23,12 @@ function FriendCard({ friend }) {
 						to={`/profile/${friend.id}`}
 						className='text-2xl font-bold hover:text-aurora transition-all duration-300 inline-block mt-10 md:mt-0'
 					>
-						{friend.first_name} {friend.last_name}
+						{friend.first_name || friend.user.first_name}{' '}
+						{friend.last_name || friend.user.last_name}
 					</Link>
-					<div className='text-gray-400 text-sm'>{friend.email}</div>
+					<div className='text-gray-400 text-sm'>
+						{friend.email || friend.user.email}
+					</div>
 				</div>
 			</div>
 			<div className='flex justify-center pb-4'>
@@ -35,7 +38,7 @@ function FriendCard({ friend }) {
 					className='font-bold mx-2 flex items-center'
 				>
 					<IoPersonAdd className='inline-block mr-2' />
-					<span>Add Friend</span>
+					<span>Follow</span>
 				</Button>
 				<Button as={Link} to={`/message/${friend.id}`} outline lg>
 					<HiOutlineChatBubbleLeftRight />

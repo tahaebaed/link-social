@@ -76,21 +76,21 @@ The following example shows the default value for dropdown, make sure you use it
 
 ```html
 <ul>
-	<li>
-		<a className="dropdown-item" href="#"> Action </a>
-	</li>
-	<li>
-		<a className="dropdown-item" href="#"> Another action </a>
-	</li>
-	<li>
-		<a className="dropdown-item" href="#"> Something else here </a>
-	</li>
-	<li>
-		<hr className="dropdown-divider" />
-	</li>
-	<li>
-		<a className="dropdown-item" href="#"> Separated link </a>
-	</li>
+  <li>
+    <a className="dropdown-item" href="#"> Action </a>
+  </li>
+  <li>
+    <a className="dropdown-item" href="#"> Another action </a>
+  </li>
+  <li>
+    <a className="dropdown-item" href="#"> Something else here </a>
+  </li>
+  <li>
+    <hr className="dropdown-divider" />
+  </li>
+  <li>
+    <a className="dropdown-item" href="#"> Separated link </a>
+  </li>
 </ul>
 ```
 
@@ -144,8 +144,6 @@ import Button from './components/Button';
 | `onChange`  | `String`  | `() => {}`                                                                                                                                     | onChange function with file, event params |
 | `circle`    | `Boolean` | `false`                                                                                                                                        | change wrapper to circle                  |
 | `icon`      | `String`  | `<BsPencil />`                                                                                                                                 | change label icon                         |
-| `height`    | `String`  | `40`                                                                                                                                           | change preview height                     |
-| `width`     | `String`  | `40`                                                                                                                                           | change preview width                      |
 | `className` | `String`  | `''`                                                                                                                                           | add any additional className              |
 
 #### Examples
@@ -166,6 +164,18 @@ import Preview from './components/Preview';
 <Preview onChange={file=>console.log(file)} />
 // to hide popover set label to null
 <Preview onChange={file=>console.log(file)} label='' />
+```
+
+#### How to change preview picker
+
+```jsx
+// 1. first pass noLabel props to disable default picker
+// 2. then change the id to what you want
+// 3. the custom picker must be wrap on label tag
+// 4. pass the same id to Preview component
+<label htmlFor='custom-picker-id' >Open Preview</label> 
+<Preview noLabel id='custom-picker-id' />
+
 ```
 
 ### Banner

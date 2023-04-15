@@ -4,10 +4,20 @@ import { Provider } from 'react-redux';
 import profileReducer from './profile.slice';
 import userReducer from './user_reducer/userSlice';
 import weatherReducer from './weather_reducer/weatherSlice';
-import postsReducer from './posts_reducer/postsSlice'
+import postsReducer from './posts_reducer/postsSlice';
+import reactsReducer from './posts_reducer/reactsSlice';
+import settingReducer from './setting.slice';
 
 export const store = configureStore({
-	reducer: { auth: userReducer, weatherReducer, postsReducer, profile: profileReducer },
+	reducer: {
+		auth: userReducer,
+		weatherReducer,
+		postsReducer,
+		reactsReducer,
+		profile: profileReducer,
+		setting: settingReducer,
+	},
+
 	devTools: process.env.toString() !== 'production',
 });
 

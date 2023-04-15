@@ -3,28 +3,31 @@ import { MdOutlineLogout } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { AVATAR_DROPDOWN_ITEMS } from '../../constants/navbar';
 import Dropdown from '../../components/Dropdown';
+import { useSelector } from 'react-redux';
+
+const DropdownLabel = () => {
+	const user = useSelector((state) => state.auth.user);
+
+	return (
+		<div className='flex items-center'>
+			<img
+				src={user?.profile?.avatar}
+				className='rounded-full object-cover border border-emerald-400 p-1'
+				width='36'
+				height='36'
+				alt={user?.first_name + ' ' + user?.last_name}
+			/>
+			<div className='mx-2'>
+				<span className='block text-sm text-gray-700 font-bold'>
+					{user?.first_name + ' ' + user?.last_name}
+				</span>
+				<span className='text-xs block text-gray-500'>{user?.user_name}</span>
+			</div>
+		</div>
+	);
+};
 
 function UserDropdown() {
-	const DropdownLabel = () => {
-		return (
-			<div className='flex items-center'>
-				<img
-					src='https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg'
-					className='rounded-full object-cover border border-emerald-400 p-1'
-					width='36'
-					height='36'
-					alt='Mohammed Taysser'
-				/>
-				<div className='mx-2'>
-					<span className='block text-sm text-gray-700 font-bold'>
-						Mohammed Taysser
-					</span>
-					<span className='text-xs block text-gray-500'>username</span>
-				</div>
-			</div>
-		);
-	};
-
 	const onLogoutBtnClick = (evt) => {
 		evt.preventDefault();
 		console.log('logout');

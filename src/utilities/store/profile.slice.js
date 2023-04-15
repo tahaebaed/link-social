@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { userInterceptor } from '../../apps/axiosInstance';
-import Cookies from 'js-cookie';
 
 const getUser = createAsyncThunk('profile/get/user', async (profileId) => {
 	try {
@@ -36,9 +35,6 @@ const getUserSavedPosts = createAsyncThunk(
 			const response = await userInterceptor({
 				method: 'get',
 				url: `/saved-posts`,
-				headers: {
-					apiKey: Cookies.get('token') || '',
-				},
 			});
 			return response.data;
 		} catch (err) {

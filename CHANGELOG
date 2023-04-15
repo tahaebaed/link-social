@@ -11,8 +11,48 @@
 
 ### API
 
-- [ ] followers & following are different on the data, like username, first name, last name
-- [ ] posts like count, user name not found
+- [x] How to save images
+- [x] Email can't be change
+- [x] On setting update the response must return user and profile data
+- [x] There is no default avatar or cover
+
+### Bug
+
+- updateProfile: input is blur after single letter
+
+## Set temp cookie
+
+```js
+Cookies.set('token', '27|iLammS6a8iW4RwQPTWNx8M9PkenXkRYgh4cynheI');
+Cookies.set(
+  'user',
+  JSON.stringify({
+    id: 52,
+    first_name: 'mohammed',
+    last_name: 'taysser',
+    user_name: 'mo5',
+    phone: '+201015081861',
+    birthday: '1999-11-13',
+    country: 'Egypt',
+    status: 'single',
+    region: '132132',
+    gender: null,
+    email: 'mo@mo.mo',
+    email_verified_at: null,
+    created_at: '2023-04-02T19:54:13.000000Z',
+    updated_at: '2023-04-05T21:45:27.000000Z',
+    profile: {
+      id: 52,
+      user_id: 52,
+      description: null,
+      avatar: null,
+      cover: null,
+      created_at: '2023-04-02T19:54:13.000000Z',
+      updated_at: '2023-04-02T19:54:13.000000Z',
+    },
+  })
+);
+```
 
 ## Changes
 

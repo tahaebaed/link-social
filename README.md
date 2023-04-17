@@ -1,5 +1,39 @@
 # Social media app
 
+## Getting start 🚀
+
+### Clone repo
+
+```shell
+git clone https://github.com/tahaebaed/link-social.git
+```
+
+### Change directory
+
+```shell
+cd link-social
+```
+
+### Install dependencies
+
+```shell
+npm install
+```
+
+### Run server
+
+```shell
+npm start
+```
+
+### Update URL
+
+Replace localhost with [`127.0.0.1`](http://127.0.0.1:3000) and keep the port
+
+```txt
+http://localhost:3000 ➡️ http://127.0.0.1:3000
+```
+
 ## Routes
 
 ### No Authentication
@@ -135,16 +169,17 @@ import Button from './components/Button';
 
 #### Props
 
-| Props       | Type      | Default                                                                                                                                        | Description                               |
-| ----------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| `img`       | `String`  | [`Avatar`](https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg) | set initial image                         |
-| `id`        | `String`  | `preview-id`                                                                                                                                   | set input id                              |
-| `name`      | `String`  | `preview-`                                                                                                                                     | set input name                            |
-| `label`     | `String`  | `Change Preview`                                                                                                                               | set input label                           |
-| `onChange`  | `String`  | `() => {}`                                                                                                                                     | onChange function with file, event params |
-| `circle`    | `Boolean` | `false`                                                                                                                                        | change wrapper to circle                  |
-| `icon`      | `String`  | `<BsPencil />`                                                                                                                                 | change label icon                         |
-| `className` | `String`  | `''`                                                                                                                                           | add any additional className              |
+| Props            | Type      | Default                                                                                                                                        | Description                               |
+| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `img`            | `String`  | [`Avatar`](https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg) | set initial image                         |
+| `id`             | `String`  | `preview-id`                                                                                                                                   | set input id                              |
+| `name`           | `String`  | `preview-`                                                                                                                                     | set input name                            |
+| `label`          | `String`  | `Change Preview`                                                                                                                               | set input label                           |
+| `onChange`       | `String`  | `() => {}`                                                                                                                                     | onChange function with file, event params |
+| `circle`         | `Boolean` | `false`                                                                                                                                        | change wrapper to circle                  |
+| `icon`           | `String`  | `<BsPencil />`                                                                                                                                 | change label icon                         |
+| `className`      | `String`  | `''`                                                                                                                                           | add any additional className              |
+| `imageClassName` | `String`  | `''`                                                                                                                                           | add any additional className to image     |
 
 #### Examples
 
@@ -173,7 +208,7 @@ import Preview from './components/Preview';
 // 2. then change the id to what you want
 // 3. the custom picker must be wrap on label tag
 // 4. pass the same id to Preview component
-<label htmlFor='custom-picker-id' >Open Preview</label> 
+<label htmlFor='custom-picker-id' >Open Preview</label>
 <Preview noLabel id='custom-picker-id' />
 
 ```

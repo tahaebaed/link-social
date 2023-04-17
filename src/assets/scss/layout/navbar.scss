@@ -129,6 +129,7 @@ nav.navbar {
 			.danger-item {
 				&:hover {
 					color: tomato;
+					background-color: rgba($color: tomato, $alpha: 0.1);
 				}
 			}
 		}

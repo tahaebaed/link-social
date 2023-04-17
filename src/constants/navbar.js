@@ -14,7 +14,7 @@ const AVATAR_DROPDOWN_ITEMS = [
 	},
 	{
 		icon: VscSettings,
-		url: '/setting/update-profile',
+		url: '/setting/update-user',
 		label: 'Setting',
 	},
 	{

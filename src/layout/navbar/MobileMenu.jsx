@@ -4,8 +4,11 @@ import { MdOutlineLogout } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { AVATAR_DROPDOWN_ITEMS } from '../../constants/navbar';
 import Dropdown from '../../components/Dropdown';
+import { useSelector } from 'react-redux';
 
 function MobileMenu() {
+	const user = useSelector((state) => state.auth.user);
+
 	const onLogoutBtnClick = (evt) => {
 		evt.preventDefault();
 		console.log('logout');
@@ -22,17 +25,19 @@ function MobileMenu() {
 					<div className='dropdown-item'>
 						<div className='flex items-center'>
 							<img
-								src='https://res.cloudinary.com/mohammed-taysser/image/upload/h_500,w_500/v1654621448/paperCuts/authors/avatar/mu931hsdzu68wwqpumbh.jpg'
+								src={user?.profile?.avatar}
 								className='rounded-full object-cover border border-emerald-400 p-1'
 								width='36'
 								height='36'
-								alt='Mohammed Taysser'
+								alt={user?.first_name + ' ' + user?.last_name}
 							/>
-							<Link to='/setting' className='mx-2'>
+							<Link to={`/profile/${user.id}`} className='mx-2'>
 								<span className='block text-sm text-gray-700 font-bold'>
-									Mohammed Taysser
+									{user?.first_name + ' ' + user?.last_name}
 								</span>
-								<span className='text-xs block text-gray-500'>username</span>
+								<span className='text-xs block text-gray-500'>
+									{user?.user_name}
+								</span>
 							</Link>
 						</div>
 					</div>

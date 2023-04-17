@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { userInterceptor } from '../../../apps/axiosInstance';
-import { createPostExtra, getReactExtra, postReactExtra } from './postReactsExtraReducer';
-export const getPosts = createAsyncThunk('getPosts', async () => {
+import { createPostExtra, getReactExtra, postReactExtra, sharePostExtra } from './postReactsExtraReducer';
+export const getPosts = createAsyncThunk('getPosts', async (num) => {
 	try {
 		const response = await userInterceptor({
 			method: 'GET',
-			url: `/posts`
+			url: `/posts?page=${num}`
 		})
 		console.log(response.data.data.posts)
 		return response.data.data.posts;
@@ -16,7 +16,8 @@ export const getPosts = createAsyncThunk('getPosts', async () => {
 const initialState = {
 	posts: { loading: false, posts: [], error: '', },
 	reacts: { loading: false, error: '', reacts: [] },
-	createdPost: { loading: false, error: '', posts: [] },
+	createdPost: { loading: false, error: '', post: {} },
+	sharePost: { isLoading: false, error: '', sharedPosts: {} },
 
 };
 
@@ -28,6 +29,7 @@ const postsSlice = createSlice({
 		...postReactExtra(),
 		...getReactExtra(),
 		...createPostExtra(),
+		...sharePostExtra(),
 		[getPosts.pending]: (state) => {
 			state.posts.loading = true
 		},

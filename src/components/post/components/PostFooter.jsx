@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FaHeart, FaRegHeart, FaShare } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import { users } from '../../../utilities/dummydata/users';
+import { useDispatch } from 'react-redux';
 import { BiMessageDetail } from 'react-icons/bi';
 import {
-	getReacts,
 	postReacts,
+	sharePosts,
 } from '../../../utilities/store/posts_reducer/postReactsExtraReducer';
 
 function PostFooter({
@@ -21,6 +20,9 @@ function PostFooter({
 	const ReactToPost = () => {
 		// send api request to change react state
 		dispatch(postReacts(postId));
+	};
+	const sharePost = () => {
+		dispatch(sharePosts(postId));
 	};
 	return (
 		<>
@@ -69,7 +71,10 @@ function PostFooter({
 						<BiMessageDetail className='post_comment_icon' />
 						<span className='mx-3'>{commentsCount}</span>
 					</div>
-					<div className='post_share flex items-center'>
+					<div
+						className='post_share flex items-center cursor-pointer'
+						onClick={sharePost}
+					>
 						<FaShare className='share_post_icon' />
 						<span className='mx-3'>{shareCount}</span>
 					</div>

@@ -1,4 +1,7 @@
-.friends_list_box {
+.friends_list_box,
+.chat_body,
+.chats_inbox,
+.left_menu {
 	&::-webkit-scrollbar {
 		width: 5px;
 		border-radius: 5px;
@@ -9,4 +12,9 @@
 	&::-webkit-scrollbar-thumb {
 		background-color: rgb(206, 203, 203);
 	}
+}
+.active {
+	border-left: 4px solid rgb(132 204 22);
+	background-color: rgb(204 251 241);
+	transition: all 0.2s ease-in-out;
 }

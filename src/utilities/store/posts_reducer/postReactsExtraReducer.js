@@ -1,16 +1,27 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { userInterceptor } from '../../../apps/axiosInstance';
 
-export const createPosts = createAsyncThunk('createPosts', async (bodyText) => {
+export const createPosts = createAsyncThunk('createPosts', async (data) => {
 	try {
 		const response = await userInterceptor({
 			method: 'POST',
 			url: `/posts`,
-			data: {
-				body: bodyText
-			}
+			data
 		});
 		console.log(response, "create res");
+		return response.data.data.post;
+	} catch (err) {
+		return { error: err.response, status: false };
+	}
+});
+export const sharePosts = createAsyncThunk('sharePosts', async (postId) => {
+	try {
+		const response = await userInterceptor({
+			method: 'POST',
+			url: `/posts/${postId}/share`,
+
+		});
+		console.log(response, "sharePosts");
 		return response.data.data.post;
 	} catch (err) {
 		return { error: err.response, status: false };
@@ -94,4 +105,19 @@ function createPostExtra() {
 	};
 }
 
-export { getReacts, postReactExtra, getReactExtra, createPostExtra };
+function sharePostExtra() {
+	return {
+		[sharePosts.pending]: (state) => {
+			state.sharePost.isLoading = true;
+		},
+		[sharePosts.fulfilled]: (state, action) => {
+			console.log(action.payload, "sharePosts payload")
+			//state.posts.posts = [action.payload, ...state.posts.posts];
+		},
+		[sharePosts.rejected]: (state, action) => {
+			state.sharePost.error = action.payload.message;
+		},
+	};
+}
+
+export { getReacts, postReactExtra, getReactExtra, createPostExtra, sharePostExtra };

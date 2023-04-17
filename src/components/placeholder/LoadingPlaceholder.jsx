@@ -18,7 +18,7 @@ function LoadingPlaceholder({
 		<>
 			<div className={`placeholder_card`}>
 				<div className='flex items-center'>
-					<div className={`img_hover w-[40px] h-[40px]`}></div>
+					<Block rounded />
 					<div className={`author_name ml-5`}>
 						<Block className='w-[4rem]' />
 					</div>

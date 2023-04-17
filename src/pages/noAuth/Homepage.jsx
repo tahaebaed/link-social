@@ -6,9 +6,7 @@ import HomeFeeds from '../../layout/HomeFeeds';
 import WeatherCard from '../../layout/WeatherCard';
 import { FaUserFriends } from 'react-icons/fa';
 import { AiFillCloseCircle, AiOutlineAppstore } from 'react-icons/ai';
-import OffCanvas from '../../components/OffCanvas';
-import MobileMenu from '../../components/post/MobileMenu';
-
+import MobileMenu from '../../components/MobileMenu';
 
 function Homepage(props) {
 	const [showCanvas, setshowCanvas] = useState(false);
@@ -22,16 +20,28 @@ function Homepage(props) {
 	return (
 		<div>
 			<div className='mobile_leftMenu'>
-				{showCanvas ? (
-					<OffCanvas openCanvas={showCanvas}>
-						<div onClick={closeCanvas}>
-							<AiFillCloseCircle className='text-red-400' />
+				<div
+					className={`overlay h-full w-full fixed top-0  transition-opacity transition-bg ease-in-out duration-1000
+					${showCanvas ? 'bg-black opacity-80 z-[60]' : 'z-[-1]'} 
+					`}
+				></div>
+
+				<div
+					className={`fixed top-0 h-[100vh] bg-white w-1/2  transition-all ease-in-out duration-1000 ${
+						showCanvas ? 'z-[70] left-0' : 'left-[-50%]'
+					}`}
+				>
+					<div className='flex justify-between my-5 mx-3' onClick={closeCanvas}>
+						<p className='text-lg text-slate-500 font-bold'>Features</p>
+						<div>
+							<AiFillCloseCircle className='text-3xl text-teal-400 cursor-pointer' />
 						</div>
-						<p>OffCanvas</p>
-					</OffCanvas>
-				) : (
-					''
-				)}
+					</div>
+					<div className='left_menu flex-col h-[88vh] overflow-auto'>
+						<WeatherCard />
+						<CalendarCard />
+					</div>
+				</div>
 			</div>
 			<div className='grid grid-cols-4'>
 				<div className='lg:col-span-1 hidden lg:block'>
@@ -49,17 +59,19 @@ function Homepage(props) {
 					<FriendsList />
 				</div>
 			</div>
-			<MobileMenu>
-				<div className='show_friendsList mx-2 my-4 cursor-pointer'>
-					<FaUserFriends className='text-fuchsia-600 w-[20px]' />
-				</div>
-				<div className='show_leftSidebar mx-2 my-4 cursor-pointer'>
-					<AiOutlineAppstore
-						onClick={openCanvas}
-						className='text-pink-600 w-[20px] h-[25px]'
-					/>
-				</div>
-			</MobileMenu>
+			<div className='lg:hidden'>
+				<MobileMenu>
+					<div className='show_friendsList mx-2 my-4 cursor-pointer'>
+						<FaUserFriends className='text-fuchsia-600 w-[20px]' />
+					</div>
+					<div className='show_leftSidebar mx-2 my-4 cursor-pointer'>
+						<AiOutlineAppstore
+							onClick={openCanvas}
+							className='text-pink-600 w-[20px] h-[25px]'
+						/>
+					</div>
+				</MobileMenu>
+			</div>
 		</div>
 	);
 }

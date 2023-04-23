@@ -31,7 +31,7 @@ function MobileMenu() {
 								height='36'
 								alt={user?.first_name + ' ' + user?.last_name}
 							/>
-							<Link to={`/profile/${user.id}`} className='mx-2'>
+							<Link to={`/profile/${user?.id}`} className='mx-2'>
 								<span className='block text-sm text-gray-700 font-bold'>
 									{user?.first_name + ' ' + user?.last_name}
 								</span>

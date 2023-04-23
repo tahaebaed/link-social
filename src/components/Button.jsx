@@ -26,10 +26,9 @@ import React, { useState, useEffect } from 'react';
  * @param {Object} props 
  * @returns
  */
-function Button({ sm, lg, outline, disabled, as: As, ...props }) {
-	const [className, setClassName] = useState('');
-
-	useEffect(() => {
+function Button(props) {
+	const { sm, lg, outline, disabled, as: As, ...reset } = props;
+	const cls = () => {
 		let initClass =
 			`btn-aurora rounded-full border border-aurora select-none inline-block font-normal text-center align-middle py-1.5 px-3 text-base transition duration-500 leading-tight ` +
 			props.className;
@@ -46,13 +45,17 @@ function Button({ sm, lg, outline, disabled, as: As, ...props }) {
 				initClass += ' hover:bg-white hover:text-aurora';
 			}
 		}
+		return initClass;
+	};
+	const [className, setClassName] = useState(cls);
 
-		setClassName(initClass);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useEffect(() => {
+		setClassName(cls);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [props]);
 
 	return (
-		<As {...props} className={className} disabled={disabled}>
+		<As {...reset} className={className} disabled={disabled}>
 			{props.children}
 		</As>
 	);

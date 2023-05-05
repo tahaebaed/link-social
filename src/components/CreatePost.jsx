@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { HiOutlineCamera, HiOutlineFaceSmile } from 'react-icons/hi2';
+import React from 'react';
+import { HiOutlineFaceSmile } from 'react-icons/hi2';
 
 import iconAvatar from '../assets/images/icons/favicon.svg';
 import Button from './Button';
 import '../assets/scss/components/CreatePost.scss';
-import { Field, FieldArray, Form, Formik } from 'formik';
+import { FieldArray, Form, Formik } from 'formik';
 import FormikControl from './FormFields/FormikControl';
 import ProfileImg from './ProfileImg';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createPosts } from '../utilities/store/posts_reducer/postReactsExtraReducer';
 import Preview from './Preview';
 
@@ -23,6 +23,7 @@ import Preview from './Preview';
 const CreatePost = ({ avatar = iconAvatar }) => {
 	const dispatch = useDispatch();
 	const submitForm = (valuse, { resetForm }) => {
+		console.log(valuse);
 		dispatch(createPosts({ body: valuse.postContent, photos: valuse.postImg }));
 		resetForm();
 	};
@@ -47,7 +48,13 @@ const CreatePost = ({ avatar = iconAvatar }) => {
 					</div>
 					<div>
 						{formik.values.postImg.map((img) => (
-							<Preview img={img} key={img} />
+							<Preview
+								img={img}
+								key={img}
+								noLabel
+								className='h-20 w-20'
+								imageClassName='h-20 w-20'
+							/>
 						))}
 					</div>
 					<div className='flex justify-between mt-2 w-auto'>

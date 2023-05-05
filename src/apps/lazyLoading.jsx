@@ -14,7 +14,7 @@ const UpdateUser = React.lazy(() => import('../pages/needAuth/UpdateUser'));
 const UpdateProfile = React.lazy(() =>
 	import('../pages/needAuth/UpdateProfile')
 );
-const ChatBox = React.lazy(() => import('../pages/needAuth/chat/ChatBox'));
+const ChatBox = React.lazy(() => import('../pages/needAuth/Chat'));
 
 const Profile = React.lazy(() => import('../pages/needAuth/Profile'));
 

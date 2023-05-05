@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import InputEmoji from 'react-input-emoji';
-import Dropdown from '../../../components/Dropdown';
+import Dropdown from '../Dropdown';
 import Receiver from './Receiver';
 import Sender from './Sender';
 import { BiSend } from 'react-icons/bi';
-import ProfileImg from '../../../components/ProfileImg';
+import ProfileImg from '../ProfileImg';
 import {
 	BsFillCameraVideoFill,
 	BsFillMicFill,
@@ -34,8 +34,8 @@ function ChatView() {
 				</div>
 
 				<div className='flex justify-center items-center'>
-					<BsTelephoneFill className='text-teal-400 text-2xl mx-3' />
-					<BsFillCameraVideoFill className='text-teal-400 text-2xl mx-3' />
+					<BsTelephoneFill className='text-aurora text-2xl mx-3' />
+					<BsFillCameraVideoFill className='text-aurora text-2xl mx-3' />
 					<div className='ml-4'>
 						<Dropdown noArrow />
 					</div>
@@ -64,7 +64,7 @@ function ChatView() {
 			<div className='chat_footer fixed bottom-0 bg-slate-100 w-[75%]'>
 				<div className='border grid grid-cols-12 items-center'>
 					<div className='col-span-1 text-center'>
-						<BsFillMicFill className='text-teal-400 text-2xl mx-auto' />
+						<BsFillMicFill className='text-aurora text-2xl mx-auto' />
 					</div>
 					<div className='col-span-10'>
 						<InputEmoji
@@ -76,7 +76,7 @@ function ChatView() {
 						/>
 					</div>
 					<div className='col-span-1 text-center'>
-						<button className='rounded-full text-xl w-[45px] h-[45px] bg-teal-300 text-white flex justify-center items-center'>
+						<button className='rounded-full text-xl w-[45px] h-[45px] bg-aurora text-white flex justify-center items-center'>
 							<BiSend />
 						</button>
 					</div>

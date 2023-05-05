@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileImg from '../../../components/ProfileImg';
+import ProfileImg from '../ProfileImg';
 
 function Sender() {
 	return (
@@ -16,7 +16,7 @@ function Sender() {
 				</div>
 
 				<div className='sender_msg mx-2'>
-					<div className='message-wrap mr-[40px] bg-teal-100 px-3 py-2 rounded-lg'>
+					<div className='message-wrap mr-[40px] bg-aurora text-white px-3 py-2 rounded-lg'>
 						I want those files for you. I want you to send 1 PDF and 1 image
 						file.
 					</div>

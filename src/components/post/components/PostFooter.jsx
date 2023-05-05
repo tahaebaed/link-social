@@ -23,6 +23,7 @@ function PostFooter({
 	};
 	const sharePost = () => {
 		dispatch(sharePosts(postId));
+		console.log(postId, 'postId');
 	};
 	return (
 		<>

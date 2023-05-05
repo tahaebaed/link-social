@@ -7,8 +7,10 @@ import WeatherCard from '../../layout/WeatherCard';
 import { FaUserFriends } from 'react-icons/fa';
 import { AiFillCloseCircle, AiOutlineAppstore } from 'react-icons/ai';
 import MobileMenu from '../../components/MobileMenu';
+import usePageTitle from '../../hooks/usePageTitle';
 
 function Homepage(props) {
+	usePageTitle('Home');
 	const [showCanvas, setshowCanvas] = useState(false);
 	const openCanvas = () => {
 		setshowCanvas(true);

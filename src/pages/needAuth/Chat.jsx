@@ -1,8 +1,10 @@
 import React from 'react';
-import ChatView from './ChatView';
-import ChatsList from './ChatsList';
+import ChatView from '../../components/chat/ChatView';
+import ChatsList from '../../components/chat/ChatsList';
+import usePageTitle from '../../hooks/usePageTitle';
 
 function ChatBox() {
+	usePageTitle('Chat');
 	return (
 		<div className='grid grid-cols-8'>
 			<div className='chats_list col-span-2'>

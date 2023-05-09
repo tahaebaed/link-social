@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ProfileImg from '../../../components/ProfileImg';
-import '../../../assets/scss/layout/scrollbar.scss';
+import ProfileImg from '../../components/ProfileImg';
+import '../../assets/scss/layout/scrollbar.scss';
 function FriendInbox() {
 	const [isOpen, setOpen] = useState(null);
 	const openChat = (index) => {

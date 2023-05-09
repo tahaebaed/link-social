@@ -31,21 +31,21 @@ const FileInput = ({
 		//fd.append('public_id', e.target.files[0].name.replace('.png', ''));
 		fd.append('upload_preset', 'jqmus7oo');
 		fd.append('api_key', 'tahaebaed2@gmail.com');
-
+		rest.arrayHelpers.push(fd);
 		const url = 'https://api.cloudinary.com/v1_1/diih3lhke/image/upload';
 
-		axios
-			.post(url, fd, {
-				onUploadProgress: (progressEvent) => {
-					console.log(
-						`${Math.round((progressEvent.loaded / progressEvent.total) * 100)}%`
-					);
-				},
-			})
-			.then((res) => {
-				//	rest.setFieldValue('postImg', [res.data]);
-				rest.arrayHelpers.push(res.data.url);
-			});
+		// axios
+		// 	.post(url, fd, {
+		// 		onUploadProgress: (progressEvent) => {
+		// 			console.log(
+		// 				`${Math.round((progressEvent.loaded / progressEvent.total) * 100)}%`
+		// 			);
+		// 		},
+		// 	})
+		// 	.then((res) => {
+		// 		//	rest.setFieldValue('postImg', [res.data]);
+		// 		rest.arrayHelpers.push(res.data.url);
+		// 	});
 	};
 
 	return (

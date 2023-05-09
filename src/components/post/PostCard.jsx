@@ -30,7 +30,7 @@ function PostCard({
 }) {
 	return (
 		<>
-			<div className='card_box sh shadow my-4 mx-2'>
+			<div className='card_box sh shadow my-4'>
 				<div className='flex mb-3 justify-between'>
 					<div className='flex items-center'>
 						<ProfileImg border img={`${img}`} />

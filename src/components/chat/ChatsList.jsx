@@ -1,6 +1,6 @@
 import React from 'react';
-import QuerySearch from '../../../layout/navbar/QuerySearch';
-import '../../../assets/scss/layout/scrollbar.scss';
+import QuerySearch from '../../layout/navbar/QuerySearch';
+import '../../assets/scss/layout/scrollbar.scss';
 import FriendInbox from './FriendInbox';
 
 function ChatsList() {

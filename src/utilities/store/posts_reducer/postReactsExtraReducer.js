@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { userInterceptor } from '../../../apps/axiosInstance';
+import { toast } from 'react-toastify';
 
 export const createPosts = createAsyncThunk('createPosts', async (data) => {
 	try {
@@ -22,7 +23,7 @@ export const sharePosts = createAsyncThunk('sharePosts', async (postId) => {
 
 		});
 		console.log(response, "sharePosts");
-		return response.data.data.post;
+		return response.data;
 	} catch (err) {
 		return { error: err.response, status: false };
 	}
@@ -45,7 +46,6 @@ export const postReacts = createAsyncThunk('postReacts', async (postId) => {
 			method: 'POST',
 			url: `/reacts/post/${postId}`,
 		});
-		console.log(response.data.data.reacts);
 		return { reacts: response.data.data.reacts, postId };
 	} catch (err) {
 		return { error: err.response, status: false };
@@ -111,8 +111,27 @@ function sharePostExtra() {
 			state.sharePost.isLoading = true;
 		},
 		[sharePosts.fulfilled]: (state, action) => {
-			console.log(action.payload, "sharePosts payload")
-			//state.posts.posts = [action.payload, ...state.posts.posts];
+			console.log(action.payload, "payload")
+			if (!action.payload.status) {
+				toast.error(
+					<>
+						<h4>Something went wrong</h4>
+						<p> {action.payload.message}</p>
+					</>
+				);
+			} else {
+				toast.success("The post has been shared");
+				state.posts.posts = state.posts.posts.map((post) =>
+					post.id === action.payload.data.post.post_id
+						? {
+							...post,
+							children_count: post.children_count + 1,
+
+						}
+						: post
+				);
+			}
+
 		},
 		[sharePosts.rejected]: (state, action) => {
 			state.sharePost.error = action.payload.message;

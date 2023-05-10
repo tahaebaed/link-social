@@ -2,10 +2,12 @@ import React from 'react';
 import { FaHeart, FaRegHeart, FaShare } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { BiMessageDetail } from 'react-icons/bi';
+import { modals } from '@mantine/modals';
 import {
 	postReacts,
 	sharePosts,
 } from '../../../utilities/store/posts_reducer/postReactsExtraReducer';
+import { ScrollArea } from '@mantine/core';
 
 function PostFooter({
 	commentsCount,
@@ -68,7 +70,24 @@ function PostFooter({
 					</div> */}
 				</div>
 				<div className='flex items-center post_icons'>
-					<div className='flex items-center post_comments'>
+					<div
+						className='flex items-center post_comments cursor-pointer'
+						onClick={() =>
+							modals.open({
+								title: 'Please confirm your action',
+								centered: true,
+								size: 'lg',
+								scrollAreaComponent: ScrollArea.Autosize,
+								children: (
+									<>
+										This action is so important that you are required to confirm
+										it with a modal. Please click one of these buttons to
+										proceed.
+									</>
+								),
+							})
+						}
+					>
 						<BiMessageDetail className='post_comment_icon' />
 						<span className='mx-3'>{commentsCount}</span>
 					</div>

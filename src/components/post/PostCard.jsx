@@ -1,8 +1,10 @@
-import './../../assets/scss/components/postCard.scss';
-import PostFooter from './components/PostFooter';
-import ProfileImg from '../ProfileImg';
-import Dropdown from '../Dropdown';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Dropdown from '../Dropdown';
+import ProfileImg from '../ProfileImg';
+import PostFooter from './components/PostFooter';
+
+import './../../assets/scss/components/postCard.scss';
 
 /**
  * 
@@ -33,7 +35,7 @@ function PostCard({
 			<div className='card_box sh shadow my-4'>
 				<div className='flex mb-3 justify-between'>
 					<div className='flex items-center'>
-						<ProfileImg border img={`${img}`} />
+						<ProfileImg border img={img} />
 						<div className='mx-3'>
 							<Link to={`/profile/${rest.userId}`}>
 								<h6 className='user_name'>{userName}</h6>

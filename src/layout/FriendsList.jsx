@@ -1,13 +1,14 @@
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Dropdown from '../components/Dropdown';
 import ProfileImg from '../components/ProfileImg';
-
-import '../assets/scss/layout/scrollbar.scss';
 import Block from '../components/placeholder/Block';
 import { profileSelector } from '../utilities/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { getUserFollow } from '../utilities/store/profile.slice';
+
+import '../assets/scss/layout/scrollbar.scss';
+
 function FriendsList() {
 	const dispatch = useDispatch();
 	const { isLoading, following } = useSelector(profileSelector.follow);
@@ -15,6 +16,7 @@ function FriendsList() {
 	useEffect(() => {
 		dispatch(getUserFollow(user.profile.id));
 	}, []);
+
 	if (isLoading) {
 		return (
 			<>
@@ -92,6 +94,8 @@ function FriendsList() {
 				</div>
 			</div>
 		);
+	} else {
+		return <>something wrong</>;
 	}
 }
 

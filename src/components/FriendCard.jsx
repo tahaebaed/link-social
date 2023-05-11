@@ -32,11 +32,7 @@ function FriendCard({ friend }) {
 				</div>
 			</div>
 			<div className='flex justify-center pb-4'>
-				<Button
-					as={Link}
-					to={`/add-friend/${friend.id}`}
-					className='font-bold mx-2 flex items-center'
-				>
+				<Button className='font-bold mx-2 flex items-center'>
 					<IoPersonAdd className='inline-block mr-2' />
 					<span>Follow</span>
 				</Button>

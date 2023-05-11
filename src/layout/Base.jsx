@@ -55,7 +55,13 @@ function Base() {
 				</MobileMenu>
 			</div>
 
-			<Outlet />
+			<div className='grid grid-cols-4'>
+				<div className='lg:col-span-1 hidden lg:block'>
+					<WeatherCard />
+					<CalendarCard />
+				</div>
+				<Outlet />
+			</div>
 		</>
 	);
 }

@@ -113,10 +113,11 @@ const WriteComment = ({ postId, viewport }) => {
 	useEffect(() => {
 		if (createdComment) {
 			setComment('');
-			viewport.current.scrollTo({
-				top: viewport.current.scrollHeight,
-				behavior: 'smooth',
-			});
+			viewport &&
+				viewport.current.scrollTo({
+					top: viewport.current.scrollHeight,
+					behavior: 'smooth',
+				});
 		}
 	}, [createdComment]);
 

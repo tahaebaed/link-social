@@ -1,4 +1,3 @@
-import { ScrollArea } from '@mantine/core';
 import { modals } from '@mantine/modals';
 import React from 'react';
 import { BiMessageDetail } from 'react-icons/bi';
@@ -78,7 +77,6 @@ function PostFooter({
 								title: '',
 								centered: true,
 								size: 'lg',
-								scrollAreaComponent: ScrollArea.Autosize,
 								children: <CommentsModal postId={postId} />,
 							})
 						}

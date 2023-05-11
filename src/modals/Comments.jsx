@@ -12,6 +12,7 @@ import { IoAlertCircleOutline } from 'react-icons/io5';
 import { VscCommentDiscussion } from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../components/Button';
+import { timeToX } from '../utilities/days';
 import { createComment, getComment } from '../utilities/store/comments.slice';
 
 function CommentsModal(props) {
@@ -67,7 +68,10 @@ function CommentsModal(props) {
 										/>
 									}
 								>
-									<div className='text-gray-400'>{comment.body}</div>
+									<div className='text-sm text-gray-400'>
+										{timeToX(comment.created_at)}
+									</div>
+									<div className='text-gray-500 mt-2'>{comment.body}</div>
 								</Timeline.Item>
 							))}
 						</Timeline>

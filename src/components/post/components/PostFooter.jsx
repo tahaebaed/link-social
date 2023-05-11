@@ -1,13 +1,14 @@
+import { ScrollArea } from '@mantine/core';
+import { modals } from '@mantine/modals';
 import React from 'react';
+import { BiMessageDetail } from 'react-icons/bi';
 import { FaHeart, FaRegHeart, FaShare } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { BiMessageDetail } from 'react-icons/bi';
-import { modals } from '@mantine/modals';
+import CommentsModal from '../../../modals/Comments';
 import {
 	postReacts,
 	sharePosts,
 } from '../../../utilities/store/posts_reducer/postReactsExtraReducer';
-import { ScrollArea } from '@mantine/core';
 
 function PostFooter({
 	commentsCount,
@@ -74,17 +75,11 @@ function PostFooter({
 						className='flex items-center post_comments cursor-pointer'
 						onClick={() =>
 							modals.open({
-								title: 'Please confirm your action',
+								title: '',
 								centered: true,
 								size: 'lg',
 								scrollAreaComponent: ScrollArea.Autosize,
-								children: (
-									<>
-										This action is so important that you are required to confirm
-										it with a modal. Please click one of these buttons to
-										proceed.
-									</>
-								),
+								children: <CommentsModal postId={postId} />,
 							})
 						}
 					>

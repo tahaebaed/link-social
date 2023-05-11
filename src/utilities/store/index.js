@@ -6,6 +6,7 @@ import userReducer from './user_reducer/userSlice';
 import weatherReducer from './weather_reducer/weatherSlice';
 import postsReducer from './posts_reducer/postsSlice';
 import settingReducer from './setting.slice';
+import commentsReducer from './comments.slice';
 
 export const store = configureStore({
 	reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
 		postsReducer,
 		profile: profileReducer,
 		setting: settingReducer,
+		comments: commentsReducer,
 	},
 
 	devTools: process.env.toString() !== 'production',

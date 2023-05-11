@@ -64,7 +64,7 @@ const SignUp = () => {
 		>
 			{(formik) => (
 				<div>
-					<h2 className='text-3xl mb-10 text-red-400'>Sign Up</h2>
+					<h2 className='text-3xl mb-10 text-aurora'>Sign Up</h2>
 					<Form className='w-full text-sm'>
 						<div className='w-full'>
 							<div className='flex'>
@@ -198,9 +198,7 @@ const SignUp = () => {
 								</div>
 							</label>
 						</div>
-						<Button className='bg-orange-400 border-orange-400 hover:text-orange-400'>
-							Submit
-						</Button>
+						<Button type='submit'>Submit</Button>
 					</Form>
 				</div>
 			)}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsPencil } from 'react-icons/bs';
 
 /**
@@ -30,6 +30,14 @@ function Preview(props) {
 			: props.img
 	);
 	const [isIconHover, setIsIconHover] = useState(false);
+
+	useEffect(() => {
+		setImage(
+			Object.prototype.toString.call(props.img) === '[object File]'
+				? URL.createObjectURL(props.img)
+				: props.img
+		);
+	}, [props.img]);
 
 	const onInputChange = (evt) => {
 		props.onChange(evt.target.files[0], evt);

@@ -56,10 +56,6 @@ const AUTH_ROUTES = [
 		path: '/chat',
 		component: ChatBox,
 	},
-	{
-		path: '/setting/update-profile',
-		component: UpdateProfile,
-	},
 ];
 
 export { AUTH_ROUTES, PUBLIC_ROUTES };

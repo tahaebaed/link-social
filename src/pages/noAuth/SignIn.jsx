@@ -33,7 +33,7 @@ const SignIn = () => {
 			{(formik) => (
 				<Form>
 					<div>
-						<h2 className='text-3xl mb-10 text-red-400'>Sign In</h2>
+						<h2 className='text-3xl mb-10 text-aurora'>Sign In</h2>
 						<div className='w-full'>
 							<h2 className='mb-4 ml-2'>Email</h2>
 							<FormikControl
@@ -62,9 +62,7 @@ const SignIn = () => {
 								onBlur={formik.handleBlur}
 							/>
 						</div>
-						<Button className='bg-orange-400 border-orange-400 hover:text-orange-400'>
-							Submit
-						</Button>
+						<Button type='submit'>Submit</Button>
 					</div>
 				</Form>
 			)}

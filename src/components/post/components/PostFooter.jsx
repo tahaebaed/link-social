@@ -1,7 +1,9 @@
+import { modals } from '@mantine/modals';
 import React from 'react';
+import { BiMessageDetail } from 'react-icons/bi';
 import { FaHeart, FaRegHeart, FaShare } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { BiMessageDetail } from 'react-icons/bi';
+import CommentsModal from '../../../modals/Comments';
 import {
 	postReacts,
 	sharePosts,
@@ -68,7 +70,17 @@ function PostFooter({
 					</div> */}
 				</div>
 				<div className='flex items-center post_icons'>
-					<div className='flex items-center post_comments'>
+					<div
+						className='flex items-center post_comments cursor-pointer'
+						onClick={() =>
+							modals.open({
+								title: '',
+								centered: true,
+								size: 'lg',
+								children: <CommentsModal postId={postId} />,
+							})
+						}
+					>
 						<BiMessageDetail className='post_comment_icon' />
 						<span className='mx-3'>{commentsCount}</span>
 					</div>

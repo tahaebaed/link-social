@@ -1,38 +1,30 @@
-import { Form, Formik } from 'formik';
-import React, { useState } from 'react';
-import { searchQuery as validationSchema } from '../../validation/navbar';
+import { Input, Kbd } from '@mantine/core';
+import { spotlight } from '@mantine/spotlight';
+import React from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
-import FormikControl from '../../components/FormFields/FormikControl';
 
 function QuerySearch() {
-	const [query] = useState('');
-
-	const onSearchFormSubmit = (values) => {
-		console.log(values);
-	};
-
 	return (
-		<Formik
-			initialValues={{ query }}
-			validationSchema={validationSchema}
-			onSubmit={onSearchFormSubmit}
+		<Input
+			className='flex-grow'
+			icon={<BiSearchAlt />}
+			radius='xl'
+			onClick={() => spotlight.open()}
+			component='button'
+			styles={(theme) => ({
+				input: {
+					cursor: 'pointer',
+					'&:focus-within': {
+						borderColor: theme.colors.gray[4],
+					},
+				},
+			})}
 		>
-			{(formik) => {
-				return (
-					<Form className=''>
-						<FormikControl
-							name='query'
-							id='query'
-							type='text'
-							icon={<BiSearchAlt />}
-							label='Search ...'
-							onChange={formik.handleChange}
-							onBlur={formik.handleBlur}
-						/>
-					</Form>
-				);
-			}}
-		</Formik>
+			<div className='text-gray-400 flex justify-between items-center'>
+				<>Search</>
+				<Kbd className='text-gray-300 text-xs'>/</Kbd>
+			</div>
+		</Input>
 	);
 }
 

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { Textarea } from '@mantine/core';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/Button';
 import Preview from '../../components/Preview';
@@ -12,10 +13,18 @@ const UpdateProfile = () => {
 	const user = useSelector((store) => store['setting']['user']);
 
 	const [profileData, setProfileData] = useState({
-		bio: user?.profile?.description,
-		cover: user?.profile?.cover,
-		avatar: user?.profile?.avatar,
+		bio: '',
+		cover: '',
+		avatar: '',
 	});
+
+	useEffect(() => {
+		setProfileData({
+			bio: user?.profile?.description,
+			cover: user?.profile?.cover,
+			avatar: user?.profile?.avatar,
+		});
+	}, [user]);
 
 	const onFormSubmit = (evt) => {
 		evt.preventDefault();
@@ -39,9 +48,12 @@ const UpdateProfile = () => {
 			<div className='my-20'>
 				<form onSubmit={onFormSubmit}>
 					<div className='mb-5'>
-						<h4 className='mb-4 first-letter:text-4xl first-letter:text-aurora text-xl font-bold'>
+						<label
+							className='mb-4 block first-letter:text-4xl first-letter:text-aurora text-xl font-bold'
+							htmlFor='cover'
+						>
 							Cover:
-						</h4>
+						</label>
 						<Preview
 							label=''
 							id='cover'
@@ -54,30 +66,35 @@ const UpdateProfile = () => {
 					</div>
 					<div className='md:grid grid-cols-3'>
 						<div className='col-span-1'>
-							<h4 className='mb-4 first-letter:text-4xl first-letter:text-aurora text-xl font-bold'>
+							<label
+								className='mb-4 block first-letter:text-4xl first-letter:text-aurora text-xl font-bold'
+								htmlFor='avatar'
+							>
 								Avatar:
-							</h4>
+							</label>
 							<Preview
 								label=''
 								id='avatar'
 								name='avatar'
 								img={profileData.avatar}
-								onChange={(file, evt) =>
-									onInputChange('avatar', evt.target.files[0])
-								}
+								onChange={(file) => onInputChange('avatar', file)}
 							/>
 						</div>
 						<div className='col-span-2'>
-							<h4 className='mb-5 first-letter:text-4xl first-letter:text-aurora text-xl font-bold'>
+							<label
+								className='mb-5 block first-letter:text-4xl first-letter:text-aurora text-xl font-bold'
+								htmlFor='bio'
+							>
 								Bio:
-							</h4>
-							<textarea
-								name='bio'
-								id='user-bio'
+							</label>
+							<Textarea
+								id='bio'
 								value={profileData.bio}
-								onChange={(evt) =>
-									onInputChange(evt.target.name, evt.target.value)
-								}
+								placeholder='Your comment'
+								autosize
+								minRows={2}
+								maxRows={4}
+								onChange={(evt) => onInputChange('bio', evt.target.value)}
 							/>
 						</div>
 					</div>

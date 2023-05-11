@@ -1,8 +1,11 @@
-import './../../assets/scss/components/postCard.scss';
-import PostFooter from './components/PostFooter';
-import ProfileImg from '../ProfileImg';
-import Dropdown from '../Dropdown';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Dropdown from '../Dropdown';
+import Preview from '../Preview';
+import ProfileImg from '../ProfileImg';
+import PostFooter from './components/PostFooter';
+
+import './../../assets/scss/components/postCard.scss';
 
 /**
  * 
@@ -33,7 +36,7 @@ function PostCard({
 			<div className='card_box sh shadow my-4'>
 				<div className='flex mb-3 justify-between'>
 					<div className='flex items-center'>
-						<ProfileImg border img={`${img}`} />
+						<ProfileImg border img={img} />
 						<div className='mx-3'>
 							<Link to={`/profile/${rest.userId}`}>
 								<h6 className='user_name'>{userName}</h6>
@@ -53,6 +56,30 @@ function PostCard({
 					</div>
 				) : (
 					''
+				)}
+
+				{rest?.photos?.length && (
+					<div className='my-3'>
+						{rest.photos.length === 1 && (
+							<Preview
+								img={rest.photos[0].path}
+								key={rest.photos[0].path}
+								noLabel
+								className='h-[250px] w-[100%]'
+								imageClassName='h-[250px] object-cover w-[100%]'
+							/>
+						)}
+						{rest.photos.length > 1 &&
+							rest.photos.map((img) => (
+								<Preview
+									img={img.path}
+									key={img.path}
+									noLabel
+									className='h-36 w-36'
+									imageClassName='h-36 w-36'
+								/>
+							))}
+					</div>
 				)}
 
 				<PostFooter

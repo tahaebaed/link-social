@@ -1,14 +1,13 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import PostCard from '../components/post/PostCard';
+import React, { useEffect } from 'react';
 import { VscFeedback } from 'react-icons/vsc';
-import { profileSelector, store } from '../utilities/store/index';
-import { getPosts } from '../utilities/store/posts_reducer/postsSlice';
-import LoadingPlaceholder from '../components/placeholder/LoadingPlaceholder';
-import { timeToX } from '../utilities/days';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { useDispatch, useSelector } from 'react-redux';
 import Loadingdots from '../components/Loadingdots';
+import LoadingPlaceholder from '../components/placeholder/LoadingPlaceholder';
+import PostCard from '../components/post/PostCard';
 import SharedPost from '../components/post/SharedPost';
+import { timeToX } from '../utilities/days';
+import { store } from '../utilities/store/index';
+import { getPosts } from '../utilities/store/posts_reducer/postsSlice';
 
 function HomeFeeds() {
 	const dispatch = useDispatch();
@@ -64,6 +63,7 @@ function HomeFeeds() {
 										sharedUserImg={post.parent.user.profile.avatar}
 										sharedTime={timeToX(post.created_at)}
 										userId={post.parent.user_id}
+										photos={post.photos || []}
 									/>
 								) : (
 									<PostCard
@@ -77,6 +77,7 @@ function HomeFeeds() {
 										likeState={post.is_react}
 										img={post.user.profile.avatar}
 										reacts={post.reacts}
+										photos={post.photos || []}
 										userId={post.user_id}
 									/>
 								)}
@@ -108,6 +109,8 @@ function HomeFeeds() {
 				)}
 			</>
 		);
+	} else {
+		return <>something wrong</>;
 	}
 }
 

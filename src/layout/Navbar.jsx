@@ -15,7 +15,7 @@ function Navbar() {
 			<div className='container mx-auto'>
 				<div className='navbar-wrapper grid md:grid-cols-4 grid-cols-5 items-center'>
 					<div className='favicon col-span-2 md:col-span-1'>
-						<Link to='/'>
+						<Link to='/' className='inline-block' >
 							<img src={favicon} alt='favicon' width={100} />
 						</Link>
 					</div>

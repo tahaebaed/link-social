@@ -28,7 +28,7 @@ function MobileMenu(props) {
 
 	return (
 		<div
-			className={`mobile_icons fixed top-[12vh] bg-slate-100 rounded p-4 transition-all ease-in-out duration-1000 ${
+			className={`mobile_icons z-20 fixed top-[12vh] bg-slate-100 rounded p-4 transition-all ease-in-out duration-1000 ${
 				showList ? 'right-0' : 'right-[-68px]'
 			}`}
 			ref={MenuRef}

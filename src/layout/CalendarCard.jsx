@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
+import React from 'react';
 import { Calendar } from 'react-calendar';
+
 import 'react-calendar/dist/Calendar.css';
 import './../assets/scss/components/calendar.scss';
 
-const CalendarCard = () => {
-	const [date, setDate] = useState(new Date());
-	const [month, setMonth] = useState('');
-
-	useEffect(() => {
-		setMonth(date.toLocaleString('default', { month: 'long' }));
-	}, [date]);
+function CalendarCard() {
+	const today = new Date();
 
 	return (
 		<div className='calendarCard'>
-			<h5 className='text-center'>{month}</h5>
+			<h5 className='text-center'>{dayjs(today).format('MMMM')}</h5>
 			<Calendar
-				className='bg-slate-400'
-				onChange={setDate}
-				value={date}
 				showNavigation={false}
 				showNeighboringMonth={false}
+				value={today}
 			/>
 		</div>
 	);
-};
+}
 
 export default CalendarCard;

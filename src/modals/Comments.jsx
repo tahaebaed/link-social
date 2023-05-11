@@ -46,7 +46,7 @@ function CommentsModal(props) {
 		if (comments.length) {
 			return (
 				<>
-					<ScrollArea h={350} className='mb-3'>
+					<ScrollArea h={350} className='mb-3' viewportRef={viewport}>
 						<Timeline
 							color='teal'
 							active={-1}

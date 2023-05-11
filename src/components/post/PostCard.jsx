@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from '../Dropdown';
+import Preview from '../Preview';
 import ProfileImg from '../ProfileImg';
 import PostFooter from './components/PostFooter';
 
@@ -55,6 +56,30 @@ function PostCard({
 					</div>
 				) : (
 					''
+				)}
+
+				{rest?.photos?.length && (
+					<div className='my-3'>
+						{rest.photos.length === 1 && (
+							<Preview
+								img={rest.photos[0].path}
+								key={rest.photos[0].path}
+								noLabel
+								className='h-[250px] w-[100%]'
+								imageClassName='h-[250px] object-cover w-[100%]'
+							/>
+						)}
+						{rest.photos.length > 1 &&
+							rest.photos.map((img) => (
+								<Preview
+									img={img.path}
+									key={img.path}
+									noLabel
+									className='h-36 w-36'
+									imageClassName='h-36 w-36'
+								/>
+							))}
+					</div>
 				)}
 
 				<PostFooter

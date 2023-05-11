@@ -63,6 +63,7 @@ function HomeFeeds() {
 										sharedUserImg={post.parent.user.profile.avatar}
 										sharedTime={timeToX(post.created_at)}
 										userId={post.parent.user_id}
+										photos={post.photos || []}
 									/>
 								) : (
 									<PostCard
@@ -76,6 +77,7 @@ function HomeFeeds() {
 										likeState={post.is_react}
 										img={post.user.profile.avatar}
 										reacts={post.reacts}
+										photos={post.photos || []}
 										userId={post.user_id}
 									/>
 								)}
@@ -108,7 +110,7 @@ function HomeFeeds() {
 			</>
 		);
 	} else {
-		return <>something wrong</>
+		return <>something wrong</>;
 	}
 }
 

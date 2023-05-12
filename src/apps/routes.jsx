@@ -22,7 +22,7 @@ const ProtectedAuthRoutes = ({ children }) => {
 const ProtectedPublicRoutes = ({ children }) => {
 	const user = useSelector((store) => store['auth']['user']);
 	if (user) {
-		return <Navigate to='/' replace />;
+		return <Navigate to='/notfound' replace />;
 	}
 	return children;
 };

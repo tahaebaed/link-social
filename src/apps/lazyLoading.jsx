@@ -60,6 +60,10 @@ const AUTH_ROUTES = [
 		path: '/setting/update-profile',
 		component: UpdateProfile,
 	},
+	{
+		path: '*',
+		component: PageNotFound,
+	},
 ];
 
 export { AUTH_ROUTES, PUBLIC_ROUTES };

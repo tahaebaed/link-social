@@ -4,9 +4,13 @@ import { toast } from 'react-toastify';
 
 export const createPosts = createAsyncThunk('createPosts', async (data) => {
 	try {
+		console.log(data)
 		const response = await userInterceptor({
 			method: 'POST',
 			url: `/posts`,
+			headers: {
+				'Content-Type': 'multipart/form-data;'
+			},
 			data
 		});
 		console.log(response, "create res");
@@ -20,7 +24,6 @@ export const sharePosts = createAsyncThunk('sharePosts', async (postId) => {
 		const response = await userInterceptor({
 			method: 'POST',
 			url: `/posts/${postId}/share`,
-
 		});
 		console.log(response, "sharePosts");
 		return response.data;

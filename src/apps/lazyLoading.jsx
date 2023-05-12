@@ -58,6 +58,10 @@ const AUTH_ROUTES = [
 		component: ChatBox,
 		layout: Messenger,
 	},
+	{
+		path: '*',
+		component: PageNotFound,
+	},
 ];
 
 export { AUTH_ROUTES, PUBLIC_ROUTES };

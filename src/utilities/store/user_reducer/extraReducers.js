@@ -82,6 +82,7 @@ export const extraReducers = {
 		} else {
 			toast.success(action.payload.message);
 			state.user = action.payload.data.user;
+			state.token = action.payload.data.token;
 			Cookies.set('token', action.payload.data.token);
 			Cookies.set('user', JSON.stringify(state.user));
 		}

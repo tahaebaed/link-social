@@ -1,7 +1,8 @@
 import React from 'react';
-import QuerySearch from '../../layout/navbar/QuerySearch';
+
 import '../../assets/scss/layout/scrollbar.scss';
 import FriendInbox from './FriendInbox';
+import { BiSearchAlt } from 'react-icons/bi';
 
 function ChatsList() {
 	return (
@@ -12,11 +13,14 @@ function ChatsList() {
 						<p className='text-2xl font-bold text-zinc-500'>Chats</p>
 					</div>
 					<div className='search_chats mt-5 '>
-						<QuerySearch />
+						<input
+							className='rounded-full border py-2 pl-9 w-full outline-sky-100'
+							placeholder='Search'
+						/>
 					</div>
 				</div>
 
-				<div className='chats_inbox h-[65vh] overflow-auto'>
+				<div className='chats_inbox h-[68vh] overflow-auto'>
 					<FriendInbox />
 				</div>
 			</div>

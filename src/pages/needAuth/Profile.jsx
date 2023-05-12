@@ -9,6 +9,7 @@ import usePageTitle from '../../hooks/usePageTitle';
 import { Navs, Taps } from '../../layout/Profile/TapsAndNavs';
 import { profileSelector } from '../../utilities/store';
 import { getUser, getUserPosts } from '../../utilities/store/profile.slice';
+import { FiUserCheck, FiUserPlus } from 'react-icons/fi';
 
 const Profile = () => {
 	usePageTitle('Profile');
@@ -17,6 +18,7 @@ const Profile = () => {
 	const { isLoading, error, profile } = useSelector(profileSelector.about);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [activeTap, setActiveTap] = useState('about');
+	const userId = useSelector((store) => store['auth']['user']['id']);
 
 	useEffect(() => {
 		const sp = searchParams.get('activeTap');
@@ -37,6 +39,41 @@ const Profile = () => {
 			prev.set('activeTap', tapId);
 			return prev;
 		});
+	};
+
+	const FollowButton = () => {
+		if (userId === profile?.id) {
+			// user show it's profile
+			return <></>;
+		} else {
+			const user = profile.followers.find((user) => user.id === userId);
+			if (user) {
+				// user follow this profile
+				return (
+					<>
+						<Button className='font-bold mx-2 flex items-center' outline>
+							<FiUserCheck className='inline-block mr-2' />
+							<span>Followed</span>
+						</Button>
+						<Button as={Link} to={`/message/${profile.id}`} outline lg>
+							<HiOutlineChatBubbleLeftRight />
+						</Button>
+					</>
+				);
+			} else {
+				return (
+					<>
+						<Button className='font-bold mx-2 flex items-center'>
+							<FiUserPlus className='inline-block mr-2' />
+							<span>Follow</span>
+						</Button>
+						<Button as={Link} to={`/message/${profile.id}`} outline lg>
+							<HiOutlineChatBubbleLeftRight />
+						</Button>
+					</>
+				);
+			}
+		}
 	};
 
 	if (isLoading) {
@@ -70,13 +107,7 @@ const Profile = () => {
 						</div>
 						<div className='ml-auto mt-4 md:mt-0'>
 							<div className='flex justify-end'>
-								<Button className='font-bold mx-2 flex items-center'>
-									<IoPersonAdd className='inline-block mr-2' />
-									<span>Follow</span>
-								</Button>
-								<Button as={Link} to={`/message/${profile.id}`} outline lg>
-									<HiOutlineChatBubbleLeftRight />
-								</Button>
+								<FollowButton />
 							</div>
 						</div>
 					</div>

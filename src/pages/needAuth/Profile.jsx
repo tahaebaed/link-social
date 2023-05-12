@@ -29,7 +29,7 @@ const Profile = () => {
 		dispatch(getUser(params?.profileId));
 		dispatch(getUserPosts(params?.profileId));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [params?.profileId]);
 
 	const onActiveTapChange = (tapId) => {
 		setActiveTap(tapId);

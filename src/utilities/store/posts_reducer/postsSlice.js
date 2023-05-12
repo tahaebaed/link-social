@@ -7,14 +7,14 @@ export const getPosts = createAsyncThunk('getPosts', async (num) => {
 			method: 'GET',
 			url: `/posts?page=${num}`
 		})
-		console.log(response.data.data.posts)
+		console.log(response.data.data.posts, "posts")
 		return response.data.data.posts;
 	} catch (err) {
 		return err.response.data
 	}
 })
 const initialState = {
-	posts: { loading: false, posts: [], error: '', },
+	posts: { loading: false, loadMore: false, currPage: 1, posts: [], error: '', hasMore: true },
 	reacts: { loading: false, error: '', reacts: [] },
 	createdPost: { loading: false, error: '', post: {} },
 	sharePost: { isLoading: false, error: '', sharedPosts: {} },
@@ -31,11 +31,23 @@ const postsSlice = createSlice({
 		...createPostExtra(),
 		...sharePostExtra(),
 		[getPosts.pending]: (state) => {
-			state.posts.loading = true
+			if (state.posts.currPage === 1) {
+				state.posts.loading = true
+			} else {
+				state.posts.loadMore = true
+			}
+
 		},
 		[getPosts.fulfilled]: (state, action) => {
-			state.posts.loading = false
-			state.posts.posts = action.payload.data
+			if (state.posts.currPage === 1) {
+				state.posts.loading = false
+			} else {
+				state.posts.loadMore = false
+			}
+
+			state.posts.posts = [...state.posts.posts, ...action.payload.data]
+			state.posts.hasMore = action.payload.current_page !== action.payload.last_page
+			state.posts.currPage = action.payload.current_page + 1
 			console.log(state.posts.posts)
 		},
 		[getPosts.rejected]: (state, action) => {

@@ -1,66 +1,52 @@
-import { Center, Input, Kbd } from '@mantine/core';
+import {
+	Center,
+	Group,
+	Image,
+	Input,
+	Kbd,
+	Text,
+	UnstyledButton,
+	createStyles,
+} from '@mantine/core';
 import { SpotlightProvider, spotlight } from '@mantine/spotlight';
 import React from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
 import { MdSearchOff } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
-import {
-	AiOutlineDashboard,
-	AiOutlineEdit,
-	AiOutlineHome,
-} from 'react-icons/ai';
-import { BsFiles } from 'react-icons/bs';
+import { Link, useNavigate } from 'react-router-dom';
 
 function QuerySearch() {
 	const navigateTo = useNavigate();
 
 	const ACTIONS = [
 		{
-			title: 'Home',
-			description: 'Get to home page',
+			image: 'https://img.icons8.com/clouds/256/000000/futurama-bender.png',
+			title: 'Bender Bending Rodríguez',
+			description: 'Fascinated with cooking, though has no sense of taste',
+
 			onTrigger: () => navigateTo('/'),
-			keywords: [
-				'home',
-				'homepage',
-				'mantine',
-				'timeline',
-				'feeds',
-				'create post',
-				'create-post',
-			],
-			group: 'public',
-			icon: <AiOutlineHome size='1.2rem' />,
+		},
+
+		{
+			image: 'https://img.icons8.com/clouds/256/000000/futurama-mom.png',
+			title: 'Carol Miller',
+			description: 'One of the richest people on Earth',
+
+			onTrigger: () => navigateTo('/'),
 		},
 		{
-			title: 'Editor',
-			description: 'Get help on post editor',
-			onTrigger: () => console.log('Editor'),
-			keywords: [
-				'editor',
-				'post',
-				'help',
-				'feed',
-				'create post',
-				'create-post',
-			],
-			group: 'public',
-			icon: <AiOutlineEdit size='1.2rem' />,
+			image: 'https://img.icons8.com/clouds/256/000000/homer-simpson.png',
+			title: 'Homer Simpson',
+			description: 'Overweight, lazy, and often ignorant',
+
+			onTrigger: () => navigateTo('/'),
 		},
 		{
-			title: 'Dashboard',
-			description: 'Get full information about current system status',
-			onTrigger: () => console.log('Dashboard'),
-			keywords: [],
-			group: 'dashboard',
-			icon: <AiOutlineDashboard size='1.2rem' />,
-		},
-		{
-			title: 'Documentation',
-			description: 'Visit documentation to lean more about all features',
-			onTrigger: () => console.log('Documentation'),
-			keywords: [],
-			group: 'auth',
-			icon: <BsFiles size='1.2rem' />,
+			image:
+				'https://img.icons8.com/clouds/256/000000/spongebob-squarepants.png',
+			title: 'Spongebob Squarepants',
+			description: 'Not just a sponge',
+
+			onTrigger: () => navigateTo('/'),
 		},
 	];
 
@@ -71,6 +57,8 @@ function QuerySearch() {
 			searchPlaceholder='Search...'
 			shortcut={['mod + P', 'mod + K', 'mod + F', '/']}
 			limit={10}
+			actionComponent={CustomAction}
+			actionsWrapperComponent={ActionsWrapper}
 			nothingFoundMessage={
 				<Center h={200}>
 					<div className='text-center'>
@@ -101,6 +89,101 @@ function QuerySearch() {
 				</div>
 			</Input>
 		</SpotlightProvider>
+	);
+}
+
+function CustomAction({
+	action,
+	styles,
+	classNames,
+	hovered,
+	onTrigger,
+	...others
+}) {
+	const useStyles = createStyles((theme) => ({
+		action: {
+			position: 'relative',
+			display: 'block',
+			width: '100%',
+			padding: `0.5rem`,
+			borderRadius: theme.radius.sm,
+			...theme.fn.hover({
+				backgroundColor:
+					theme.colorScheme === 'dark'
+						? theme.colors.dark[4]
+						: theme.colors.gray[1],
+			}),
+
+			'&[data-hovered]': {
+				backgroundColor:
+					theme.colorScheme === 'dark'
+						? theme.colors.dark[4]
+						: theme.colors.gray[1],
+			},
+		},
+	}));
+
+	const { classes } = useStyles(null, {
+		styles,
+		classNames,
+		name: 'Spotlight',
+	});
+
+	return (
+		<UnstyledButton
+			className={classes.action}
+			data-hovered={hovered || undefined}
+			tabIndex={-1}
+			onMouseDown={(event) => event.preventDefault()}
+			onClick={onTrigger}
+			{...others}
+		>
+			<Group noWrap>
+				{action.image && (
+					<Center>
+						<Image
+							src={action.image}
+							alt={action.title}
+							width={50}
+							height={50}
+						/>
+					</Center>
+				)}
+
+				<div style={{ flex: 1 }}>
+					<Text>{action.title}</Text>
+
+					{action.description && (
+						<Text color='dimmed' size='xs'>
+							{action.description}
+						</Text>
+					)}
+				</div>
+			</Group>
+		</UnstyledButton>
+	);
+}
+
+function ActionsWrapper({ children }) {
+	return (
+		<div>
+			{children}
+			<Group
+				px={15}
+				py='xs'
+				sx={(theme) => ({
+					borderTop: `1px solid ${
+						theme.colorScheme === 'dark'
+							? theme.colors.dark[4]
+							: theme.colors.gray[2]
+					}`,
+				})}
+			>
+				<Link to='/search' className='text-gray-400 text-[10px]'>
+					Show More Results
+				</Link>
+			</Group>
+		</div>
 	);
 }
 

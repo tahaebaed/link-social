@@ -2,6 +2,7 @@ import React from 'react';
 
 // Layout
 import Registration from '../layout/Registration';
+import Messenger from '../layout/Messenger';
 
 // No Auth
 const Homepage = React.lazy(() => import('../pages/noAuth/Homepage'));
@@ -55,6 +56,7 @@ const AUTH_ROUTES = [
 	{
 		path: '/chat',
 		component: ChatBox,
+		layout: Messenger,
 	},
 ];
 

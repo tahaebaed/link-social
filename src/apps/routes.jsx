@@ -11,24 +11,11 @@ const SuspenseWrapper = (props) => {
 	);
 };
 
-const ProtectedAuthRoutes = ({ children }) => {
-	const user = useSelector((store) => store.auth.user);
-	const token = useSelector((store) => store.auth.token);
-	const comparing = (!token && user) || (token && !user) || (!token && !user);
-	if (comparing) {
-		return <Navigate to='/auth/sign-in' replace />;
-	}
-	return children;
-};
-
 const ProtectedPublicRoutes = ({ children }) => {
 	const user = useSelector((store) => store.auth.user);
 	const token = useSelector((store) => store.auth.token);
 	console.log(token, user);
 
-	if (token && user) {
-		return <Navigate to='/notfound' replace />;
-	}
 	return children;
 };
 
@@ -53,14 +40,7 @@ const authRoutes = AUTH_ROUTES.map((route) => (
 		key={route.path}
 		element={route.layout ? <route.layout /> : <Layout />}
 	>
-		<Route
-			path={route.path}
-			element={
-				<ProtectedAuthRoutes>
-					<route.component />
-				</ProtectedAuthRoutes>
-			}
-		/>
+		<Route path={route.path} element={<route.component />} />
 	</Route>
 ));
 

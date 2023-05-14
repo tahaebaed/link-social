@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ProfileImg from '../../components/ProfileImg';
 import '../../assets/scss/layout/scrollbar.scss';
+import { users } from '../../constants/users';
 function FriendInbox() {
 	const [isOpen, setOpen] = useState(null);
 	const openChat = (index) => {
@@ -8,15 +9,13 @@ function FriendInbox() {
 	};
 	return (
 		<>
-			{[
-				1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-			].map((inbox, i) => (
+			{users.map((user, i) => (
 				<div
 					className={`inbox flex items-center py-3 px-4 cursor-pointer
-					${isOpen === i ? ' active' : ''}
+					${isOpen === user.id ? ' active' : ''}
 					`}
 					key={i}
-					onClick={() => openChat(i)}
+					onClick={() => openChat(user.id)}
 				>
 					<div className='user_img'>
 						<ProfileImg

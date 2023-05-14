@@ -33,7 +33,7 @@ const CreatePost = ({ avatar = iconAvatar }) => {
 			onSubmit={submitForm}
 		>
 			{(formik) => (
-				<Form className='mx-auto py-4 px-8 shadow rounded-md my-5'>
+				<Form id='create-post-form' className='mx-auto py-4 px-8 shadow rounded-md my-5'>
 					<div className='relative'>
 						<ProfileImg className='absolute left-2 top-2 rounded-full border-2 w-[40px] h-[40px] p-0' />
 						<FormikControl

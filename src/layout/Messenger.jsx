@@ -9,8 +9,9 @@ import CalendarCard from './CalendarCard';
 import FriendsList from './FriendsList';
 import Navbar from './Navbar';
 import WeatherCard from './WeatherCard';
+import ChatsList from '../components/chat/ChatsList';
 
-function Base() {
+function Messenger() {
 	const [featureOpened, featureHandler] = useDisclosure(false);
 	const [friendsOpened, friendsHandler] = useDisclosure(false);
 
@@ -58,8 +59,7 @@ function Base() {
 			<div className='grid grid-cols-4'>
 				<div className='lg:col-span-1 hidden lg:block'>
 					<div className='sticky top-[90px]'>
-						<WeatherCard />
-						<CalendarCard />
+						<ChatsList />
 					</div>
 				</div>
 				<Outlet />
@@ -68,4 +68,4 @@ function Base() {
 	);
 }
 
-export default Base;
+export default Messenger;

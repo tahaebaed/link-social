@@ -7,19 +7,18 @@ import {
 	Textarea,
 	Timeline,
 } from '@mantine/core';
-import React, { useEffect, useRef, useState } from 'react';
+import { modals } from '@mantine/modals';
+import React, { useEffect, useState } from 'react';
 import { IoAlertCircleOutline } from 'react-icons/io5';
 import { VscCommentDiscussion } from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../components/Button';
-import { timeToX } from '../utilities/days';
-import { createComment, getComment } from '../utilities/store/comments.slice';
+import { getComment } from '../utilities/store/comments.slice';
 
 function CommentsModal(props) {
 	const dispatch = useDispatch();
-	const viewport = useRef(null);
 	const { comments, isLoading, error } = useSelector(
-		(store) => store['comments']['retrieve']
+		(store) => store['comments']
 	);
 
 	useEffect(() => {
@@ -47,7 +46,7 @@ function CommentsModal(props) {
 		if (comments.length) {
 			return (
 				<>
-					<ScrollArea h={350} className='mb-3' viewportRef={viewport}>
+					<ScrollArea h={350} offsetScrollbars>
 						<Timeline
 							color='teal'
 							active={-1}
@@ -68,15 +67,12 @@ function CommentsModal(props) {
 										/>
 									}
 								>
-									<div className='text-sm text-gray-400'>
-										{timeToX(comment.created_at)}
-									</div>
-									<div className='text-gray-500 mt-2'>{comment.body}</div>
+									<div className='text-gray-400'>{comment.body}</div>
 								</Timeline.Item>
 							))}
 						</Timeline>
 					</ScrollArea>
-					<WriteComment postId={props.postId} viewport={viewport} />
+					<WriteComment />
 				</>
 			);
 		}
@@ -89,7 +85,7 @@ function CommentsModal(props) {
 						<p className='text-sm mt-3'>No Comments Found</p>
 					</div>
 				</div>
-				<WriteComment postId={props.postId} viewport={viewport} />
+				<WriteComment />
 			</>
 		);
 	} else {
@@ -97,29 +93,14 @@ function CommentsModal(props) {
 	}
 }
 
-const WriteComment = ({ postId, viewport }) => {
-	const dispatch = useDispatch();
+const WriteComment = () => {
 	const [comment, setComment] = useState('');
-	const { isLoading, comment: createdComment } = useSelector(
-		(store) => store['comments']['create']
-	);
 
 	const onFormSubmit = (evt) => {
 		evt.preventDefault();
 
-		dispatch(createComment({ body: comment, postId }));
+		console.log(comment);
 	};
-
-	useEffect(() => {
-		if (createdComment) {
-			setComment('');
-			viewport &&
-				viewport.current.scrollTo({
-					top: viewport.current.scrollHeight,
-					behavior: 'smooth',
-				});
-		}
-	}, [createdComment]);
 
 	return (
 		<form onSubmit={onFormSubmit}>
@@ -131,14 +112,9 @@ const WriteComment = ({ postId, viewport }) => {
 				value={comment}
 				onChange={(evt) => setComment(evt.target.value)}
 			/>
-
-			{isLoading ? (
-				<Loader color='teal' className='mt-2' />
-			) : (
-				<Button type='submit' className='mt-2' disabled={!comment}>
-					Publish
-				</Button>
-			)}
+			<Button type='submit' className='mt-2' disabled={!comment}>
+				Publish
+			</Button>
 		</form>
 	);
 };

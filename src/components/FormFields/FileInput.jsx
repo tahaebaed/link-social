@@ -16,6 +16,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { HiOutlineCamera } from 'react-icons/hi2';
 import ErrorText from './ErrorText';
+import Cookies from 'js-cookie';
 
 const FileInput = ({
 	type,
@@ -26,26 +27,13 @@ const FileInput = ({
 	...rest
 }) => {
 	const uploadFileHandler = (e) => {
+		const uploadedFile = e.currentTarget.files[0];
 		const fd = new FormData();
-		fd.append('file', e.target.files[0]);
-		//fd.append('public_id', e.target.files[0].name.replace('.png', ''));
-		fd.append('upload_preset', 'jqmus7oo');
-		fd.append('api_key', 'tahaebaed2@gmail.com');
-		rest.arrayHelpers.push(fd);
-		const url = 'https://api.cloudinary.com/v1_1/diih3lhke/image/upload';
+		fd.append('file', uploadedFile, uploadedFile.name);
 
-		// axios
-		// 	.post(url, fd, {
-		// 		onUploadProgress: (progressEvent) => {
-		// 			console.log(
-		// 				`${Math.round((progressEvent.loaded / progressEvent.total) * 100)}%`
-		// 			);
-		// 		},
-		// 	})
-		// 	.then((res) => {
-		// 		//	rest.setFieldValue('postImg', [res.data]);
-		// 		rest.arrayHelpers.push(res.data.url);
-		// 	});
+		
+		rest.setFieldValue('postImg', [...rest.values.postImg, fd.get('file')])
+		// rest.arrayHelpers.push({...fd.get('file')});
 	};
 
 	return (

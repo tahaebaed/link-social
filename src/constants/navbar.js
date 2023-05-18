@@ -24,12 +24,12 @@ const AVATAR_DROPDOWN_ITEMS = [
 	},
 	{
 		icon: FiUsers,
-		url: '/network',
+		url: `/profile/${user?.id}/?activeTap=followers`,
 		label: 'Network',
 	},
 	{
 		icon: HiOutlineChatBubbleLeftRight,
-		url: '/messages',
+		url: '/chat',
 		label: 'Messages',
 	},
 ];

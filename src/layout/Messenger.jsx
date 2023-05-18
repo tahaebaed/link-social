@@ -1,19 +1,22 @@
 import { Drawer, ScrollArea } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import React from 'react';
 import { AiOutlineAppstore } from 'react-icons/ai';
 import { FaUserFriends } from 'react-icons/fa';
 import { Outlet } from 'react-router-dom';
 import MobileMenu from '../components/MobileMenu';
+import ChatsList from '../components/chat/ChatsList';
 import CalendarCard from './CalendarCard';
 import FriendsList from './FriendsList';
 import Navbar from './Navbar';
 import WeatherCard from './WeatherCard';
-import ChatsList from '../components/chat/ChatsList';
+import { useSelector } from 'react-redux';
 
 function Messenger() {
 	const [featureOpened, featureHandler] = useDisclosure(false);
 	const [friendsOpened, friendsHandler] = useDisclosure(false);
+	const contact = useSelector((store) => store['chat']['contact']);
+	const isMobile = useMediaQuery('(max-width: 1024px)');
 
 	return (
 		<>
@@ -56,13 +59,18 @@ function Messenger() {
 				</MobileMenu>
 			</div>
 
-			<div className='grid grid-cols-4'>
-				<div className='lg:col-span-1 hidden lg:block'>
-					<div className='sticky top-[90px]'>
-						<ChatsList />
-					</div>
+			<div className='lg:grid grid-cols-4'>
+				<div className='col-span-1 '>
+					{!isMobile && <ChatsList />}
+					{isMobile && !contact && <ChatsList />}
 				</div>
-				<Outlet />
+				<div
+					className={`col-span-3  ${
+						!(isMobile && !contact) ? '' : 'hidden lg:block'
+					}`}
+				>
+					<Outlet />
+				</div>
 			</div>
 		</>
 	);

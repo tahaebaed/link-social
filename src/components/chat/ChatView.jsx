@@ -9,18 +9,31 @@ import {
 	BsFillCameraVideoFill,
 	BsFillMicFill,
 	BsTelephoneFill,
+	BsArrowLeft,
 } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { unSelectContact } from '../../utilities/store/chat.slice';
 
 function ChatView() {
+	const dispatch = useDispatch();
 	const [text, setText] = useState('');
 
 	function handleOnEnter(text) {
 		console.log('enter', text);
 	}
+
+	const onHideMessagesClick = () => {
+		dispatch(unSelectContact());
+	};
+
 	return (
 		<div>
 			<div className='chat_header sticky top-[60px] z-10 bg-white flex justify-between px-10 py-3 shadow'>
 				<div className='flex items-center'>
+					<BsArrowLeft
+						className='mr-4 cursor-pointer'
+						onClick={onHideMessagesClick}
+					/>
 					<div className='user_img'>
 						<ProfileImg
 							online

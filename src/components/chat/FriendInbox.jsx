@@ -1,36 +1,56 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileImg from '../../components/ProfileImg';
-import '../../assets/scss/layout/scrollbar.scss';
 import { users } from '../../constants/users';
+import { selectContact } from '../../utilities/store/chat.slice';
+
+import '../../assets/scss/layout/scrollbar.scss';
+
 function FriendInbox() {
-	const [isOpen, setOpen] = useState(null);
-	const openChat = (index) => {
-		setOpen(index);
+	const dispatch = useDispatch();
+	const contact = useSelector((store) => store['chat']['contact']);
+
+	const onContactClick = (contact) => {
+		dispatch(selectContact(contact));
 	};
+
 	return (
 		<>
-			{users.map((user, i) => (
-				<div
-					className={`inbox flex items-center py-3 px-4 cursor-pointer
-					${isOpen === user.id ? ' active' : ''}
+			{users.map((user, i) => {
+				const isRead = Math.random() * 10 > 5;
+				return (
+					<div
+						className={`inbox flex items-center py-3 px-4 cursor-pointer
+					${contact && contact.id === user.id ? ' active' : ''}
 					`}
-					key={i}
-					onClick={() => openChat(user.id)}
-				>
-					<div className='user_img'>
-						<ProfileImg
-							online
-							className='w-[60px] h-[60px] border border-gray-200'
-						/>
+						key={i}
+						onClick={() => onContactClick(user)}
+					>
+						<div className='user_img'>
+							<ProfileImg
+								online
+								className='w-[60px] h-[60px] border border-gray-200'
+							/>
+						</div>
+						<div className='mx-3'>
+							<p
+								className={`user_name ${
+									isRead ? 'text-gray-500' : 'text-gray-800'
+								}`}
+							>
+								Sadye Nolan
+							</p>
+							<p
+								className={`last_msg text-xs  ${
+									isRead ? 'text-gray-400' : 'text-gray-700'
+								}`}
+							>
+								I'm fine, how are you
+							</p>
+						</div>
 					</div>
-					<div className='mx-3'>
-						<p className='user_name text-gray-600'>Sadye Nolan</p>
-						<p className='last_msg text-xs text-gray-400'>
-							I'm fine, how are you
-						</p>
-					</div>
-				</div>
-			))}
+				);
+			})}
 		</>
 	);
 }

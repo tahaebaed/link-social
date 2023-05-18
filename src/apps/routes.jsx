@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Layout from '../layout/Base';
 import { AUTH_ROUTES, PUBLIC_ROUTES } from './lazyLoading';

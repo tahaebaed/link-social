@@ -27,7 +27,7 @@ function ChatView() {
 	};
 
 	return (
-		<div>
+		<div className='h-[calc(100vh_-_190px)]'>
 			<div className='chat_header sticky top-[60px] z-10 bg-white flex justify-between px-10 py-3 shadow'>
 				<div className='flex items-center'>
 					<BsArrowLeft
@@ -54,7 +54,7 @@ function ChatView() {
 					</div>
 				</div>
 			</div>
-			<div className='chat_body px-4 py-4 overflow-auto h-[66vh]'>
+			<div className='chat_body px-4 py-4 overflow-auto h-full'>
 				<Receiver />
 				<Sender />
 				<Receiver />

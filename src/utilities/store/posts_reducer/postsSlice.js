@@ -48,7 +48,7 @@ const postsSlice = createSlice({
 			state.posts.posts = [...state.posts.posts, ...action.payload.data]
 			state.posts.hasMore = action.payload.current_page !== action.payload.last_page
 			state.posts.currPage = action.payload.current_page + 1
-			console.log(state.posts.posts)
+
 		},
 		[getPosts.rejected]: (state, action) => {
 			state.posts.loading = false

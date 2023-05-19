@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Banner from '../components/Banner';
-import WithLeftSidebar from './WithLeftSidebar';
 import { VscFeedback } from 'react-icons/vsc';
 import { BsPersonBoundingBox } from 'react-icons/bs';
 import { getUser } from '../utilities/store/setting.slice';
@@ -19,26 +18,11 @@ function SettingWrapper(props) {
 
 	useEffect(() => {
 		dispatch(getUser());
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const Render = () => {
-		if (isLoading) {
-			return (
-				<div className=' mt-3'>
-					<LoadingPlaceholder />
-				</div>
-			);
-		}
-		if (user) {
-			return props.children;
-		} else {
-			return <>Something goes wrong, {JSON.stringify(error)}</>;
-		}
-	};
-
 	return (
-		<WithLeftSidebar>
+		<div className=' col-span-4 lg:col-span-3'>
 			<Banner
 				title='Your Account Dashboard'
 				subtitle="Welcome to your account dashboard! Here you'll find everything you need to change your profile information, settings, read notifications and requests, view your latest messages, change your password and much more! Also you can create or manage your own favorite page, have fun!"
@@ -56,9 +40,17 @@ function SettingWrapper(props) {
 				</div>
 			</div>
 			<div className='md:mx-20'>
-				<Render />
+				{isLoading ? (
+					<div className=' mt-3'>
+						<LoadingPlaceholder />
+					</div>
+				) : user ? (
+					props.children
+				) : (
+					<>Something goes wrong, {JSON.stringify(error)}</>
+				)}
 			</div>
-		</WithLeftSidebar>
+		</div>
 	);
 }
 

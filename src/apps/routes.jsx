@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader';
-import Layout from '../layout';
+import Layout from '../layout/Base';
 import { AUTH_ROUTES, PUBLIC_ROUTES } from './lazyLoading';
 
 const SuspenseWrapper = (props) => {
@@ -12,16 +12,21 @@ const SuspenseWrapper = (props) => {
 };
 
 const ProtectedAuthRoutes = ({ children }) => {
-	const user = useSelector((store) => store['auth']['user']);
-	if (!user) {
+	const user = useSelector((store) => store.auth.user);
+	const token = useSelector((store) => store.auth.token);
+	const comparing = (!token && user) || (token && !user) || (!token && !user);
+	if (comparing) {
 		return <Navigate to='/auth/sign-in' replace />;
 	}
 	return children;
 };
 
 const ProtectedPublicRoutes = ({ children }) => {
-	const user = useSelector((store) => store['auth']['user']);
-	if (user) {
+	const user = useSelector((store) => store.auth.user);
+	const token = useSelector((store) => store.auth.token);
+	console.log(token, user);
+
+	if (token && user) {
 		return <Navigate to='/' replace />;
 	}
 	return children;

@@ -9,18 +9,31 @@ import {
 	BsFillCameraVideoFill,
 	BsFillMicFill,
 	BsTelephoneFill,
+	BsArrowLeft,
 } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { unSelectContact } from '../../utilities/store/chat.slice';
 
 function ChatView() {
+	const dispatch = useDispatch();
 	const [text, setText] = useState('');
 
 	function handleOnEnter(text) {
 		console.log('enter', text);
 	}
+
+	const onHideMessagesClick = () => {
+		dispatch(unSelectContact());
+	};
+
 	return (
-		<div>
-			<div className='chat_header flex justify-between px-10 py-3 shadow'>
+		<div className='h-[calc(100vh_-_190px)]'>
+			<div className='chat_header sticky top-[60px] z-10 bg-white flex justify-between px-10 py-3 shadow'>
 				<div className='flex items-center'>
+					<BsArrowLeft
+						className='mr-4 cursor-pointer'
+						onClick={onHideMessagesClick}
+					/>
 					<div className='user_img'>
 						<ProfileImg
 							online
@@ -41,7 +54,7 @@ function ChatView() {
 					</div>
 				</div>
 			</div>
-			<div className='chat_body px-4 pt-2 pb-8 fixed h-[73vh] overflow-auto w-[75%]'>
+			<div className='chat_body px-4 py-4 overflow-auto h-full'>
 				<Receiver />
 				<Sender />
 				<Receiver />
@@ -61,7 +74,7 @@ function ChatView() {
 				<Receiver />
 				<Sender />
 			</div>
-			<div className='chat_footer fixed bottom-0 bg-slate-100 w-[75%]'>
+			<div className='chat_footer sticky bottom-0 bg-slate-100'>
 				<div className='border grid grid-cols-12 items-center'>
 					<div className='col-span-1 text-center'>
 						<BsFillMicFill className='text-aurora text-2xl mx-auto' />

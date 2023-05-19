@@ -1,17 +1,21 @@
+import Cookies from 'js-cookie';
 import React from 'react';
 import { HiOutlineViewList } from 'react-icons/hi';
 import { MdOutlineLogout } from 'react-icons/md';
-import { Link } from 'react-router-dom';
-import { AVATAR_DROPDOWN_ITEMS } from '../../constants/navbar';
-import Dropdown from '../../components/Dropdown';
 import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import Dropdown from '../../components/Dropdown';
+import { AVATAR_DROPDOWN_ITEMS } from '../../constants/navbar';
 
 function MobileMenu() {
 	const user = useSelector((state) => state.auth.user);
+	const navigateTo = useNavigate();
 
 	const onLogoutBtnClick = (evt) => {
 		evt.preventDefault();
-		console.log('logout');
+		Cookies.remove('user');
+		Cookies.remove('token');
+		navigateTo('/auth/sign-in');
 	};
 
 	return (

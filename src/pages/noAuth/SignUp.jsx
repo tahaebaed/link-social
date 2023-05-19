@@ -1,7 +1,8 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
 import { AiOutlineLock, AiOutlineUnlock } from 'react-icons/ai';
-import { BsPerson } from 'react-icons/bs';
+import { RiCake2Line } from 'react-icons/ri';
+import { BsPerson, BsPhone } from 'react-icons/bs';
 import { HiOutlineMail } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
@@ -47,7 +48,7 @@ const SignUp = () => {
 		first_name: yup.string().required('Your first name is required'),
 		last_name: yup.string().required('Your last name is required'),
 		phone: yup.string(),
-		age: yup.string(),
+		age: yup.number(),
 		gender: yup.string(),
 	});
 
@@ -159,11 +160,13 @@ const SignUp = () => {
 							<FormikControl
 								name='phone'
 								id='phone'
+								icon={<BsPhone />}
 								inputClasses='border outline-sky-100 pl-9 py-2 rounded-lg w-full'
 								wrapperClasses='h-[65px]'
 								label='phone (optional)'
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
+								type='tel'
 							/>
 							<label className='flex'>
 								<div className='w-3/6'>
@@ -171,6 +174,7 @@ const SignUp = () => {
 									<FormikControl
 										name='age'
 										id='age'
+										icon={<RiCake2Line />}
 										inputClasses='border outline-sky-100 pl-9 py-2 rounded-lg w-full'
 										wrapperClasses='h-[65px]'
 										label='age (optional)'

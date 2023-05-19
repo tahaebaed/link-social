@@ -8,6 +8,7 @@ import { profileSelector } from '../utilities/store';
 import { getUserFollow } from '../utilities/store/profile.slice';
 
 import '../assets/scss/layout/scrollbar.scss';
+import { HiOutlineChatBubbleLeftRight } from 'react-icons/hi2';
 
 function FriendsList() {
 	const dispatch = useDispatch();
@@ -69,20 +70,9 @@ function FriendsList() {
 								<p className='text-xs text-gray-400'>online</p>
 							</div>
 							<div className='col-span-1'>
-								<Dropdown noArrow>
-									<ul>
-										<li>
-											<a className='dropdown-item' href='#go-to-somewhere'>
-												View Profile
-											</a>
-										</li>
-										<li>
-											<a className='dropdown-item' href='#go-to-somewhere'>
-												View Chat
-											</a>
-										</li>
-									</ul>
-								</Dropdown>
+								<Link to={`/chat/${friend.id}`}>
+									<HiOutlineChatBubbleLeftRight className='text-gray-400 text-xl' />
+								</Link>
 							</div>
 						</div>
 					))}

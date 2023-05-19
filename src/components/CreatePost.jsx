@@ -7,7 +7,7 @@ import '../assets/scss/components/CreatePost.scss';
 import { FieldArray, Form, Formik } from 'formik';
 import FormikControl from './FormFields/FormikControl';
 import ProfileImg from './ProfileImg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createPosts } from '../utilities/store/posts_reducer/postReactsExtraReducer';
 import Preview from './Preview';
 
@@ -22,6 +22,7 @@ import Preview from './Preview';
 
 const CreatePost = ({ avatar = iconAvatar }) => {
 	const dispatch = useDispatch();
+	const user = useSelector((store) => store['auth']['user']);
 	const submitForm = (valuse, { resetForm }) => {
 		console.log(valuse);
 		dispatch(createPosts({ body: valuse.postContent, photos: valuse.postImg }));
@@ -33,9 +34,15 @@ const CreatePost = ({ avatar = iconAvatar }) => {
 			onSubmit={submitForm}
 		>
 			{(formik) => (
-				<Form id='create-post-form' className='mx-auto py-4 px-8 shadow rounded-md my-5'>
+				<Form
+					id='create-post-form'
+					className='mx-auto py-4 px-8 shadow rounded-md my-5'
+				>
 					<div className='relative'>
-						<ProfileImg className='absolute left-2 top-2 rounded-full border-2 w-[40px] h-[40px] p-0' />
+						<ProfileImg
+							img={user?.profile?.avatar}
+							className='absolute left-2 top-2 rounded-full border-2 w-[40px] h-[40px] p-0'
+						/>
 						<FormikControl
 							type='textarea'
 							name='postContent'

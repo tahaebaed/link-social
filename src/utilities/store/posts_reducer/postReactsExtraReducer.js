@@ -13,7 +13,7 @@ export const createPosts = createAsyncThunk('createPosts', async (data) => {
 			},
 			data
 		});
-		console.log(response, "create res");
+
 		return response.data.data.post;
 	} catch (err) {
 		return { error: err.response, status: false };

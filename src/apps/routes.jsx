@@ -26,9 +26,10 @@ const ProtectedPublicRoutes = ({ children }) => {
 	const token = useSelector((store) => store.auth.token);
 	console.log(token, user);
 
-	if (token && user) {
-		return <Navigate to='/' replace />;
-	}
+	// if (token && user) {
+	// 	return <Navigate to='/' replace />;
+	// }
+
 	return children;
 };
 

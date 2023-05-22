@@ -86,7 +86,7 @@ function HomeFeeds() {
 											postTime={timeToX(post.created_at)}
 											description={post.body}
 											likesCount={post.reacts_count}
-											commentsCount={posts.comments_count}
+											commentsCount={post.comments_count}
 											shareCount={post.children_count}
 											postId={post.id}
 											likeState={post.is_react}

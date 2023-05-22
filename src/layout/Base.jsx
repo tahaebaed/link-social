@@ -55,7 +55,7 @@ function Base() {
 				</MobileMenu>
 			</div>
 
-			<div className='grid grid-cols-4'>
+			<div className='grid grid-cols-4 min-h-[calc(100vh_-_65px)]'>
 				<div className='lg:col-span-1 hidden lg:block'>
 					<div className='sticky top-[90px]'>
 						<WeatherCard />

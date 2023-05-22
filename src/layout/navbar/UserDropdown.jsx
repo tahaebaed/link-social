@@ -1,10 +1,10 @@
-import Cookies from 'js-cookie';
 import React from 'react';
 import { MdOutlineLogout } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Dropdown from '../../components/Dropdown';
 import { AVATAR_DROPDOWN_ITEMS } from '../../constants/navbar';
+import { logOutUser } from '../../utilities/store/user_reducer/userSlice';
 
 const DropdownLabel = () => {
 	const user = useSelector((state) => state.auth.user);
@@ -30,11 +30,11 @@ const DropdownLabel = () => {
 
 function UserDropdown() {
 	const navigateTo = useNavigate();
+	const dispatch = useDispatch();
 
 	const onLogoutBtnClick = (evt) => {
 		evt.preventDefault();
-		Cookies.remove('user');
-		Cookies.remove('token');
+		dispatch(logOutUser());
 		navigateTo('/auth/sign-in');
 	};
 

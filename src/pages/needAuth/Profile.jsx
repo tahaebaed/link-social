@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { HiOutlineChatBubbleLeftRight } from 'react-icons/hi2';
-import { IoPersonAdd } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import Button from '../../components/Button';
@@ -10,13 +9,16 @@ import { Navs, Taps } from '../../layout/Profile/TapsAndNavs';
 import { profileSelector } from '../../utilities/store';
 import { getUser, getUserPosts } from '../../utilities/store/profile.slice';
 import { FiUserCheck, FiUserPlus } from 'react-icons/fi';
-import { toggleFollowUser } from '../../utilities/store/follow.slice';
+import {
+	showFollowUser,
+	toggleFollowUser,
+} from '../../utilities/store/follow.slice';
+import { BiLoader } from 'react-icons/bi';
 
 const Profile = () => {
 	usePageTitle('Profile');
 	const dispatch = useDispatch();
 	const params = useParams();
-	const userId = useSelector((store) => store['auth']['user']['id']);
 	const { isLoading, error, profile } = useSelector(profileSelector.about);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [activeTap, setActiveTap] = useState('about');
@@ -31,6 +33,7 @@ const Profile = () => {
 	useEffect(() => {
 		dispatch(getUser(params?.profileId));
 		dispatch(getUserPosts(params?.profileId));
+		dispatch(showFollowUser(params?.profileId));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [params?.profileId]);
 
@@ -40,46 +43,6 @@ const Profile = () => {
 			prev.set('activeTap', tapId);
 			return prev;
 		});
-	};
-
-	const onFollowBtnClick = () => {
-		dispatch(toggleFollowUser(params?.profileId));
-	};
-
-	const FollowButton = () => {
-		// user show it's profile, return nothing
-		if (userId === profile?.id) {
-			return <></>;
-		}
-
-		const user = profile.followers.find((user) => user.id === userId);
-		let btn = user
-			? {
-					body: 'Follow',
-					icon: FiUserPlus,
-					outline: false,
-			  }
-			: {
-					body: 'Followed',
-					icon: FiUserCheck,
-					outline: true,
-			  };
-
-		return (
-			<>
-				<Button
-					className='font-bold mx-2 flex items-center'
-					outline={btn.outline}
-					onClick={onFollowBtnClick}
-				>
-					<btn.icon className='inline-block mr-2' />
-					<span>{btn.body}</span>
-				</Button>
-				<Button as={Link} to={`/message/${profile.id}`} outline lg>
-					<HiOutlineChatBubbleLeftRight />
-				</Button>
-			</>
-		);
 	};
 
 	if (isLoading) {
@@ -113,7 +76,7 @@ const Profile = () => {
 						</div>
 						<div className='ml-auto mt-4 md:mt-0'>
 							<div className='flex justify-end'>
-								<FollowButton />
+								<FollowButton profile={profile} />
 							</div>
 						</div>
 					</div>
@@ -127,6 +90,66 @@ const Profile = () => {
 	} else {
 		return <div className=' col-span-4 lg:col-span-3'>no user found</div>;
 	}
+};
+
+const FollowButton = (props) => {
+	const { profile } = props;
+
+	const dispatch = useDispatch();
+	const userId = useSelector((store) => store['auth']['user']['id']);
+	const { isLoading, following } = useSelector((store) => store['follow']);
+
+	// user show it's profile, return nothing
+	if (userId === profile?.id) {
+		return <></>;
+	}
+
+	let btn;
+
+	if (isLoading) {
+		btn = {
+			body: 'Loading',
+			icon: BiLoader,
+			outline: true,
+			disabled: true,
+		};
+	} else {
+		btn = following
+			? {
+					body: 'Followed',
+					icon: FiUserCheck,
+					outline: true,
+					disabled: false,
+			  }
+			: {
+					body: 'Follow',
+					icon: FiUserPlus,
+					outline: false,
+					disabled: false,
+			  };
+	}
+
+	const onFollowBtnClick = () => {
+		dispatch(toggleFollowUser(profile.id));
+	};
+
+	return (
+		<>
+			<Button
+				className='font-bold mx-2 flex items-center'
+				outline={btn.outline}
+				onClick={onFollowBtnClick}
+				disabled={btn.disabled}
+			>
+				<btn.icon className='inline-block mr-2' />
+				<span>{btn.body}</span>
+			</Button>
+
+			<Button as={Link} to={`/message/${profile.id}`} outline lg>
+				<HiOutlineChatBubbleLeftRight />
+			</Button>
+		</>
+	);
 };
 
 export default Profile;

@@ -14,6 +14,18 @@ const toggleFollowUser = createAsyncThunk('follow/user', async (postId) => {
 	}
 });
 
+const showFollowUser = createAsyncThunk('show/follow/user', async (postId) => {
+	try {
+		const response = await userInterceptor({
+			method: 'get',
+			url: `/follow/${postId}`,
+		});
+		return response.data;
+	} catch (err) {
+		return { error: err.response, status: false };
+	}
+});
+
 const follow = createSlice({
 	name: 'follow',
 	initialState: {
@@ -40,8 +52,25 @@ const follow = createSlice({
 			state.error = action.payload.error.data;
 			toast.error(action.payload.error.data.message);
 		},
+		[showFollowUser.pending]: (state) => {
+			state.isLoading = true;
+		},
+		[showFollowUser.fulfilled]: (state, action) => {
+			state.isLoading = false;
+
+			if (action.payload.status) {
+				state.following = action.payload.data.following;
+			} else {
+				state.error = action.payload.error.data;
+				toast.error(action.payload.error.data.message);
+			}
+		},
+		[showFollowUser.rejected]: (state, action) => {
+			state.error = action.payload.error.data;
+			toast.error(action.payload.error.data.message);
+		},
 	},
 });
 
 export default follow.reducer;
-export { toggleFollowUser };
+export { toggleFollowUser, showFollowUser };

@@ -8,6 +8,7 @@ import postsReducer from './posts_reducer/postsSlice';
 import settingReducer from './setting.slice';
 import commentsReducer from './comments.slice';
 import chatReducer from './chat.slice';
+import followReducer from './follow.slice';
 
 export const store = configureStore({
 	reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
 		setting: settingReducer,
 		comments: commentsReducer,
 		chat: chatReducer,
+		follow: followReducer,
 	},
 
 	devTools: process.env.toString() !== 'production',

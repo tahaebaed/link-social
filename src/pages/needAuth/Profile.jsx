@@ -10,15 +10,16 @@ import { Navs, Taps } from '../../layout/Profile/TapsAndNavs';
 import { profileSelector } from '../../utilities/store';
 import { getUser, getUserPosts } from '../../utilities/store/profile.slice';
 import { FiUserCheck, FiUserPlus } from 'react-icons/fi';
+import { toggleFollowUser } from '../../utilities/store/follow.slice';
 
 const Profile = () => {
 	usePageTitle('Profile');
 	const dispatch = useDispatch();
 	const params = useParams();
+	const userId = useSelector((store) => store['auth']['user']['id']);
 	const { isLoading, error, profile } = useSelector(profileSelector.about);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [activeTap, setActiveTap] = useState('about');
-	const userId = useSelector((store) => store['auth']['user']['id']);
 
 	useEffect(() => {
 		const sp = searchParams.get('activeTap');
@@ -41,39 +42,44 @@ const Profile = () => {
 		});
 	};
 
+	const onFollowBtnClick = () => {
+		dispatch(toggleFollowUser(params?.profileId));
+	};
+
 	const FollowButton = () => {
+		// user show it's profile, return nothing
 		if (userId === profile?.id) {
-			// user show it's profile
 			return <></>;
-		} else {
-			const user = profile.followers.find((user) => user.id === userId);
-			if (user) {
-				// user follow this profile
-				return (
-					<>
-						<Button className='font-bold mx-2 flex items-center' outline>
-							<FiUserCheck className='inline-block mr-2' />
-							<span>Followed</span>
-						</Button>
-						<Button as={Link} to={`/message/${profile.id}`} outline lg>
-							<HiOutlineChatBubbleLeftRight />
-						</Button>
-					</>
-				);
-			} else {
-				return (
-					<>
-						<Button className='font-bold mx-2 flex items-center'>
-							<FiUserPlus className='inline-block mr-2' />
-							<span>Follow</span>
-						</Button>
-						<Button as={Link} to={`/message/${profile.id}`} outline lg>
-							<HiOutlineChatBubbleLeftRight />
-						</Button>
-					</>
-				);
-			}
 		}
+
+		const user = profile.followers.find((user) => user.id === userId);
+		let btn = user
+			? {
+					body: 'Follow',
+					icon: FiUserPlus,
+					outline: false,
+			  }
+			: {
+					body: 'Followed',
+					icon: FiUserCheck,
+					outline: true,
+			  };
+
+		return (
+			<>
+				<Button
+					className='font-bold mx-2 flex items-center'
+					outline={btn.outline}
+					onClick={onFollowBtnClick}
+				>
+					<btn.icon className='inline-block mr-2' />
+					<span>{btn.body}</span>
+				</Button>
+				<Button as={Link} to={`/message/${profile.id}`} outline lg>
+					<HiOutlineChatBubbleLeftRight />
+				</Button>
+			</>
+		);
 	};
 
 	if (isLoading) {

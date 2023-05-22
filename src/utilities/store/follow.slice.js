@@ -2,11 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { userInterceptor } from '../../apps/axiosInstance';
 
-const toggleFollowUser = createAsyncThunk('follow/user', async (postId) => {
+const toggleFollowUser = createAsyncThunk('follow/user', async (profileId) => {
 	try {
 		const response = await userInterceptor({
 			method: 'post',
-			url: `/follow/${postId}`,
+			url: `/follow/${profileId}`,
 		});
 		return response.data;
 	} catch (err) {
@@ -14,11 +14,11 @@ const toggleFollowUser = createAsyncThunk('follow/user', async (postId) => {
 	}
 });
 
-const showFollowUser = createAsyncThunk('show/follow/user', async (postId) => {
+const showFollowUser = createAsyncThunk('show/follow/user', async (profileId) => {
 	try {
 		const response = await userInterceptor({
 			method: 'get',
-			url: `/follow/${postId}`,
+			url: `/follow/${profileId}`,
 		});
 		return response.data;
 	} catch (err) {

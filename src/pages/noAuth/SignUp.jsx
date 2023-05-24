@@ -171,6 +171,7 @@ const SignUp = () => {
 									<FormikControl
 										name='age'
 										id='age'
+										type='number'
 										inputClasses='border outline-sky-100 pl-9 py-2 rounded-lg w-full'
 										wrapperClasses='h-[65px]'
 										label='age (optional)'

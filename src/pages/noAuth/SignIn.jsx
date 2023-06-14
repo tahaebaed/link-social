@@ -7,8 +7,10 @@ import Button from '../../components/Button';
 import FormikControl from '../../components/FormFields/FormikControl';
 import { useDispatch } from 'react-redux';
 import { login } from '../../utilities/store/user_reducer/extraReducers.js';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+	const navigateTo = useNavigate();
 	const initialValues = {
 		email: '',
 		password: '',
@@ -27,7 +29,7 @@ const SignIn = () => {
 			initialValues={initialValues}
 			validationSchema={validationSchema}
 			onSubmit={(values) => {
-				dispatch(login(values));
+				dispatch(login({ values, navigateTo }));
 			}}
 		>
 			{(formik) => (

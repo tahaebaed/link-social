@@ -3,31 +3,37 @@ import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import { userInterceptor } from '../../../apps/axiosInstance';
 
-export const fetchUser = createAsyncThunk('user/fetchUser', async (user) => {
-	try {
-		const response = await userInterceptor({
-			method: 'post',
-			data: user,
-			url: '/auth/register',
-		});
-		return response.data;
-	} catch (err) {
-		return err.response.data;
+export const fetchUser = createAsyncThunk(
+	'user/fetchUser',
+	async ({ values: user, navigateTo }) => {
+		try {
+			const response = await userInterceptor({
+				method: 'post',
+				data: user,
+				url: '/auth/register',
+			});
+			return { ...response.data, navigateTo };
+		} catch (err) {
+			return err.response.data;
+		}
 	}
-});
+);
 
-export const login = createAsyncThunk('user/login', async (user) => {
-	try {
-		const response = await userInterceptor({
-			method: 'post',
-			data: user,
-			url: '/auth/login',
-		});
-		return response.data;
-	} catch (err) {
-		return err.response.data;
+export const login = createAsyncThunk(
+	'user/login',
+	async ({ values: user, navigateTo }) => {
+		try {
+			const response = await userInterceptor({
+				method: 'post',
+				data: user,
+				url: '/auth/login',
+			});
+			return { ...response.data, navigateTo };
+		} catch (err) {
+			return err.response.data;
+		}
 	}
-});
+);
 
 export const updateUser = createAsyncThunk('user/updateUser', async (user) => {
 	try {
@@ -61,6 +67,7 @@ export const extraReducers = {
 			state.user = action.payload.data.user;
 			Cookies.set('token', action.payload.data.token);
 			Cookies.set('user', JSON.stringify(state.user));
+			action.payload.navigateTo('/');
 		}
 	},
 	[fetchUser.rejected]: (state, action) => {
@@ -85,6 +92,7 @@ export const extraReducers = {
 			state.token = action.payload.data.token;
 			Cookies.set('token', action.payload.data.token);
 			Cookies.set('user', JSON.stringify(state.user));
+			action.payload.navigateTo('/');
 		}
 	},
 	[login.rejected]: (state, action) => {

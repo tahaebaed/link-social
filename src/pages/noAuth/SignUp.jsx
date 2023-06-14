@@ -9,8 +9,10 @@ import * as yup from 'yup';
 import FormikControl from '../../components/FormFields/FormikControl';
 import Button from '../../components/Button';
 import { fetchUser } from '../../utilities/store/user_reducer/extraReducers';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+	const navigateTo = useNavigate();
 	const initialValues = {
 		user_name: '',
 		email: '',
@@ -55,7 +57,7 @@ const SignUp = () => {
 	const dispatch = useDispatch();
 
 	const onSubmit = (values) => {
-		dispatch(fetchUser(values));
+		dispatch(fetchUser({ values, navigateTo }));
 	};
 	return (
 		<Formik

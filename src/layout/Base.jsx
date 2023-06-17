@@ -57,9 +57,11 @@ function Base() {
 
 			<div className='grid grid-cols-4 min-h-[calc(100vh_-_65px)]'>
 				<div className='lg:col-span-1 hidden lg:block'>
-					<div className='sticky top-[90px]'>
-						<WeatherCard />
-						<CalendarCard />
+					<div className='sticky top-[60px]'>
+						<ScrollArea className='h-[100vh]'>
+							<WeatherCard />
+							<CalendarCard />
+						</ScrollArea>
 					</div>
 				</div>
 				<Outlet />
